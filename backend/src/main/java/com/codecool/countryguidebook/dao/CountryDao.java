@@ -1,8 +1,12 @@
-package com.codecool.countryguidebook.controller;
+package com.codecool.countryguidebook.dao;
 
 import com.codecool.countryguidebook.model.Country;
+import com.codecool.countryguidebook.model.CountryCode;
+import com.codecool.countryguidebook.model.FilterCriteria;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 
 public interface CountryDao {
 
@@ -10,6 +14,6 @@ public interface CountryDao {
     public List<Country> findByPopulation(List<Country> countries, int populatonRangeFrom, int populationRangeTo);
     public List<Country> findByLanguage(List<Country> countries, String language);
     public List<Country> findByCurrency(List<Country> countries, String currency);
-    public List<Country> Filter();
+    public List<CountryCode> filter(FilterCriteria filterCriteria);
 
 }
