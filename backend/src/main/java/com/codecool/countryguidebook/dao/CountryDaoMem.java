@@ -7,6 +7,7 @@ import com.codecool.countryguidebook.model.Language;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,17 +32,11 @@ public class CountryDaoMem implements CountryDao {
 
     @Override
     public List<Country> findByLanguage(List<Country> countries, List<Language> languages) {
-        List<Country> countryList = new ArrayList<>();
-        for (Language language : languages)
-        {
-            for (Country country : countries){
-                if (country.getLanguageList().contains(language)){
-                    countryList.add(country);
-                    System.out.println(country.getName());
-                }
-            }
-        }
-        return countryList;
+        return  countries.stream().
+                filter(country -> languages.stream()
+                        .anyMatch(language -> country.getLanguageList().contains(language)))
+                .collect(Collectors.toList());
+
     }
 
     @Override
