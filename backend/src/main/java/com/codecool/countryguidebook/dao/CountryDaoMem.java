@@ -3,6 +3,7 @@ package com.codecool.countryguidebook.dao;
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
 import com.codecool.countryguidebook.model.FilterCriteria;
+import com.codecool.countryguidebook.model.Language;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -23,17 +24,24 @@ public class CountryDaoMem implements CountryDao {
 
     @Override
     public List<Country> findByPopulation(List<Country> countries, int populationRangeFrom, int populationRangeTo) {
-
-
-     return countries.stream().
+        return countries.stream().
                 filter(country -> ((country.getPopulation() > populationRangeFrom) && (country.getPopulation()<populationRangeTo))).
                 collect(Collectors.toList());
     }
 
     @Override
-    public List<Country> findByLanguage(List<Country> countries, String languauge) {
-        System.out.println("2");
-        return null;
+    public List<Country> findByLanguage(List<Country> countries, List<Language> languages) {
+        List<Country> countryList = new ArrayList<>();
+        for (Language language : languages)
+        {
+            for (Country country : countries){
+                if (country.getLanguageList().contains(language)){
+                    countryList.add(country);
+                    System.out.println(country.getName());
+                }
+            }
+        }
+        return countryList;
     }
 
     @Override
@@ -52,7 +60,7 @@ public class CountryDaoMem implements CountryDao {
         }
 
         if (filterCriteria.isLanguageFilter()){
-            filteredCountries = findByLanguage(filteredCountries, filterCriteria.getLanguage());
+            filteredCountries = findByLanguage(filteredCountries, filterCriteria.getLanguages());
         }
 
         if (filterCriteria.isCurrencyFilter()){

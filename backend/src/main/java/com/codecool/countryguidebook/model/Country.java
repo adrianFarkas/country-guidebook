@@ -1,11 +1,14 @@
 package com.codecool.countryguidebook.model;
 
+import java.util.List;
+
 public class Country {
 
     String name;
     CountryCode countryCode;
     Integer population;
     String currency;
+    List<Language> languageList;
 
     public String getName() {
         return name;
@@ -35,10 +38,15 @@ public class Country {
         return countryCode;
     }
 
-    public Country(String name, CountryCode countryCode, Integer population, String currency) {
+    public List<Language> getLanguageList() {
+        return languageList;
+    }
+
+    public Country(String name, CountryCode countryCode, Integer population, String currency, List<Language> languages) {
         this.name = name;
         this.countryCode = countryCode;
         this.population = population;
         this.currency = currency;
+        this.languageList = languages;
     }
 }
