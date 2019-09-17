@@ -7,7 +7,6 @@ import com.codecool.countryguidebook.model.Language;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,7 @@ public class CountryDaoMem implements CountryDao {
 
     @Override
     public List<Country> findByPopulation(List<Country> countries, int populationRangeFrom, int populationRangeTo) {
-        return countries.stream().
+         return countries.stream().
                 filter(country -> ((country.getPopulation() > populationRangeFrom) && (country.getPopulation()<populationRangeTo))).
                 collect(Collectors.toList());
     }
@@ -67,6 +66,10 @@ public class CountryDaoMem implements CountryDao {
 
     public List<Country> getCountries() {
         return countries;
+    }
+
+    public void clear(){
+        countries.clear();
     }
 
 }
