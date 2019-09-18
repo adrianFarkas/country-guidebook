@@ -33,7 +33,7 @@ public class CountryDaoMem implements CountryDao {
     public List<Country> findByLanguage(List<Country> countries, List<Language> languages) {
         return  countries.stream().
                 filter(country -> languages.stream()
-                        .anyMatch(language -> country.getLanguageList().contains(language)))
+                        .anyMatch(language -> country.getLanguages().contains(language)))
                 .collect(Collectors.toList());
 
     }
@@ -42,7 +42,7 @@ public class CountryDaoMem implements CountryDao {
     public List<Country> findByCurrency(List<Country> countries, List<String> currencies) {
         return  countries.stream().
                 filter(country -> currencies.stream()
-                        .anyMatch(currency -> country.getCurrency().contains(currency)))
+                        .anyMatch(currency -> country.getCurrencies().contains(currency)))
                 .collect(Collectors.toList());
     }
 
@@ -62,7 +62,7 @@ public class CountryDaoMem implements CountryDao {
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 
-        return filteredCountries.stream().map(Country::getCountryCode).collect(Collectors.toList());
+        return filteredCountries.stream().map(Country::getAlpha3Code).collect(Collectors.toList());
     }
 
     public List<Country> getCountries() {
