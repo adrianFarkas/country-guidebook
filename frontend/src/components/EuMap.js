@@ -25,13 +25,12 @@ class EuMap extends Component {
                         <Geographies geography="/static/world-50m.json" disableOptimization>
                             {(geographies, projection) =>
                                 geographies.map((geography, i) =>
-                                    this.props.codes.indexOf(geography.id) !== -1 && (
+                                    this.props.countryCodes.indexOf(geography.id) !== -1 && (
                                         <Geography
                                             key={i}
                                             geography={geography}
                                             projection={projection}
                                             className="geo"
-                                            onClick={this.props.handleClick}
                                         />
                                     ))
                             }

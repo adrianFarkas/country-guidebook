@@ -28,7 +28,7 @@
 }
 
 .selectors {
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .filters {
@@ -43,6 +43,14 @@
 
 .range-slider {
     width: 440px;
+}
+
+.submitBtn {
+    margin: 20px auto;
+}
+
+.population-number {
+    width: 150px;
 }
 
 @media (max-width: 1300px) {
