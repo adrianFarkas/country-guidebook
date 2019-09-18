@@ -4,6 +4,7 @@ import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
 import com.codecool.countryguidebook.model.FilterCriteria;
 import com.codecool.countryguidebook.model.Language;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class CountryDaoMem implements CountryDao {
     private List<Country> countries = new ArrayList<>();
+
 
     public CountryDaoMem() {
     }
@@ -66,9 +68,21 @@ public class CountryDaoMem implements CountryDao {
         return filteredCountries; //filteredCountries.stream().map(Country::getAlpha3Code).collect(Collectors.toList());
     }
 
+    @Override
+    public String findCountryByName(String name) {
+        Country resultCountry = countries.stream().filter(country -> country.getName().equals(name)).findFirst().orElse(null);
+        if(resultCountry != null){
+            return resultCountry.getCapital();
+        }
+        return null;
+    }
+
+
+
     public List<Country> getCountries() {
         return countries;
     }
+
 
     public void clear(){
         countries.clear();

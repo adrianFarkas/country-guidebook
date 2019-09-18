@@ -16,7 +16,7 @@ public class Country {
     private String capital;
     private String subregion;
     private long population;
-    private String area;
+    private int area;
     private List<String> timezones;
     private List<String> callingCodes;
     private List<String> currencies;
@@ -58,7 +58,7 @@ public class Country {
         }
         country.name = json.get("name").toString();
         country.alpha3Code = CountryCode.valueOf(json.get("alpha3Code").toString());
-        country.area = json.get("area").toString();
+        country.area = (int) Double.parseDouble(json.get("area").toString());
         JSONArray callingC = (JSONArray) json.get("callingCodes");
         for (int i = 0; i < callingC.length(); i++) {
 
@@ -81,7 +81,7 @@ public class Country {
         return name;
     }
 
-    public String getArea() {
+    public int getArea() {
         return area;
     }
 
