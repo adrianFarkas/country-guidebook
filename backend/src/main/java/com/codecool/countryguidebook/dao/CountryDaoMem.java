@@ -48,7 +48,7 @@ public class CountryDaoMem implements CountryDao {
     }
 
     @Override
-    public List<CountryCode> filter(FilterCriteria filterCriteria) {
+    public List<Country> filter(FilterCriteria filterCriteria) {
         List<Country> filteredCountries = this.countries;
 
         if (filterCriteria.getPopulation()!=null){
@@ -63,7 +63,7 @@ public class CountryDaoMem implements CountryDao {
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 
-        return filteredCountries.stream().map(Country::getAlpha3Code).collect(Collectors.toList());
+        return filteredCountries; //filteredCountries.stream().map(Country::getAlpha3Code).collect(Collectors.toList());
     }
 
     public List<Country> getCountries() {

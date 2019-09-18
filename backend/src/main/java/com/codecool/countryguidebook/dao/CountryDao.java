@@ -15,6 +15,6 @@ public interface CountryDao {
     List<Country> findByPopulation(List<Country> countries, Map<String, Integer> population);
     List<Country> findByLanguage(List<Country> countries, List<Language> language);
     List<Country> findByCurrency(List<Country> countries, List<String> currency);
-    List<CountryCode> filter(FilterCriteria filterCriteria);
+    List<Country> filter(FilterCriteria filterCriteria);
 
 }
