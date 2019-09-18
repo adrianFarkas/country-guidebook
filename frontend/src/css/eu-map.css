@@ -24,3 +24,9 @@
     stroke-width: 0.75;
     outline: none;
 }
+
+@media (max-width: 400px) {
+    .wrapper {
+        width: 10px;
+    }
+}
