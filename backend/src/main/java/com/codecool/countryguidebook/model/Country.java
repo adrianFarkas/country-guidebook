@@ -3,6 +3,10 @@ package com.codecool.countryguidebook.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Country {
 
@@ -12,10 +16,10 @@ public class Country {
     private String subregion;
     private long population;
     private int area;
-    private String[] timezones;
-    private String[] callingCodes;
-    private String[] currencies;
-    private Language[] languages;
+    private List<String> timezones;
+    private List<String> callingCodes;
+    private List<String> currencies;
+    private List<Language> languages;
 
     // extra things which is not in the json
 
@@ -30,31 +34,30 @@ public class Country {
     private int avarageWorkingTimePerYearInHour;
 
 
-
-
-
     static Country createCountry(JSONObject json) throws JSONException {
 
         Country country = new Country();
 
-        JSONObject[] currencii = (JSONObject[]) json.get("currencies");
+        JSONObject[] currenci = (JSONObject[]) json.get("currencies");
         JSONObject[] langu = (JSONObject[]) json.get("languages");
-        int cl = currencii.length;
-        int ll = langu.length;
-        country.currencies = new String[cl];
-        country.languages = new Language[ll];
+        country.currencies = new ArrayList<>();
+        country.languages = new ArrayList<>();
 
-        for (int i = 0; i < cl; i++) {
-            country.currencies[i] = currencii[i].get("name").toString();
+        for (JSONObject jsonObject : currenci
+        ) {
+            country.currencies.add(jsonObject.get("name").toString());
         }
-        for (int i = 0; i < ll; i++) {
-            country.languages[i] = Language.valueOf(langu[i].get("name").toString());
+        for (JSONObject jsonObject : langu
+        ) {
+            country.languages.add(Language.valueOf(jsonObject.get("name").toString()));
         }
         country.name = json.get("name").toString();
         country.alpha3Code = CountryCode.valueOf(json.get("alpha3Code").toString());
         country.area = Integer.valueOf(json.get("area").toString());
-        country.callingCodes = (String[]) json.get("callingCodes");
-        country.timezones = (String[]) json.get("timezones");
+        String[] callingC = (String[]) json.get("callingCodes");
+        country.callingCodes = new ArrayList<>(Arrays.asList(callingC));
+        String[] tzones = (String[]) json.get("timezones");
+        country.timezones = new ArrayList<>(Arrays.asList(tzones));
         country.population = Long.parseLong(json.get("population").toString());
         country.capital = json.get("capital").toString();
         country.subregion = json.get("subregion").toString();
@@ -86,19 +89,19 @@ public class Country {
         return area;
     }
 
-    public String[] getTimezones() {
+    public List<String> getTimezones() {
         return timezones;
     }
 
-    public String[] getCallingCodes() {
+    public List<String> getCallingCodes() {
         return callingCodes;
     }
 
-    public String[] getCurrencies() {
+    public List<String> getCurrencies() {
         return currencies;
     }
 
-    public Language[] getLanguages() {
+    public List<Language> getLanguages() {
         return languages;
     }
 
