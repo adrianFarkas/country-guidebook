@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,9 +24,9 @@ public class CountryDaoMem implements CountryDao {
     }
 
     @Override
-    public List<Country> findByPopulation(List<Country> countries, int populationRangeFrom, int populationRangeTo) {
+    public List<Country> findByPopulation(List<Country> countries, Map<String, Integer> population) {
          return countries.stream().
-                filter(country -> ((country.getPopulation() > populationRangeFrom) && (country.getPopulation()<populationRangeTo))).
+                filter(country -> ((country.getPopulation() > population.get("min")) && (country.getPopulation()<population.get("max")))).
                 collect(Collectors.toList());
     }
 
@@ -50,15 +51,15 @@ public class CountryDaoMem implements CountryDao {
     public List<CountryCode> filter(FilterCriteria filterCriteria) {
         List<Country> filteredCountries = this.countries;
 
-        if (filterCriteria.isPopulationFilter()){
-            filteredCountries = findByPopulation(filteredCountries, filterCriteria.getPopulationRangeFrom(), filterCriteria.getGetPopulationRangeTo());
+        if (filterCriteria.getPopulation()!=null){
+            filteredCountries = findByPopulation(filteredCountries, filterCriteria.getPopulation());
         }
 
-        if (filterCriteria.isLanguageFilter()){
+        if (filterCriteria.getLanguages()!=null){
             filteredCountries = findByLanguage(filteredCountries, filterCriteria.getLanguages());
         }
 
-        if (filterCriteria.isCurrencyFilter()){
+        if (filterCriteria.getCurrency()!=null){
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 

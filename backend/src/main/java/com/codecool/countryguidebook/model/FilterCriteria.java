@@ -3,48 +3,26 @@ package com.codecool.countryguidebook.model;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class FilterCriteria {
-    private boolean populationFilter;
-    private boolean currencyFilter;
-    private boolean languageFilter;
-    private int populationRangeFrom;
-    private int getPopulationRangeTo;
+    private Map<String, Integer> population;
     private List<String> currency;
     private List<Language> languages;
 
-    public void setAll(boolean populationFilter,  boolean languageFilter, boolean currencyFilter, int populationRangeFrom, int getPopulationRangeTo, List<String> currency, List<Language> language) {
-        this.populationFilter = populationFilter;
-        this.currencyFilter = currencyFilter;
-        this.languageFilter = languageFilter;
-        this.populationRangeFrom = populationRangeFrom;
-        this.getPopulationRangeTo = getPopulationRangeTo;
+    public FilterCriteria(Map<String, Integer> population, List<String> currency, List<Language> languages) {
+        this.population = population;
         this.currency = currency;
-        this.languages = language;
+        this.languages = languages;
     }
 
     public FilterCriteria() {
     }
 
-    public boolean isPopulationFilter() {
-        return populationFilter;
-    }
 
-    public boolean isCurrencyFilter() {
-        return currencyFilter;
-    }
-
-    public boolean isLanguageFilter() {
-        return languageFilter;
-    }
-
-    public int getPopulationRangeFrom() {
-        return populationRangeFrom;
-    }
-
-    public int getGetPopulationRangeTo() {
-        return getPopulationRangeTo;
+    public Map<String, Integer> getPopulation() {
+        return population;
     }
 
     public List<String> getCurrency() {
