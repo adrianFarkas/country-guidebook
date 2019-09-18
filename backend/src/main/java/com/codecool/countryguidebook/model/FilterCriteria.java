@@ -11,10 +11,10 @@ public class FilterCriteria {
     private boolean languageFilter;
     private int populationRangeFrom;
     private int getPopulationRangeTo;
-    private String currency;
+    private List<String> currency;
     private List<Language> languages;
 
-    public void setAll(boolean populationFilter,  boolean languageFilter, boolean currencyFilter, int populationRangeFrom, int getPopulationRangeTo, String currency, List<Language> language) {
+    public void setAll(boolean populationFilter,  boolean languageFilter, boolean currencyFilter, int populationRangeFrom, int getPopulationRangeTo, List<String> currency, List<Language> language) {
         this.populationFilter = populationFilter;
         this.currencyFilter = currencyFilter;
         this.languageFilter = languageFilter;
@@ -47,7 +47,7 @@ public class FilterCriteria {
         return getPopulationRangeTo;
     }
 
-    public String getCurrency() {
+    public List<String> getCurrency() {
         return currency;
     }
 

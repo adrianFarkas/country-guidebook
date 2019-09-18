@@ -39,10 +39,11 @@ public class CountryDaoMem implements CountryDao {
     }
 
     @Override
-    public List<Country> findByCurrency(List<Country> countries, String currency) {
-
-        System.out.println("3");
-        return null;
+    public List<Country> findByCurrency(List<Country> countries, List<String> currencies) {
+        return  countries.stream().
+                filter(country -> currencies.stream()
+                        .anyMatch(currency -> country.getCurrency().contains(currency)))
+                .collect(Collectors.toList());
     }
 
     @Override
