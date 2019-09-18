@@ -1,0 +1,32 @@
+.wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.geo {
+    fill: #ECEFF1;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+.geo:hover {
+    fill: #CFD8DC;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+.geo:active {
+    fill: #FF5722;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+@media (max-width: 400px) {
+    .wrapper {
+        width: 10px;
+    }
+}
