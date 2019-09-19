@@ -24,4 +24,9 @@ public class CountryController {
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
         return countryDaoMem.filter(filterCriteria);
     }
+
+    @GetMapping("/country/{countryCode}")
+    public Country getCountry(@PathVariable String countryCode){
+        return countryDaoMem.getCountry(countryCode);
+    }
 }

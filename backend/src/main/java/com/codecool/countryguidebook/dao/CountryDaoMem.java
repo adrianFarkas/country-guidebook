@@ -78,6 +78,10 @@ public class CountryDaoMem implements CountryDao {
     }
 
 
+    public Country getCountry(String countryCode){
+        return countries.stream().filter(country -> country.getAlpha3Code().toString().equals(countryCode.toUpperCase())).findFirst().orElse(null);
+    }
+
 
     public List<Country> getCountries() {
         return countries;
