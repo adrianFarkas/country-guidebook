@@ -1,11 +1,18 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
 public class Finance {
+    // not in JSON
+    private static Finance finance;
     private int stateDebtMillionEuro;
     private String mainLabor;
     private int avarageWorkingTimePerYearInHour;
     private int avarageSalaryEUR;
     private int minimumWageEUR;
+
+    public Finance() {
+        this.stateDebtMillionEuro = getStateDebtMillionEuro();
+        }
+
 
     public int getAvarageSalaryEUR() {
         return avarageSalaryEUR;
@@ -24,7 +31,7 @@ public class Finance {
     }
 
     public int getStateDebtMillionEuro() {
-        return stateDebtMillionEuro;
+        return 100;
     }
 
     public void setStateDebtMillionEuro(int stateDebtMillionEuro) {

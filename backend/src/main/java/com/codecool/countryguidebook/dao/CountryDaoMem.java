@@ -28,7 +28,7 @@ public class CountryDaoMem implements CountryDao {
     @Override
     public List<Country> findByPopulation(List<Country> countries, Map<String, Integer> population) {
          return countries.stream().
-                filter(country -> ((country.getPopulation() > population.get("min")) && (country.getPopulation()<population.get("max")))).
+                filter(country -> ((country.geographic.getPopulation() > population.get("min")) && (country.geographic.getPopulation()<population.get("max")))).
                 collect(Collectors.toList());
     }
 
@@ -36,7 +36,7 @@ public class CountryDaoMem implements CountryDao {
     public List<Country> findByLanguage(List<Country> countries, List<Language> languages) {
         return  countries.stream().
                 filter(country -> languages.stream()
-                        .anyMatch(language -> country.getLanguages().contains(language)))
+                        .anyMatch(language -> country.units.getLanguages().contains(language)))
                 .collect(Collectors.toList());
 
     }
@@ -45,7 +45,7 @@ public class CountryDaoMem implements CountryDao {
     public List<Country> findByCurrency(List<Country> countries, List<String> currencies) {
         return  countries.stream().
                 filter(country -> currencies.stream()
-                        .anyMatch(currency -> country.getCurrencies().contains(currency)))
+                        .anyMatch(currency -> country.units.getCurrencies().contains(currency)))
                 .collect(Collectors.toList());
     }
 
@@ -72,7 +72,7 @@ public class CountryDaoMem implements CountryDao {
     public String findCountryByName(String name) {
         Country resultCountry = countries.stream().filter(country -> country.getName().equals(name)).findFirst().orElse(null);
         if(resultCountry != null){
-            return resultCountry.getCapital();
+            return resultCountry.getName();
         }
         return null;
     }

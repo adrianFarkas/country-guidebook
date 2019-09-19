@@ -27,7 +27,8 @@ public class Initializer {
     public void createEUCountriesFromJson() throws IOException, JSONException {
         for (CountryCode countryCode : CountryCode.values()) {
             JSONObject country = readJsonFromUrl(apiUrl + countryCode);
-            Country country1 = Country.createCountry(country);
+            Country country1 = new Country();
+            country1.createCountry(country);
             countryDaoMem.add(country1);
         }
     }
