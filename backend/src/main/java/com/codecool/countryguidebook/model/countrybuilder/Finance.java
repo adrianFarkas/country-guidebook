@@ -31,7 +31,7 @@ public class Finance {
     }
 
     public int getStateDebtMillionEuro() {
-        return 100;
+        return stateDebtMillionEuro;
     }
 
     public void setStateDebtMillionEuro(int stateDebtMillionEuro) {
