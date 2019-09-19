@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import Header from "../components/Header";
 import EuMap from "../components/EuMap";
-import axios from "axios";
-
+import "../css/main.css"
 import FilterForm from "../components/filter/FilterForm";
+import axios from "axios";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            countries: [],
             countryCodes: [],
+            languages: [],
+            currencies: [],
             slider: {
                 min: 0,
                 max: 0,
@@ -23,17 +24,17 @@ class App extends Component {
 
 
     componentDidMount() {
-        axios.get("http://localhost:8080/")
-            .then((res => this.setStateData(res)))
+        axios.get("http://localhost:8080/all")
+            .then((res => this.setStateData(res.data)))
     }
 
-    setStateData(response) {
-        const countries = response.data;
-        const population = this.getPropertiesFromCountries(countries, "population");
+    setStateData(data) {
+        const population = this.getPropertiesFromCountries(data["countries"], "population");
         const min = Math.min(...population), max = Math.max(...population);
         this.setState({
-            countries: countries,
-            countryCodes: this.getPropertiesFromCountries(countries, "alpha3Code"),
+            countryCodes: this.getPropertiesFromCountries(data["countries"], "alpha3Code"),
+            languages: data["languages"],
+            currencies: data["currencies"],
             slider: {
                 min: min,
                 max: max,
@@ -59,27 +60,33 @@ class App extends Component {
             currency = form.currency.value,
             populationRange = form.slider.value.split(",");
         const data = {
-            "languages": [languages],
-            "currency": [currency],
+            "languages": languages === "default" ? []: [languages],
+            "currency": currency === "default" ? []: [currency],
             "population": {
                 "min": populationRange[0],
                 "max": populationRange[1]
             }
         };
-        axios.post("http://localhost:8080/filter", data)
-            .then(res => console.log(res.data));
+        axios.post("http://localhost:8080/filter-countries", data)
+            .then(res => this.setState(prevState =>
+                prevState.countryCodes = this.getPropertiesFromCountries(res.data, "alpha3Code")));
     }
 
     render() {
-        const {slider, countryCodes} = this.state;
+        const {slider, countryCodes, languages, currencies} = this.state;
         return (
             <div className="App">
                 <Header text="Country Guide"/>
                 <FilterForm
+                    languages={languages}
+                    currencies={currencies}
+                    slider={slider}
                     handleChange={this.handleChange}
                     submitHandle={this.submitHandle}
-                    slider={slider}/>
-                <EuMap countryCodes={countryCodes}/>
+                />
+                <EuMap
+                    countryCodes={countryCodes}
+                />
             </div>
         );
     }

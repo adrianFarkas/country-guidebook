@@ -1,9 +1,6 @@
 package com.codecool.countryguidebook.dao;
 
-import com.codecool.countryguidebook.model.Country;
-import com.codecool.countryguidebook.model.CountryCode;
-import com.codecool.countryguidebook.model.FilterCriteria;
-import com.codecool.countryguidebook.model.Language;
+import com.codecool.countryguidebook.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +25,7 @@ public class CountryDaoMem implements CountryDao {
     @Override
     public List<Country> findByPopulation(List<Country> countries, Map<String, Integer> population) {
          return countries.stream().
-                filter(country -> ((country.getPopulation() > population.get("min")) && (country.getPopulation()<population.get("max")))).
+                filter(country -> ((country.getPopulation() >= population.get("min")) && (country.getPopulation() <= population.get("max")))).
                 collect(Collectors.toList());
     }
 
@@ -42,7 +39,7 @@ public class CountryDaoMem implements CountryDao {
     }
 
     @Override
-    public List<Country> findByCurrency(List<Country> countries, List<String> currencies) {
+    public List<Country> findByCurrency(List<Country> countries, List<Currency> currencies) {
         return  countries.stream().
                 filter(country -> currencies.stream()
                         .anyMatch(currency -> country.getCurrencies().contains(currency)))
