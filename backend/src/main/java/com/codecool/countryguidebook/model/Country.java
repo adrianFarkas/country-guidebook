@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Country {
 
-    public Geographic geographic;
+    public Geographic geographic = new Geographic();
     public Units units = new Units();
     private String name;
 
@@ -22,6 +22,11 @@ public class Country {
     private String description;
     private String flag;
     private Level safety;
+    private Finance finance;
+    private Health health;
+
+    public Country() {
+    }
 
     public String getCapital() {
         return capital;
@@ -35,10 +40,9 @@ public class Country {
         Country country = new Country();
         country.name =json.get("name").toString();
         country.capital = json.get("capital").toString();
-        Finance finance = new Finance();
+        finance = new Finance();
         units.createUnits(json);
-        Health health = new Health();
-        Geographic geographic = new Geographic();
+        health = new Health();
         geographic.createGeographic(json);
         return country;
     }
