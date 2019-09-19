@@ -16,5 +16,6 @@ public interface CountryDao {
     List<Country> findByLanguage(List<Country> countries, List<Language> language);
     List<Country> findByCurrency(List<Country> countries, List<String> currency);
     List<Country> filter(FilterCriteria filterCriteria);
+    String findCountryByName(String name);
 
 }

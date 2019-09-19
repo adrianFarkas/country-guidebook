@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Slider, Typography} from "@material-ui/core";
+import {Slider, Typography, TextField} from "@material-ui/core";
 
 class FilterSlider extends Component {
 
@@ -11,12 +11,29 @@ class FilterSlider extends Component {
                     Population
                 </Typography>
                 <Slider
+                    name="slider"
                     value={value}
                     min={min}
                     max={max}
                     onChange={this.props.handleChange}
-                    valueLabelDisplay="auto"
                     aria-labelledby="range-slider"
+                    style={{color: "#428bca"}}
+                />
+                <TextField
+                    className="population-number"
+                    label="Min"
+                    value={value[0]}
+                    margin="normal"
+                    variant="outlined"
+                    disabled
+                />
+                <TextField
+                    className="population-number"
+                    label="Max"
+                    value={value[1]}
+                    margin="normal"
+                    variant="outlined"
+                    disabled
                 />
             </div>
         );
