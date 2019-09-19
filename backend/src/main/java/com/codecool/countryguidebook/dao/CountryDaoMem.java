@@ -51,15 +51,15 @@ public class CountryDaoMem implements CountryDao {
     public List<Country> filter(FilterCriteria filterCriteria) {
         List<Country> filteredCountries = this.countries;
 
-        if (filterCriteria.getPopulation()!=null){
+        if (!filterCriteria.getPopulation().isEmpty()){
             filteredCountries = findByPopulation(filteredCountries, filterCriteria.getPopulation());
         }
 
-        if (filterCriteria.getLanguages()!=null){
+        if (!filterCriteria.getLanguages().isEmpty()){
             filteredCountries = findByLanguage(filteredCountries, filterCriteria.getLanguages());
         }
 
-        if (filterCriteria.getCurrency()!=null){
+        if (!filterCriteria.getCurrency().isEmpty()){
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 
