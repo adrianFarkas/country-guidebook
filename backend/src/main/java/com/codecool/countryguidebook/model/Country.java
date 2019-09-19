@@ -19,7 +19,7 @@ public class Country {
     private int area;
     private List<String> timezones;
     private List<String> callingCodes;
-    private List<String> currencies;
+    private List<Currency> currencies;
     private List<Language> languages;
 
     // extra things which is not in the json
@@ -50,7 +50,7 @@ public class Country {
         for (int i = 0; i < currenci.length(); i++
         ) {
 
-            country.currencies.add(currenci.getJSONObject(i).get("name").toString());
+            country.currencies.add(Currency.valueOf(currenci.getJSONObject(i).get("code").toString()));
         }
 
         for (int i = 0; i < langu.length(); i++) {
@@ -110,7 +110,7 @@ public class Country {
         return callingCodes;
     }
 
-    public List<String> getCurrencies() {
+    public List<Currency> getCurrencies() {
         return currencies;
     }
 
