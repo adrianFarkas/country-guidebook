@@ -26,15 +26,21 @@ public class Initializer {
 
     public void createEUCountriesFromJson() throws IOException, JSONException {
         for (CountryCode countryCode : CountryCode.values()) {
+<<<<<<< HEAD
             JSONObject country = readJsonFromUrl(apiUrl + countryCode);
             Country country1 = new Country();
             country1.createCountry(country);
             countryDaoMem.add(country1);
+=======
+            JSONObject countryJson = readJsonFromUrl(apiUrl + countryCode);
+            Country country = Country.createCountry(countryJson);
+            countryDaoMem.add(country);
+>>>>>>> origin/feature
         }
     }
 
 
-    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+    private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));

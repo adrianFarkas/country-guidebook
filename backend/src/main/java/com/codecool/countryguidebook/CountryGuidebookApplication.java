@@ -24,4 +24,7 @@ public class CountryGuidebookApplication {
     public void init() throws IOException, JSONException {
         initializer.createEUCountriesFromJson();
     }
+
+
+
 }
