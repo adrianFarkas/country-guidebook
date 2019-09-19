@@ -70,7 +70,7 @@ public class CountryDaoMem implements CountryDao {
 
     @Override
     public String findCountryByName(String name) {
-        Country resultCountry = countries.stream().filter(country -> country.getName().equals(name)).findFirst().orElse(null);
+        Country resultCountry = countries.stream().filter(country -> country.getCapital().equals(name)).findFirst().orElse(null);
         if(resultCountry != null){
             return resultCountry.getName();
         }

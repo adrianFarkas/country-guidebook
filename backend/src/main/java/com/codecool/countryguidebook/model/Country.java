@@ -23,11 +23,18 @@ public class Country {
     private String flag;
     private Level safety;
 
+    public String getCapital() {
+        return capital;
+    }
+
+    private String capital;
+
 
     public Country createCountry(JSONObject json) throws JSONException {
 
         Country country = new Country();
         country.name =json.get("name").toString();
+        country.capital = json.get("capital").toString();
         Finance finance = new Finance();
         units.createUnits(json);
         Health health = new Health();
