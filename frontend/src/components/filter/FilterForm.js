@@ -12,9 +12,10 @@ class FilterForm extends Component {
         return (
             <div className="col col-sm-4 filter-form">
                 <Card className="filters">
+                    <div className="filter-title">Filter</div>
                     <form onSubmit={this.props.submitHandle} className="selectors">
-                        <FilterDropdown data={languages} category="languages"/>
-                        <FilterDropdown data={currencies} category="currency"/>
+                        <FilterDropdown name="languages" data={languages} category="languages"/>
+                        <FilterDropdown name="currency" data={currencies} category="currencies"/>
                         <FilterSlider
                             handleChange={this.props.handleChange}
                             value={values}

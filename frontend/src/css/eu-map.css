@@ -1,18 +1,19 @@
 .wrapper {
     width: 100%;
     max-width: 1000px;
+    max-height: 820px;
     margin: 0 auto;
 }
 
 .geo {
-    fill: #ECEFF1;
+    fill: #d5d8da;
     stroke: #607D8B;
     stroke-width: 0.75;
     outline: none;
 }
 
 .geo:hover {
-    fill: #CFD8DC;
+    fill: #a9b1b4;
     stroke: #607D8B;
     stroke-width: 0.75;
     outline: none;
@@ -25,8 +26,15 @@
     outline: none;
 }
 
-@media (max-width: 400px) {
-    .wrapper {
-        width: 10px;
+.map-border {
+    width: 100%;
+    max-width: 1200px;
+    height: 800px;
+    margin: 30px 140px auto auto;
+}
+
+@media (max-width: 1500px) {
+    .map-border {
+        margin: auto 0;
     }
 }

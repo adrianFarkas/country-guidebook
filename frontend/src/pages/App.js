@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Header from "../components/Header";
 import EuMap from "../components/EuMap";
-import axios from "axios";
-
+import "../css/main.css"
 import FilterForm from "../components/filter/FilterForm";
+import axios from "axios";
 
 class App extends Component {
     constructor(props) {

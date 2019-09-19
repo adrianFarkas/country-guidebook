@@ -11,11 +11,11 @@ class FilterDropdown extends Component {
     }
 
     render() {
-        const { category, data } = this.props;
+        const { category, data, name } = this.props;
         return (
             <div className="selection">
                 <label className="label">Sort by {category}</label>
-                <select className="options" name={category}>
+                <select className="options" name={name}>
                     <option value="default">Default</option>
                     {data.map((option, index) =>
                         <option key={index} value={option}>{this.capitalizeIfLanguage(option)}</option>)}
