@@ -11,7 +11,7 @@ public class Finance {
 
     public Finance() {
         this.stateDebtMillionEuro = getStateDebtMillionEuro();
-        }
+    }
 
 
     public int getAvarageSalaryEUR() {

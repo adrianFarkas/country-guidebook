@@ -4,12 +4,8 @@ import com.codecool.countryguidebook.model.countrybuilder.Finance;
 import com.codecool.countryguidebook.model.countrybuilder.Geographic;
 import com.codecool.countryguidebook.model.countrybuilder.Health;
 import com.codecool.countryguidebook.model.countrybuilder.Units;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Country {
@@ -24,6 +20,7 @@ public class Country {
     private Level safety;
     private Finance finance;
     private Health health;
+    private String capital;
 
     public Country() {
     }
@@ -32,13 +29,10 @@ public class Country {
         return capital;
     }
 
-    private String capital;
-
-
     public Country createCountry(JSONObject json) throws JSONException {
 
         Country country = new Country();
-        country.name =json.get("name").toString();
+        country.name = json.get("name").toString();
         country.capital = json.get("capital").toString();
         finance = new Finance();
         units.createUnits(json);
