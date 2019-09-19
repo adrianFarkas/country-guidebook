@@ -25,11 +25,10 @@ class App extends Component {
 
     componentDidMount() {
         axios.get("http://localhost:8080/all")
-            .then((res => this.setStateData(res)))
+            .then((res => this.setStateData(res.data)))
     }
 
-    setStateData(response) {
-        const data = response.data;
+    setStateData(data) {
         const population = this.getPropertiesFromCountries(data["countries"], "population");
         const min = Math.min(...population), max = Math.max(...population);
         this.setState({
@@ -85,7 +84,9 @@ class App extends Component {
                     handleChange={this.handleChange}
                     submitHandle={this.submitHandle}
                 />
-                <EuMap countryCodes={countryCodes}/>
+                <EuMap
+                    countryCodes={countryCodes}
+                />
             </div>
         );
     }
