@@ -9,6 +9,11 @@ import {
 
 class EuMap extends Component {
 
+    handleClick(geo) {
+        const path = "/country/" + geo.id.toLowerCase();
+        window.location.href = path;
+    }
+
     render() {
         return (
             <div className="wrapper" >
@@ -30,6 +35,7 @@ class EuMap extends Component {
                                             key={i}
                                             geography={geography}
                                             projection={projection}
+                                            onClick={this.handleClick}
                                             className="geo"
                                         />
                                     ))
