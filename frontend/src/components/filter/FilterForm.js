@@ -7,13 +7,14 @@ import FilterSlider from "./FilterSlider";
 class FilterForm extends Component {
 
     render() {
-        const { min, max, values } = this.props.slider;
+        const {languages, currencies, slider}= this.props;
+        const { min, max, values } = slider;
         return (
             <div className="col col-sm-4 filter-form">
                 <Card className="filters">
                     <form onSubmit={this.props.submitHandle} className="selectors">
-                        <FilterDropdown category="languages"/>
-                        <FilterDropdown category="currency"/>
+                        <FilterDropdown data={languages} category="languages"/>
+                        <FilterDropdown data={currencies} category="currency"/>
                         <FilterSlider
                             handleChange={this.props.handleChange}
                             value={values}
