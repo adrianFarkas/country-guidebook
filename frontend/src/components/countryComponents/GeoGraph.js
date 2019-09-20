@@ -52,7 +52,7 @@ class GeoGraph extends Component {
                         <td>Languages: </td>
                         {languages}
                     </tr>
-                    <tr><a href="https://en.wikipedia.org/wiki/Netherlands">Wikipedia Netherlands</a></tr>
+                    <tr><a href={"https://en.wikipedia.org/wiki/" +  this.props.country.name}  >Wikipedia {this.props.country.name}</a></tr>
                 </table>
 
 
