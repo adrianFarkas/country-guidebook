@@ -7,7 +7,6 @@ import com.codecool.countryguidebook.model.CountryCode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 
@@ -20,11 +19,6 @@ public class Initializer {
 
     @Autowired
     private CountryDaoMem countryDaoMem;
-
-    @Bean
-    public Initializer initializer(){
-        return new Initializer();
-    }
 
 
 

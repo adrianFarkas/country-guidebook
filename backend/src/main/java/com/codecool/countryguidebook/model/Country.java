@@ -3,14 +3,12 @@ package com.codecool.countryguidebook.model;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+
 public class Country {
 
     private String name;
@@ -36,7 +34,7 @@ public class Country {
     private String mainLabor;
     private int avarageWorkingTimePerYearInHour;
 
-    @Bean
+
     public static Country createCountry(JSONObject json) throws JSONException {
 
         Country country = new Country();
@@ -63,7 +61,10 @@ public class Country {
         country.area = (int) Double.parseDouble(json.get("area").toString());
         JSONArray callingC = (JSONArray) json.get("callingCodes");
         for (int i = 0; i < callingC.length(); i++) {
+
             country.callingCodes.add(callingC.get(0).toString());
+
+
         }
         JSONArray tzones = (JSONArray) json.get("timezones");
         for (int i = 0; i < tzones.length(); i++) {

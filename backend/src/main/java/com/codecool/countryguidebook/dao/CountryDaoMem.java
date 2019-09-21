@@ -62,7 +62,7 @@ public class CountryDaoMem implements CountryDao {
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 
-        return filteredCountries; //filteredCountries.stream().map(Country::getAlpha3Code).collect(Collectors.toList());
+        return filteredCountries;
     }
 
     @Override
