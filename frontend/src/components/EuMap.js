@@ -8,17 +8,11 @@ import {
 } from "react-simple-maps"
 import {Card} from "react-bootstrap";
 
-class EuMap extends Component {
+function EuMap(props) {
 
-    handleClick(geo) {
-        const path = "/country/" + geo.id.toLowerCase();
-        window.location.href = path;
-    }
-
-    render() {
-        return (
-            <div className="col col-sm-4 map-border">
-                <Card className="map-card">
+    return (
+        <div className="col col-sm-4 map-border">
+            <Card className="map-card">
                 <div className="wrapper">
                     <ComposableMap
                         projectionConfig={{scale: 1400}}
@@ -33,12 +27,12 @@ class EuMap extends Component {
                             <Geographies geography="/static/world-50m.json" disableOptimization>
                                 {(geographies, projection) =>
                                     geographies.map((geography, i) =>
-                                        this.props.countryCodes.indexOf(geography.id) !== -1 && (
+                                        props.countryCodes.indexOf(geography.id) !== -1 && (
                                             <Geography
                                                 key={i}
                                                 geography={geography}
                                                 projection={projection}
-                                                onClick={this.handleClick}
+                                                onClick={handleClick}
                                                 className="geo"
                                             />
                                         ))
@@ -47,10 +41,15 @@ class EuMap extends Component {
                         </ZoomableGroup>
                     </ComposableMap>
                 </div>
-                </Card>
-            </div>
-        )
-    }
+            </Card>
+        </div>
+    )
 }
+
+function handleClick(geo) {
+    const path = "/country/" + geo.id.toLowerCase();
+    window.location.href = path;
+}
+
 
 export default EuMap;
