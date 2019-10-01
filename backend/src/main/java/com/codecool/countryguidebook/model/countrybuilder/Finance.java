@@ -15,12 +15,18 @@ import javax.persistence.*;
 @Builder
 @Entity
 public class Finance {
-    private static Finance finance;
+
+    @Id
+    @GeneratedValue
+    private long id;
+
     private int stateDebtMillionEuro;
     private String mainLabor;
     private int avarageWorkingTimePerYearInHour;
     private int avarageSalaryEUR;
     private int minimumWageEUR;
 
+    @OneToOne(mappedBy = "finance",  cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Country country;
 
 }
