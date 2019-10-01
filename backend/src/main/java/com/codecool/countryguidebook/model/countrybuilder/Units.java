@@ -1,18 +1,34 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
+import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.Language;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.List;
 
+@Component
+@Getter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 public class Units {
+    @Id
+    @GeneratedValue
     private List<String> currencies;
     private List<Language> languages;
 
-    public Units createUnits(JSONObject json) throws JSONException {
+    @OneToOne
+    private Country country;
+
+    /*public Units createUnits(JSONObject json) throws JSONException {
         JSONArray currencies = (JSONArray) json.get("currencies");
         JSONArray languages = (JSONArray) json.get("languages");
         this.currencies = new ArrayList<>();
@@ -24,13 +40,5 @@ public class Units {
             this.languages.add(Language.valueOf(languages.getJSONObject(i).get("name").toString().toUpperCase().split("\\s+")[0]));
         }
         return this;
-    }
-
-    public List<String> getCurrencies() {
-        return currencies;
-    }
-
-    public List<Language> getLanguages() {
-        return languages;
-    }
+    }*/
 }
