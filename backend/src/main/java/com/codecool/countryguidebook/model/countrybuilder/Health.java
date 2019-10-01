@@ -19,7 +19,7 @@ public class Health {
     @GeneratedValue
     private long id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Level healthCare;
 
     @OneToOne
