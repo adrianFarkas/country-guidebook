@@ -35,7 +35,7 @@ public class Country {
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Health health;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(columnDefinition = "text")
