@@ -1,56 +1,32 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
+
+import com.codecool.countryguidebook.model.Country;
+import lombok.*;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.*;
+
+@Component
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 public class Finance {
-    // not in JSON
-    private static Finance finance;
+
+    @Id
+    @GeneratedValue
+    private long id;
+
     private int stateDebtMillionEuro;
     private String mainLabor;
-    private int avarageWorkingTimePerYearInHour;
-    private int avarageSalaryEUR;
+    private int averageWorkingTimePerYearInHour;
+    private int averageSalaryEUR;
     private int minimumWageEUR;
 
-    public Finance() {
-        this.stateDebtMillionEuro = getStateDebtMillionEuro();
-    }
+    @OneToOne
+    private Country country;
 
-
-    public int getAvarageSalaryEUR() {
-        return avarageSalaryEUR;
-    }
-
-    public void setAvarageSalaryEUR(int avarageSalaryEUR) {
-        this.avarageSalaryEUR = avarageSalaryEUR;
-    }
-
-    public int getMinimumWageEUR() {
-        return minimumWageEUR;
-    }
-
-    public void setMinimumWageEUR(int minimumWageEUR) {
-        this.minimumWageEUR = minimumWageEUR;
-    }
-
-    public int getStateDebtMillionEuro() {
-        return stateDebtMillionEuro;
-    }
-
-    public void setStateDebtMillionEuro(int stateDebtMillionEuro) {
-        this.stateDebtMillionEuro = stateDebtMillionEuro;
-    }
-
-    public String getMainLabor() {
-        return mainLabor;
-    }
-
-    public void setMainLabor(String mainLabor) {
-        this.mainLabor = mainLabor;
-    }
-
-    public int getAvarageWorkingTimePerYearInHour() {
-        return avarageWorkingTimePerYearInHour;
-    }
-
-    public void setAvarageWorkingTimePerYearInHour(int avarageWorkingTimePerYearInHour) {
-        this.avarageWorkingTimePerYearInHour = avarageWorkingTimePerYearInHour;
-    }
 }
