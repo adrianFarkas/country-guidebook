@@ -3,7 +3,7 @@ import {Nav, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignInAlt, faUser} from "@fortawesome/free-solid-svg-icons";
 
-function Header(props) {
+function Header() {
     return (
         <Navbar className="navbar" bg="dark" expand="lg" variant="dark" >
             <Navbar.Brand href="/">Country Guide</Navbar.Brand>

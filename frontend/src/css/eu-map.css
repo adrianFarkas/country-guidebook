@@ -1,8 +1,10 @@
 .wrapper {
     width: 100%;
-    max-width: 1000px;
-    max-height: 820px;
-    margin: 0 auto;
+    margin-top: 20px;
+    max-height: 800px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: #e3efff;
 }
 
 .geo {
@@ -26,15 +28,15 @@
     outline: none;
 }
 
-.map-border {
-    width: 100%;
-    max-width: 1200px;
-    height: 800px;
-    margin: 30px 140px auto auto;
+@media (max-width: 1500px) {
+    .wrapper {
+        margin: 0 auto;
+    }
 }
 
-@media (max-width: 1500px) {
-    .map-border {
-        margin: auto 0;
+@media (max-width: 600px) {
+    .wrapper {
+        margin: 0 auto;
+        max-width: 90%;
     }
 }

@@ -9,13 +9,13 @@ class GeoGraph extends Component {
 
     render() {
         console.log(this.props.country);
-        let currencies = this.props.country.currencies.map(function (currency) {
-            return <td>{currency}</td>
+        let currencies = this.props.country.currencies.map(function (currency, i) {
+            return <td key={i}>{currency}</td>
 
         });
 
-        let languages = this.props.country.languages.map(function (language){
-            return <td>{language}</td>
+        let languages = this.props.country.languages.map(function (language, i){
+            return <td key={i}>{language}</td>
         });
         const theme = {
             background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -24,6 +24,7 @@ class GeoGraph extends Component {
         return <div id="mainDiv">
             <ThemeProvider theme={theme}>
                 <table>
+                    <tbody>
                     <tr>
                         <td>Country: </td>
                         <td>{this.props.country.name}</td>
@@ -52,7 +53,8 @@ class GeoGraph extends Component {
                         <td>Languages: </td>
                         {languages}
                     </tr>
-                    <tr><a href={"https://en.wikipedia.org/wiki/" +  this.props.country.name}  >Wikipedia {this.props.country.name}</a></tr>
+                    <tr><td><a href={"https://en.wikipedia.org/wiki/" +  this.props.country.name}  >Wikipedia {this.props.country.name}</a></td></tr>
+                    </tbody>
                 </table>
 
 

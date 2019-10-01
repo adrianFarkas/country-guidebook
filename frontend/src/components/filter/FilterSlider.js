@@ -1,8 +1,15 @@
 import React from 'react';
 import {Slider, Typography, TextField} from "@material-ui/core";
+import {connect} from "react-redux";
+import { changeSlider } from '../../actions/index';
 
 function FilterSlider(props) {
-    const  { min, max, value, handleChange } = props;
+    const  { min, max, values } = props;
+
+    const handleChange = (e, newValue) => {
+        props.changeSlider({min, max, values: newValue});
+    };
+
     return (
         <div className="range-slider">
             <Typography id="range-slider" gutterBottom>
@@ -10,7 +17,7 @@ function FilterSlider(props) {
             </Typography>
             <Slider
                 name="slider"
-                value={value}
+                value={values}
                 min={min}
                 max={max}
                 onChange={handleChange}
@@ -20,7 +27,7 @@ function FilterSlider(props) {
             <TextField
                 className="population-number"
                 label="Min"
-                value={value[0]}
+                value={values[0]}
                 margin="normal"
                 variant="outlined"
                 disabled
@@ -28,7 +35,7 @@ function FilterSlider(props) {
             <TextField
                 className="population-number"
                 label="Max"
-                value={value[1]}
+                value={values[1]}
                 margin="normal"
                 variant="outlined"
                 disabled
@@ -37,4 +44,8 @@ function FilterSlider(props) {
     );
 }
 
-export default FilterSlider;
+const mapStateToProps = (state) => {
+    return state.slider;
+};
+
+export default connect(mapStateToProps, {changeSlider})(FilterSlider);

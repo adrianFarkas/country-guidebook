@@ -1,16 +1,46 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import {Checkbox, FormControl} from "@material-ui/core";
 
 function FilterDropdown(props) {
+    const [selected, setSelected] = useState([]);
 
-    const { category, data, name } = props;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: 300,
+                width: 400,
+            },
+        },
+    };
+
+    const handleChange = event => {
+        setSelected(event.target.value);
+    };
+
+    const {category, data, name} = props;
     return (
         <div className="selection">
-            <label className="label">{capitalizeIfNotISOCode(category)}</label>
-            <select className="options" name={name}>
-                <option value="default">Default</option>
+            <FormControl>
+                <InputLabel>{capitalizeIfNotISOCode(category)}</InputLabel>
+                <Select
+                    multiple
+                    className="options"
+                    name={name}
+                    value={selected}
+                    renderValue={selected => selected.map(option => capitalizeIfNotISOCode(option)).join(", ")}
+                    onChange={handleChange}
+                    MenuProps={MenuProps}
+                >
                 {data.map((option, index) =>
-                    <option key={index} value={option}>{capitalizeIfNotISOCode(option)}</option>)}
-            </select>
+                    <MenuItem key={index} value={option}>
+                        <Checkbox style={{color: "#428bca"}} checked={selected.includes(option)} />
+                        {capitalizeIfNotISOCode(option)}
+                    </MenuItem>)}
+                </Select>
+            </FormControl>
         </div>
     );
 }
@@ -22,7 +52,6 @@ function capitalizeIfNotISOCode(letter) {
     }
     return letter;
 }
-
 
 
 export default FilterDropdown;
