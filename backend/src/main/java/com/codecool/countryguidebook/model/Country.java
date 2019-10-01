@@ -41,8 +41,6 @@ public class Country {
     @Column(columnDefinition = "text")
     private String description;
 
-    private String capital;
-
     @Transient
     private String flag;
 
