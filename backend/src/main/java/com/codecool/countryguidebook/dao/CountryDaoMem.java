@@ -1,5 +1,8 @@
 package com.codecool.countryguidebook.dao;
 
+import com.codecool.countryguidebook.model.Country;
+import com.codecool.countryguidebook.model.FilterCriteria;
+import com.codecool.countryguidebook.model.Language;
 import com.codecool.countryguidebook.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -24,25 +27,25 @@ public class CountryDaoMem implements CountryDao {
 
     @Override
     public List<Country> findByPopulation(List<Country> countries, Map<String, Integer> population) {
-         return countries.stream().
-                filter(country -> ((country.getPopulation() >= population.get("min")) && (country.getPopulation() <= population.get("max")))).
-                collect(Collectors.toList());
+        return countries.stream().
+                filter(country -> ((country.geographic.getPopulation() > population.get("min")) && (country.geographic.getPopulation() <= population.get("max"))))
+          .collect(Collectors.toList());
     }
 
     @Override
     public List<Country> findByLanguage(List<Country> countries, List<Language> languages) {
-        return  countries.stream().
+        return countries.stream().
                 filter(country -> languages.stream()
-                        .anyMatch(language -> country.getLanguages().contains(language)))
+                        .anyMatch(language -> country.units.getLanguages().contains(language)))
                 .collect(Collectors.toList());
 
     }
 
     @Override
     public List<Country> findByCurrency(List<Country> countries, List<Currency> currencies) {
-        return  countries.stream().
-                filter(country -> currencies.stream()
-                        .anyMatch(currency -> country.getCurrencies().contains(currency)))
+        return  countries.stream()
+                .filter(country -> currencies.stream()
+                        .anyMatch(currency -> country.units.getCurrencies().contains(currency)))
                 .collect(Collectors.toList());
     }
 
@@ -50,15 +53,15 @@ public class CountryDaoMem implements CountryDao {
     public List<Country> filter(FilterCriteria filterCriteria) {
         List<Country> filteredCountries = this.countries;
 
-        if (!filterCriteria.getPopulation().isEmpty()){
+        if (!filterCriteria.getPopulation().isEmpty()) {
             filteredCountries = findByPopulation(filteredCountries, filterCriteria.getPopulation());
         }
 
-        if (!filterCriteria.getLanguages().isEmpty()){
+        if (!filterCriteria.getLanguages().isEmpty()) {
             filteredCountries = findByLanguage(filteredCountries, filterCriteria.getLanguages());
         }
 
-        if (!filterCriteria.getCurrency().isEmpty()){
+        if (!filterCriteria.getCurrency().isEmpty()) {
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 
@@ -67,25 +70,23 @@ public class CountryDaoMem implements CountryDao {
 
     @Override
     public String findCountryByName(String name) {
-        Country resultCountry = countries.stream().filter(country -> country.getName().equals(name)).findFirst().orElse(null);
-        if(resultCountry != null){
-            return resultCountry.getCapital();
+        Country resultCountry = countries.stream().filter(country -> country.getCapital().equals(name)).findFirst().orElse(null);
+        if (resultCountry != null) {
+            return resultCountry.getName();
         }
         return null;
     }
 
-
     public Country getCountry(String countryCode){
         return countries.stream().filter(country -> country.getAlpha3Code().toString().equals(countryCode.toUpperCase())).findFirst().orElse(null);
     }
-
 
     public List<Country> getCountries() {
         return countries;
     }
 
 
-    public void clear(){
+    public void clear() {
         countries.clear();
     }
 
