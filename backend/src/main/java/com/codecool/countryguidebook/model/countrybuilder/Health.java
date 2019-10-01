@@ -1,21 +1,28 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
-import com.codecool.countryguidebook.model.Level;
+import com.codecool.countryguidebook.model.Country;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
+@Component
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 public class Health {
-    //not in JSON
-    private Level healtCare;
 
-    public Health() {
-        this.healtCare = getHealtCare();
-    }
+    @Id
+    @GeneratedValue
+    private long id;
 
-    public Level getHealtCare() {
-        return healtCare;
-    }
+    @Enumerated
+    private Level healthCare;
 
-    public void setHealtCare(Level healtCare) {
-        this.healtCare = healtCare;
-    }
+    @OneToOne
+    private Country country;
 
 }
