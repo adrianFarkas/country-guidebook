@@ -22,8 +22,8 @@ public class Finance {
 
     private int stateDebtMillionEuro;
     private String mainLabor;
-    private int avarageWorkingTimePerYearInHour;
-    private int avarageSalaryEUR;
+    private int averageWorkingTimePerYearInHour;
+    private int averageSalaryEUR;
     private int minimumWageEUR;
 
     @OneToOne
