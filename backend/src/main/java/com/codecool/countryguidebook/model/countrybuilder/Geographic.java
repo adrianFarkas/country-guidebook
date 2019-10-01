@@ -1,24 +1,39 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
+import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.List;
 
+@Component
+@Getter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 public class Geographic {
+    @Id
+    @GeneratedValue
     private CountryCode alpha3Code;
     private String capital;
-    private String subregion;
+    private String subRegion;
     private long population;
     private int area;
-    private List<String> timezones;
+    private List<String> timeZones;
     private List<String> callingCodes;
 
+    @OneToOne
+    private Country country;
 
-    public Geographic createGeographic(JSONObject json) throws JSONException {
+/*    public Geographic createGeographic(JSONObject json) throws JSONException {
         this.timezones = new ArrayList<>();
         this.callingCodes = new ArrayList<>();
         this.alpha3Code = CountryCode.valueOf(json.get("alpha3Code").toString());
@@ -35,33 +50,5 @@ public class Geographic {
         this.capital = json.get("capital").toString();
         this.subregion = json.get("subregion").toString();
         return this;
-    }
-
-    public CountryCode getAlpha3Code() {
-        return alpha3Code;
-    }
-
-    public String getCapital() {
-        return capital;
-    }
-
-    public String getSubregion() {
-        return subregion;
-    }
-
-    public long getPopulation() {
-        return population;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public List<String> getTimezones() {
-        return timezones;
-    }
-
-    public List<String> getCallingCodes() {
-        return callingCodes;
-    }
+    }*/
 }
