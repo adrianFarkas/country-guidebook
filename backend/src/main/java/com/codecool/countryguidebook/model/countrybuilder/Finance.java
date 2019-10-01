@@ -26,7 +26,7 @@ public class Finance {
     private int avarageSalaryEUR;
     private int minimumWageEUR;
 
-    @OneToOne(mappedBy = "finance",  cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne
     private Country country;
 
 }
