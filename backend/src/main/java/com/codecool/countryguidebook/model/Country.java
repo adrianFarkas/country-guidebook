@@ -1,6 +1,9 @@
 package com.codecool.countryguidebook.model;
 
-import org.json.JSONArray;
+import com.codecool.countryguidebook.model.countrybuilder.Finance;
+import com.codecool.countryguidebook.model.countrybuilder.Geographic;
+import com.codecool.countryguidebook.model.countrybuilder.Health;
+import com.codecool.countryguidebook.model.countrybuilder.Units;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Bean;
@@ -13,25 +16,17 @@ import java.util.List;
 @Component
 public class Country {
 
+    public Geographic geographic = new Geographic();
+    public Units units = new Units();
     private String name;
-    private CountryCode alpha3Code;
-    private String capital;
-    private String subregion;
-    private long population;
-    private int area;
-    private List<String> timezones;
-    private List<String> callingCodes;
-    private List<Currency> currencies;
-    private List<Language> languages;
 
-    // extra things which is not in the json
-
-    private int avarageSalaryEUR;
-    private int minimumWageEUR;
+    // not in JSON
     private String description;
-    private Level healtCare;
     private String flag;
     private Level safety;
+    private Finance finance;
+    private Health health;
+    private String capital;
     private int stateDebtMillionEuro;
     private String mainLabor;
     private int avarageWorkingTimePerYearInHour;
@@ -48,16 +43,16 @@ public class Country {
         country.timezones = new ArrayList<>();
         country.callingCodes = new ArrayList<>();
 
+    public Country() {
+    }
 
-        for (int i = 0; i < currenci.length(); i++
-        ) {
+    public String getCapital() {
+        return capital;
+    }
 
-            country.currencies.add(Currency.valueOf(currenci.getJSONObject(i).get("code").toString()));
-        }
+    public Country createCountry(JSONObject json) throws JSONException {
 
-        for (int i = 0; i < langu.length(); i++) {
-            country.languages.add(Language.valueOf(langu.getJSONObject(i).get("name").toString().toUpperCase().split("\\s+")[0]));
-        }
+        Country country = new Country();
         country.name = json.get("name").toString();
         country.alpha3Code = CountryCode.valueOf(json.get("alpha3Code").toString());
         country.area = (int) Double.parseDouble(json.get("area").toString());
@@ -71,67 +66,17 @@ public class Country {
         }
         country.population = Long.parseLong(json.get("population").toString());
         country.capital = json.get("capital").toString();
-        country.subregion = json.get("subregion").toString();
+        finance = new Finance();
+        units.createUnits(json);
+        health = new Health();
+        geographic.createGeographic(json);
         return country;
     }
-
 
     public String getName() {
         return name;
     }
 
-    public int getArea() {
-        return area;
-    }
-
-    public CountryCode getAlpha3Code() {
-        return alpha3Code;
-    }
-
-    public String getCapital() {
-        return capital;
-    }
-
-    public String getSubregion() {
-        return subregion;
-    }
-
-    public long getPopulation() {
-        return population;
-    }
-
-
-    public List<String> getTimezones() {
-        return timezones;
-    }
-
-    public List<String> getCallingCodes() {
-        return callingCodes;
-    }
-
-    public List<Currency> getCurrencies() {
-        return currencies;
-    }
-
-    public List<Language> getLanguages() {
-        return languages;
-    }
-
-    public int getAvarageSalaryEUR() {
-        return avarageSalaryEUR;
-    }
-
-    public void setAvarageSalaryEUR(int avarageSalaryEUR) {
-        this.avarageSalaryEUR = avarageSalaryEUR;
-    }
-
-    public int getMinimumWageEUR() {
-        return minimumWageEUR;
-    }
-
-    public void setMinimumWageEUR(int minimumWageEUR) {
-        this.minimumWageEUR = minimumWageEUR;
-    }
 
     public String getDescription() {
         return description;
@@ -141,13 +86,6 @@ public class Country {
         this.description = description;
     }
 
-    public Level getHealtCare() {
-        return healtCare;
-    }
-
-    public void setHealtCare(Level healtCare) {
-        this.healtCare = healtCare;
-    }
 
     public String getFlag() {
         return flag;
@@ -165,27 +103,4 @@ public class Country {
         this.safety = safety;
     }
 
-    public int getStateDebtMillionEuro() {
-        return stateDebtMillionEuro;
-    }
-
-    public void setStateDebtMillionEuro(int stateDebtMillionEuro) {
-        this.stateDebtMillionEuro = stateDebtMillionEuro;
-    }
-
-    public String getMainLabor() {
-        return mainLabor;
-    }
-
-    public void setMainLabor(String mainLabor) {
-        this.mainLabor = mainLabor;
-    }
-
-    public int getAvarageWorkingTimePerYearInHour() {
-        return avarageWorkingTimePerYearInHour;
-    }
-
-    public void setAvarageWorkingTimePerYearInHour(int avarageWorkingTimePerYearInHour) {
-        this.avarageWorkingTimePerYearInHour = avarageWorkingTimePerYearInHour;
-    }
 }
