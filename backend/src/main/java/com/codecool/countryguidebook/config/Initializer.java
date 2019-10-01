@@ -1,4 +1,4 @@
-package com.codecool.countryguidebook.config;
+/*package com.codecool.countryguidebook.config;
 
 import com.codecool.countryguidebook.dao.CountryDaoMem;
 import com.codecool.countryguidebook.model.Country;
@@ -58,3 +58,4 @@ public class Initializer {
         }
     }
 }
+*/

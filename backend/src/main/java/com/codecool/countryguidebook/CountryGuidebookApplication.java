@@ -1,6 +1,6 @@
 package com.codecool.countryguidebook;
 
-import com.codecool.countryguidebook.config.Initializer;
+//import com.codecool.countryguidebook.config.Initializer;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -13,17 +13,17 @@ import java.io.IOException;
 public class CountryGuidebookApplication {
 
 
-    @Autowired
-    private Initializer initializer;
+//    @Autowired
+//    private Initializer initializer;
 
     public static void main(String[] args) {
         SpringApplication.run(CountryGuidebookApplication.class, args);
     }
 
-    @PostConstruct
-    public void init() throws IOException, JSONException {
-        initializer.createEUCountriesFromJson();
-    }
+//    @PostConstruct
+//    public void init() throws IOException, JSONException {
+//        initializer.createEUCountriesFromJson();
+//    }
 
 
 

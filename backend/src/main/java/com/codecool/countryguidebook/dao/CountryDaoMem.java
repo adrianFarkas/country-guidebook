@@ -1,4 +1,4 @@
-package com.codecool.countryguidebook.dao;
+/*package com.codecool.countryguidebook.dao;
 
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.FilterCriteria;
@@ -91,3 +91,4 @@ public class CountryDaoMem implements CountryDao {
     }
 
 }
+*/

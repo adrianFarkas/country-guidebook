@@ -1,4 +1,4 @@
-package com.codecool.countryguidebook.controller;
+/*package com.codecool.countryguidebook.controller;
 
 import com.codecool.countryguidebook.dao.CountryDaoMem;
 import com.codecool.countryguidebook.model.Country;
@@ -44,3 +44,4 @@ public class CountryController {
     }
 
 }
+*/
