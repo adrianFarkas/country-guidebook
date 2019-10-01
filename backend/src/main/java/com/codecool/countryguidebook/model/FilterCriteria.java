@@ -8,10 +8,10 @@ import java.util.Map;
 @Component
 public class FilterCriteria {
     private Map<String, Integer> population;
-    private List<String> currency;
+    private List<Currency> currency;
     private List<Language> languages;
 
-    public FilterCriteria(Map<String, Integer> population, List<String> currency, List<Language> languages) {
+    public FilterCriteria(Map<String, Integer> population, List<Currency> currency, List<Language> languages) {
         this.population = population;
         this.currency = currency;
         this.languages = languages;
@@ -25,7 +25,7 @@ public class FilterCriteria {
         return population;
     }
 
-    public List<String> getCurrency() {
+    public List<Currency> getCurrency() {
         return currency;
     }
 

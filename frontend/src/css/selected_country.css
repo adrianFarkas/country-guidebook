@@ -1,0 +1,26 @@
+table{
+    width: 50%;
+    font-size: xx-large;
+    font-family: "Bitstream Vera Sans Mono", sans-serif ;
+    font-stretch: expanded;
+    color: black;
+}
+
+#mainDiv{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+td{
+    text-align: center;
+    white-space: nowrap;
+}
+
+body{
+    background-color: aliceblue;
+}
+
+a{
+    white-space: nowrap;
+}

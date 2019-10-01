@@ -6,9 +6,11 @@ import {Route, BrowserRouter as Router} from "react-router-dom";
 
 
 const routing = (
+
+
     <Router>
         <Route exact path="/" component={App}/>
-        <Route path="/" component={Country}/>
+        <Route path="/country/:countryCode" component={Country}/>
     </Router>
 );
 
