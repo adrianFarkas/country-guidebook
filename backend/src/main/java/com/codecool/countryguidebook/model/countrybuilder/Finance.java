@@ -2,6 +2,7 @@ package com.codecool.countryguidebook.model.countrybuilder;
 
 
 import com.codecool.countryguidebook.model.Country;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,7 @@ public class Finance {
     private int minimumWageEUR;
 
     @OneToOne
+    @JsonIgnore
     private Country country;
 
 }

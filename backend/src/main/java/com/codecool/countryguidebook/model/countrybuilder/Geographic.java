@@ -2,6 +2,7 @@ package com.codecool.countryguidebook.model.countrybuilder;
 
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -39,5 +40,6 @@ public class Geographic {
     private List<String> callingCodes;
 
     @OneToOne
+    @JsonIgnore
     private Country country;
 }
