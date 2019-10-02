@@ -1,6 +1,7 @@
-/*package com.codecool.countryguidebook.controller;
+package com.codecool.countryguidebook.controller;
 
-import com.codecool.countryguidebook.dao.CountryDaoMem;
+
+import com.codecool.countryguidebook.dao.CountryDaoMemJPA;
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.FilterCriteria;
@@ -17,13 +18,14 @@ import java.util.List;
 public class CountryController {
 
     @Autowired
-    private CountryDaoMem countryDaoMem;
+    private CountryDaoMemJPA countryDaoMemJPA;
 
     @GetMapping("/countries-list")
     public List<Country> countryList() {
-        return countryDaoMem.getCountries();
+        return countryDaoMemJPA.getCountries();
     }
 
+/*
     @PostMapping("/filter-countries")
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
         return countryDaoMem.filter(filterCriteria);
@@ -33,15 +35,14 @@ public class CountryController {
     public Country getCountry(@PathVariable String countryCode){
         return countryDaoMem.getCountry(countryCode);
     }
-
+*/
     @GetMapping("/all")
     public HashMap<String, Object> mainData() {
         HashMap<String, Object> data = new HashMap<>();
-        data.put("countries", countryDaoMem.getCountries());
+        data.put("countries", countryDaoMemJPA.getCountries());
         data.put("languages", Language.values());
         data.put("currencies", Currency.values());
         return data;
     }
 
 }
-*/

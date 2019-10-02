@@ -11,6 +11,7 @@ import com.codecool.countryguidebook.repository.GeographicRepository;
 import com.codecool.countryguidebook.repository.UnitsRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -132,6 +133,8 @@ public class AllRepositoryTest {
 
     }
 
+
+
     @Test
     public void findAllCountry() {
 
@@ -154,6 +157,8 @@ public class AllRepositoryTest {
 
     @Test
     public void findAllCountryByGeographicPopulationBetween() {
+
+
 
         Country country1 = Country.builder()
                 .name("Country1")
@@ -180,6 +185,7 @@ public class AllRepositoryTest {
         countryRepository.save(country2);
 
         List<Country> allByGeographicPopulationBetween = countryRepository.countries(500000L, 1500000L);
+
         assertThat(allByGeographicPopulationBetween).hasSize(1);
 
     }

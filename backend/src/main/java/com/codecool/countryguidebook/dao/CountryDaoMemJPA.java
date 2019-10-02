@@ -4,11 +4,20 @@ import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.FilterCriteria;
 import com.codecool.countryguidebook.model.Language;
+import com.codecool.countryguidebook.repository.CountryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class CountryDaoMemJPA implements CountryDao {
+
+    @Autowired
+    private CountryRepository countryRepository;
+
+
     @Override
     public void add(Country country) {
 
@@ -37,5 +46,9 @@ public class CountryDaoMemJPA implements CountryDao {
     @Override
     public String findCountryByName(String name) {
         return null;
+    }
+
+    public List<Country> getCountries(){
+        return countryRepository.findAll();
     }
 }
