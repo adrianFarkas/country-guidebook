@@ -22,12 +22,9 @@ public class CountryController {
     @Autowired
     private CountryRepository countryRepository;
 
-    @Autowired
-    private CountryDaoMemJPA countryDaoMemJPA;
-
     @GetMapping("/countries-list")
     public List<Country> countryList() {
-        return countryDaoMemJPA.getCountries();
+        return countryRepository.findAll();
     }
 
 
@@ -54,7 +51,7 @@ public class CountryController {
     @GetMapping("/all")
     public HashMap<String, Object> mainData() {
         HashMap<String, Object> data = new HashMap<>();
-        data.put("countries", countryDaoMemJPA.getCountries());
+        data.put("countries", countryRepository.findAll());
         data.put("languages", Language.values());
         data.put("currencies", Currency.values());
         return data;
