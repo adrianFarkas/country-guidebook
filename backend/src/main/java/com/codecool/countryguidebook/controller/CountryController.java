@@ -33,22 +33,15 @@ public class CountryController {
 
     @PostMapping("/filter-countries")
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
-       /* Map<String, Integer> population = new HashMap<>();
-        population.put("min", 100000);
-        population.put("max", 100000000);
-        filterCriteria.setPopulation(population);
-        List<Language> languages = Arrays.asList(Language.HUNGARIAN, Language.GERMAN);
-        List<Currency> currencies = Arrays.asList(Currency.EUR, Currency.CHF);
-        filterCriteria.setCurrency(currencies);
-        filterCriteria.setLanguages(languages);
-*/
-        //List<Language> languages = Arrays.asList(Language.HUNGARIAN, Language.ITALIAN);
         List<Language> languages = filterCriteria.getLanguages();
+        if (languages.size()==0)
+            languages= Arrays.asList(Language.values());
         List<Currency> currencies = filterCriteria.getCurrency();
+        if (currencies.size()==0)
+            currencies = Arrays.asList(Currency.values());
         Long min = filterCriteria.getPopulation().get("min");
         Long max = filterCriteria.getPopulation().get("max");
         return countryRepository.filter(min,max,languages,currencies);
-        //return countryRepository.filter(filterCriteria);
     }
 /*
     @GetMapping("/country/{countryCode}")

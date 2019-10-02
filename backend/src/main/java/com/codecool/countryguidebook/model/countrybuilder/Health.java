@@ -23,7 +23,6 @@ public class Health {
     @Enumerated(EnumType.STRING)
     private Level healthCare;
 
-    @JsonIgnore
     @OneToOne
     @JsonIgnore
     private Country country;
