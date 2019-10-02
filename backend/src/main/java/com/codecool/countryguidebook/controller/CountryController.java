@@ -34,14 +34,16 @@ public class CountryController {
     @PostMapping("/filter-countries")
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
         List<Language> languages = filterCriteria.getLanguages();
-        if (languages.size()==0)
-            languages= Arrays.asList(Language.values());
+        if (languages.isEmpty()) {
+            filterCriteria.setLanguages(Arrays.asList(Language.values()));
+        }
         List<Currency> currencies = filterCriteria.getCurrency();
-        if (currencies.size()==0)
-            currencies = Arrays.asList(Currency.values());
-        Long min = filterCriteria.getPopulation().get("min");
-        Long max = filterCriteria.getPopulation().get("max");
-        return countryRepository.filter(min,max,languages,currencies);
+        if (currencies.isEmpty()) {
+            filterCriteria.setCurrency(Arrays.asList(Currency.values()));
+        }
+
+        return countryRepository.filter(filterCriteria);
+        //return countryRepository.filter(min,max,languages,currencies);
     }
 /*
     @GetMapping("/country/{countryCode}")
