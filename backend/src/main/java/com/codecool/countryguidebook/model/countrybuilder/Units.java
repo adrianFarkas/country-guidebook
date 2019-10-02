@@ -1,6 +1,7 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
 import com.codecool.countryguidebook.model.Country;
+import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -20,10 +21,14 @@ public class Units {
     @Id
     @GeneratedValue
     private Long id;
+
     @Singular
+    @Enumerated(EnumType.STRING)
     @ElementCollection
-    private List<String> currencies;
+    private List<Currency> currencies;
+
     @Singular
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Language> languages;
 

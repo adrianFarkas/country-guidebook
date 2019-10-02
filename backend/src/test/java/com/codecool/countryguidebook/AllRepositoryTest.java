@@ -198,6 +198,7 @@ public class AllRepositoryTest {
 
         Geographic geographic1 = Geographic.builder()
                 .population(1000000)
+
                 .build();
 
         Geographic geographic2 = Geographic.builder()
