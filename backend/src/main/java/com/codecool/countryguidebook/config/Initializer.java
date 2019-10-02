@@ -47,6 +47,7 @@ public class Initializer {
             Country country = Country.builder().build();
 
             Units units = buildUnits(countryJson, country);
+            Geographic geographic = buildGeographic(countryJson, country);
         }
     }
 
@@ -69,6 +70,21 @@ public class Initializer {
 
         units.country(country);
         return units.build();
+    }
+
+    private static Geographic buildGeographic(JSONObject countryJson, Country country) throws JSONException {
+        Geographic.GeographicBuilder geographicBuilder = Geographic.builder();
+
+        geographicBuilder.alpha3Code(CountryCode.valueOf(countryJson.getString("alpha3Code")))
+                .capital(countryJson.getString("capital"))
+                .area(countryJson.getInt("area"))
+                .subRegion(countryJson.getString("subregion"))
+                .population(countryJson.getInt("population"))
+                .callingCodes(gson.fromJson(String.valueOf(countryJson.getJSONArray("callingCodes")), stringListType))
+                .timeZones(gson.fromJson(String.valueOf(countryJson.getJSONArray("timezones")), stringListType))
+                .country(country);
+
+        return geographicBuilder.build();
     }
 
     public static void main(String[] args) throws IOException, JSONException {
