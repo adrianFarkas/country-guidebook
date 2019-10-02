@@ -12,8 +12,8 @@ class Country extends Component {
         let countryCode = this.props.match.params.countryCode;
         return (
                 <div>
-                    <Header></Header>
-                    <CountryDetailes countryCode = {countryCode}></CountryDetailes>
+                    <Header/>
+                    <CountryDetailes countryCode = {countryCode}/>
                 </div>
         );
     }

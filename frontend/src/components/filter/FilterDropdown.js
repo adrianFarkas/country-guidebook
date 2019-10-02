@@ -1,28 +1,57 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import {Checkbox, FormControl} from "@material-ui/core";
 
-class FilterDropdown extends Component {
+function FilterDropdown(props) {
+    const [selected, setSelected] = useState([]);
 
-    capitalizeIfNotISOCode(letter) {
-        if (letter.length > 3) {
-            const lowercase = letter.toLowerCase();
-            return lowercase.charAt(0).toUpperCase() + lowercase.slice(1)
-        }
-        return letter;
-    }
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: 300,
+                width: 400,
+            },
+        },
+    };
 
-    render() {
-        const { category, data, name } = this.props;
-        return (
-            <div className="selection">
-                <label className="label">{this.capitalizeIfNotISOCode(category)}</label>
-                <select className="options" name={name}>
-                    <option value="default">Default</option>
-                    {data.map((option, index) =>
-                        <option key={index} value={option}>{this.capitalizeIfNotISOCode(option)}</option>)}
-                </select>
-            </div>
-        );
-    }
+    const handleChange = event => {
+        setSelected(event.target.value);
+    };
+
+    const {category, data, name} = props;
+    return (
+        <div className="selection">
+            <FormControl>
+                <InputLabel>{capitalizeIfNotISOCode(category)}</InputLabel>
+                <Select
+                    multiple
+                    className="options"
+                    name={name}
+                    value={selected}
+                    renderValue={selected => selected.map(option => capitalizeIfNotISOCode(option)).join(", ")}
+                    onChange={handleChange}
+                    MenuProps={MenuProps}
+                >
+                {data.map((option, index) =>
+                    <MenuItem key={index} value={option}>
+                        <Checkbox style={{color: "#428bca"}} checked={selected.includes(option)} />
+                        {capitalizeIfNotISOCode(option)}
+                    </MenuItem>)}
+                </Select>
+            </FormControl>
+        </div>
+    );
 }
+
+function capitalizeIfNotISOCode(letter) {
+    if (letter.length > 3) {
+        const lowercase = letter.toLowerCase();
+        return lowercase.charAt(0).toUpperCase() + lowercase.slice(1)
+    }
+    return letter;
+}
+
 
 export default FilterDropdown;
