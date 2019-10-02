@@ -48,7 +48,7 @@ public class Initializer {
         List<Country> countries = new ArrayList<>();
         for (CountryCode countryCode : CountryCode.values()) {
             JSONObject countryJson = readJsonFromUrl(apiUrl + countryCode);
-            Country country = Country.builder().build();
+            Country country = Country.builder().name(countryJson.getString("name")).build();
 
             Units units = buildUnits(countryJson, country);
             Geographic geographic = buildGeographic(countryJson, country);
@@ -74,7 +74,7 @@ public class Initializer {
         for (int i = 0; i < languages.length(); i++) {
             JSONObject jsonObject = (JSONObject) languages.get(i);
             String name = jsonObject.getString("name");
-            units.currency(Currency.valueOf(name));
+            units.language(Language.valueOf(name.toUpperCase().split("\\s+")[0]));
         }
 
         units.country(country);
