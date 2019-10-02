@@ -23,7 +23,7 @@ public class Country {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     public Geographic geographic;
 
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
