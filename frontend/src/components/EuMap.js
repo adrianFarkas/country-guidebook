@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import "../css/eu-map.css";
 import {
     ComposableMap,
@@ -6,51 +6,53 @@ import {
     Geographies,
     Geography
 } from "react-simple-maps"
-import {Card} from "react-bootstrap";
+import {connect} from "react-redux";
 
-class EuMap extends Component {
+function EuMap(props) {
 
-    handleClick(geo) {
-        const path = "/country/" + geo.id.toLowerCase();
-        window.location.href = path;
-    }
-
-    render() {
-        return (
-            <div className="col col-sm-4 map-border">
-                <Card className="map-card">
-                <div className="wrapper">
-                    <ComposableMap
-                        projectionConfig={{scale: 1400}}
-                        width={1400}
-                        height={1400}
-                        style={{
-                            width: "100%",
-                            height: "auto",
-                        }}
-                    >
-                        <ZoomableGroup center={[10, 45]} disablePanning>
-                            <Geographies geography="/static/world-50m.json" disableOptimization>
-                                {(geographies, projection) =>
-                                    geographies.map((geography, i) =>
-                                        this.props.countryCodes.indexOf(geography.id) !== -1 && (
-                                            <Geography
-                                                key={i}
-                                                geography={geography}
-                                                projection={projection}
-                                                onClick={this.handleClick}
-                                                className="geo"
-                                            />
-                                        ))
-                                }
-                            </Geographies>
-                        </ZoomableGroup>
-                    </ComposableMap>
-                </div>
-                </Card>
+    return (
+            <div className="wrapper">
+                <ComposableMap
+                    projectionConfig={{scale: 950}}
+                    width={1000}
+                    height={800}
+                    style={{
+                        width: "100%",
+                        height: "auto",
+                    }}
+                >
+                    <ZoomableGroup center={[10, 50]} disablePanning>
+                        <Geographies geography="/static/world-50m.json" disableOptimization>
+                            {(geographies, projection) =>
+                                geographies.map((geography, i) =>
+                                    props.countryCodes.indexOf(geography.id) !== -1 && (
+                                        <Geography
+                                            key={i}
+                                            geography={geography}
+                                            projection={projection}
+                                            onClick={handleClick}
+                                            className="geo"
+                                        />
+                                    ))
+                            }
+                        </Geographies>
+                    </ZoomableGroup>
+                </ComposableMap>
             </div>
-        )
-    }
+    )
 }
 
-export default EuMap;
+function handleClick(geo) {
+    const path = "/country/" + geo.id.toLowerCase();
+    window.location.href = path;
+}
+
+const mapStateToProps = (state) => {
+    const countryCodes = state.countries.map(country => country["geographic"]["alpha3Code"]);
+    return {
+        countryCodes
+    }
+};
+
+
+export default connect(mapStateToProps)(EuMap);

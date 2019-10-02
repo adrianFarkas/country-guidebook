@@ -11,12 +11,10 @@
     border: 0;
     border-bottom: 1px solid #b5b5b5;
     width: 400px;
-    padding: 10px;
+    padding: 5px;
     display: block;
     margin-top: -10px;
     margin-left: -12px;
-    background-color: #f5f5f5;
-
 }
 
 .options:focus {
@@ -33,15 +31,14 @@
 }
 
 .filters {
-    margin-top: 30px;
     max-width: 500px;
     min-width: 500px;
-    height: 822px;
+    height: 800px;
     background-color: #f5f5f5;
-}
-
-.filter-form {
-    position: absolute;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 20px auto 0;
+    padding: 20px;
 }
 
 .range-slider {
@@ -66,26 +63,28 @@
 }
 
 @media (max-width: 1500px) {
-    .filter-form {
-        position: initial;
-    }
     .filters {
         height: unset;
     }
 }
 
-@media (max-width: 400px) {
-    .options {
-        width: 300px;
-    }
-    .range-slider {
-        width: 340px;
-    }
+@media (max-width: 550px) {
     .filters {
-        max-width: 400px;
-        min-width: 300px;
+        max-height: 500px;
+        max-width: 90%;
+        min-width: 0;
+    }
+    .options {
+        max-width: 90% !important;
+    }
+    .selectors {
+        margin: 0 auto;
+    }
+    .selection, .range-slider {
+        max-width: 90%;
+        padding: 10px;
+        margin: 0 30px;
     }
 }
-
 
 

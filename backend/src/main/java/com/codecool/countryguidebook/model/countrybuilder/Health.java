@@ -25,5 +25,6 @@ public class Health {
 
     @JsonIgnore
     @OneToOne
+    @JsonIgnore
     private Country country;
 }
