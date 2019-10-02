@@ -20,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+import java.util.Arrays;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -182,6 +183,43 @@ public class AllRepositoryTest {
 
         assertThat(allByGeographicPopulationBetween).hasSize(1);
 
+    }
+
+    @Test
+    public void getCountriesByLanguage()
+    {
+
+
+        Country country1 = Country.builder()
+                .name("Countr1")
+                .build();
+
+        Country country2 = Country.builder()
+                .name("Country2")
+                .build();
+
+        Units units = Units.builder()
+                .language(Language.HUNGARIAN)
+                .country(country1)
+                .build();
+
+        Units units2 = Units.builder()
+                .language(Language.GERMAN)
+                .country(country2)
+                .build();
+
+
+            country1.setUnits(units);
+            country2.setUnits(units2);
+
+        countryRepository.save(country1);
+        countryRepository.save(country2);
+
+        List<Language> languages = Arrays.asList(Language.HUNGARIAN, Language.GERMAN);
+
+        List<Country> countries = countryRepository.getCountriesWithGivenLanguages(languages);
+
+        assertThat(countries).hasSize(2);
     }
 }
 /*

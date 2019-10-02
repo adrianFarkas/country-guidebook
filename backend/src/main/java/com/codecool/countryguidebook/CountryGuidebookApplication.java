@@ -16,8 +16,8 @@ import java.util.List;
 public class CountryGuidebookApplication {
 
 
-    @Autowired
-    private Initializer initializer;
+  // @Autowired
+  //  private Initializer initializer;
 
     @Autowired
     private CountryRepository countryRepository;
@@ -26,11 +26,11 @@ public class CountryGuidebookApplication {
         SpringApplication.run(CountryGuidebookApplication.class, args);
     }
 
-    @PostConstruct
-    public void init() throws IOException, JSONException {
-        List<Country> countries = initializer.createEUCountriesFromJson();
-        countryRepository.saveAll(countries);
-    }
+  // @PostConstruct
+  //  public void init() throws IOException, JSONException {
+   //     List<Country> countries = initializer.createEUCountriesFromJson();
+   //     countryRepository.saveAll(countries);
+   // }
 
 
 

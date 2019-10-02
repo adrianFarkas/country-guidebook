@@ -3,6 +3,7 @@ package com.codecool.countryguidebook.model.countrybuilder;
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -33,5 +34,6 @@ public class Units {
     private List<Language> languages;
 
     @OneToOne
+    @JsonIgnore
     private Country country;
 }

@@ -6,16 +6,20 @@ import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.FilterCriteria;
 import com.codecool.countryguidebook.model.Language;
+import com.codecool.countryguidebook.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 @CrossOrigin
 @RestController
 public class CountryController {
+
+    @Autowired
+    private CountryRepository countryRepository;
 
     @Autowired
     private CountryDaoMemJPA countryDaoMemJPA;
@@ -25,12 +29,13 @@ public class CountryController {
         return countryDaoMemJPA.getCountries();
     }
 
-/*
+
     @PostMapping("/filter-countries")
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
-        return countryDaoMem.filter(filterCriteria);
+        List<Language> languages = Arrays.asList(Language.HUNGARIAN, Language.ITALIAN);
+        return countryRepository.getCountriesWithGivenLanguages(languages);
     }
-
+/*
     @GetMapping("/country/{countryCode}")
     public Country getCountry(@PathVariable String countryCode){
         return countryDaoMem.getCountry(countryCode);

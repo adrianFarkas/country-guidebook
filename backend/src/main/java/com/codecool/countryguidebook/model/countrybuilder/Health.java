@@ -1,6 +1,7 @@
 package com.codecool.countryguidebook.model.countrybuilder;
 
 import com.codecool.countryguidebook.model.Country;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class Health {
     @Enumerated(EnumType.STRING)
     private Level healthCare;
 
+    @JsonIgnore
     @OneToOne
     private Country country;
-
 }
