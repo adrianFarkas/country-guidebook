@@ -235,6 +235,7 @@ public class AllRepositoryTest {
                 .build();
 
         Units units1 = Units.builder()
+                .country(country1)
                 .currency(Currency.EUR)
                 .build();
 
