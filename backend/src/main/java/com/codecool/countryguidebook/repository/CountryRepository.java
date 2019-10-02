@@ -14,14 +14,16 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
     @Query("select distinct c from Country c where c.geographic.population>=:from and c.geographic.population<=:to")
     List<Country> countries(@Param("from") Long from, @Param("to") Long to);
 
-   // @Query("select distinct c from Country c join c.units.languages l where l IN ('HUNGARIAN', 'GERMAN') ")
     @Query("select distinct c from Country c join c.units.languages l where l IN (:languages) ")
     List<Country> getCountriesWithGivenLanguages(@Param("languages") List<Language> languages);
 
-
-    @Query("select distinct c from Country c " +
-            "join fetch c.units u " +
-            "join fetch u.currencies cu " +
-            "where cu = :currency")
-    List<Country> countries(@Param("currency") Currency currency);
+    @Query("select distinct c from Country c join c.units.currencies curr where curr = (:currency)")
+    List<Country> countries(@Param("currency") List<Currency> currency);
+/*
+@Query("select distinct c from Country c " +
+        "join fetch c.units u " +
+        "join fetch u.currencies cu " +
+        "where cu = :currency")
+List<Country> countries(@Param("currency") List<Currency> currency);
+ */
 }

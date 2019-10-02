@@ -244,8 +244,8 @@ public class AllRepositoryTest {
         countryRepository.save(country1);
 
 
-//        List<Currency> currencies = Arrays.asList(Currency.EUR);
-        List<Country> countries = countryRepository.countries(Currency.EUR);
+        List<Currency> currencies = Arrays.asList(Currency.EUR);
+        List<Country> countries = countryRepository.countries(currencies);
         assertThat(countries).hasSize(1);
     }
 }
