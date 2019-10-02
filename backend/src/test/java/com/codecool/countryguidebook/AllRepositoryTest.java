@@ -2,11 +2,13 @@ package com.codecool.countryguidebook;
 
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
+import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
 import com.codecool.countryguidebook.model.countrybuilder.*;
 import com.codecool.countryguidebook.repository.CountryRepository;
 import com.codecool.countryguidebook.repository.FinanceRepository;
 import com.codecool.countryguidebook.repository.GeographicRepository;
+import com.codecool.countryguidebook.repository.UnitsRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -33,6 +35,9 @@ public class AllRepositoryTest {
 
     @Autowired
     private CountryRepository countryRepository;
+
+    @Autowired
+    private UnitsRepository unitsRepository;
 
     @Autowired
     private GeographicRepository geographicRepository;
@@ -165,7 +170,7 @@ public class AllRepositoryTest {
 
         Geographic geographic1 = Geographic.builder()
                 .population(1000000)
-.country(country1)
+                .country(country1)
                 .build();
 
         Geographic geographic2 = Geographic.builder()
@@ -221,31 +226,25 @@ public class AllRepositoryTest {
 
         assertThat(countries).hasSize(2);
     }
-}
-/*
-@DataJpaTest
-@ActiveProfiles("test")
-@RunWith(MockitoJUnitRunner.class)
-public class AllRepositoryTest {
-
-    @Mock
-    private CountryRepository countryRepository;
 
     @Test
-    public void addCountryToRepository() {
-        Country country = Country.builder()
-                .name("Hungary")
+    public void findCountryByCurrency() {
+
+        Country country1 = Country.builder()
+                .name("Country1")
                 .build();
 
-        Mockito.when(countryRepository.save(Mockito.any(Country.class))).thenReturn(country);
+        Units units1 = Units.builder()
+                .currency(Currency.EUR)
+                .build();
 
-        countryRepository.save(country);
+        country1.setUnits(units1);
 
-        verify(countryRepository, times(1)).save(Mockito.any(Country.class));
+        countryRepository.save(country1);
 
-        List<Country> countries = countryRepository.findAll();
+
+//        List<Currency> currencies = Arrays.asList(Currency.EUR);
+        List<Country> countries = countryRepository.countries(Currency.EUR);
         assertThat(countries).hasSize(1);
     }
 }
-
- */

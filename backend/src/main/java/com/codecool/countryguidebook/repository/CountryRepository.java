@@ -1,6 +1,7 @@
 package com.codecool.countryguidebook.repository;
 
 import com.codecool.countryguidebook.model.Country;
+import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,9 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
     List<Country> getCountriesWithGivenLanguages(@Param("languages") List<Language> languages);
 
 
+    @Query("select distinct c from Country c " +
+            "join fetch c.units u " +
+            "join fetch u.currencies cu " +
+            "where cu = :currency")
+    List<Country> countries(@Param("currency") Currency currency);
 }
