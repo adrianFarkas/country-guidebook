@@ -34,7 +34,7 @@ const rootReducer = (state = initialState, action) => {
 };
 
 const getSliderData = (countryList) => {
-    const population = countryList.map(country => country["population"]);
+    const population = countryList.map(country => country["geographic"]["population"]);
     const min = Math.min(...population), max = Math.max(...population);
     return {min: min, max: max, values: [min, max]}
 };

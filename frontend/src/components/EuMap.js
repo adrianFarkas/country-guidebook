@@ -48,7 +48,7 @@ function handleClick(geo) {
 }
 
 const mapStateToProps = (state) => {
-    const countryCodes = state.countries.map(country => country.alpha3Code);
+    const countryCodes = state.countries.map(country => country["geographic"]["alpha3Code"]);
     return {
         countryCodes
     }
