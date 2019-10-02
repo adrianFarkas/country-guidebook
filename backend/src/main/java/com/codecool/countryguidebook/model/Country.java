@@ -23,15 +23,19 @@ public class Country {
     @GeneratedValue
     private Long id;
 
+    @Setter
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Geographic geographic;
 
+    @Setter
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Units units;
 
+    @Setter
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Finance finance;
 
+    @Setter
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Health health;
 
