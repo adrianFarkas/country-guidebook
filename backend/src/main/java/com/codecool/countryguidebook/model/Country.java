@@ -24,10 +24,10 @@ public class Country {
     private Long id;
 
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
-    public Geographic geographic;
+    private Geographic geographic;
 
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
-    public Units units;
+    private Units units;
 
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Finance finance;
