@@ -21,10 +21,14 @@ public class Units {
     @Id
     @GeneratedValue
     private Long id;
+
     @Singular
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Currency> currencies;
+
     @Singular
+    @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Language> languages;
 
