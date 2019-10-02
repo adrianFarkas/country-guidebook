@@ -127,51 +127,7 @@ public class AllRepositoryTest {
 
     }
 
-    @Test
-    public void geographicIsPersistedAndDeletedWithCountry() {
 
-
-        Geographic geographic = Geographic.builder()
-                .alpha3Code(CountryCode.HUN)
-                .build();
-
-        Country country = Country.builder()
-                .name("Hungary")
-                .geographic(geographic)
-                .build();
-
-        countryRepository.save(country);
-        assertThat(geographicRepository.findAll())
-                .hasSize(1)
-                .anyMatch(geographic1 -> geographic1.getAlpha3Code().equals(CountryCode.HUN));
-
-        countryRepository.deleteAll();
-
-        assertThat(geographicRepository.findAll()).hasSize(0);
-    }
-
-    @Test
-    public void financeIsPersistedAndDeletedWithCountry() {
-
-
-        Finance finance = Finance.builder()
-                .minimumWageEUR(1000)
-                .build();
-
-        Country country = Country.builder()
-                .name("Hungary")
-                .finance(finance)
-                .build();
-
-        countryRepository.save(country);
-        assertThat(financeRepository.findAll())
-                .hasSize(1)
-                .anyMatch(finance1 -> finance1.getMinimumWageEUR()==1000);
-
-        countryRepository.deleteAll();
-
-        assertThat(financeRepository.findAll()).hasSize(0);
-    }
 
     @Test
     public void findAllCountry() {
@@ -196,25 +152,28 @@ public class AllRepositoryTest {
     @Test
     public void findAllCountryByGeographicPopulationBetween() {
 
-        Geographic geographic1 = Geographic.builder()
-                .population(1000000)
 
-                .build();
-
-        Geographic geographic2 = Geographic.builder()
-                .population(2000000)
-                .build();
 
         Country country1 = Country.builder()
                 .name("Country1")
-                .geographic(geographic1)
                 .build();
 
         Country country2 = Country.builder()
                 .name("Country2")
-                .geographic(geographic2)
                 .build();
 
+        Geographic geographic1 = Geographic.builder()
+                .population(1000000)
+.country(country1)
+                .build();
+
+        Geographic geographic2 = Geographic.builder()
+                .population(2000000)
+                .country(country2)
+                .build();
+
+        country1.setGeographic(geographic1);
+        country2.setGeographic(geographic2);
 
         countryRepository.save(country1);
         countryRepository.save(country2);
