@@ -19,10 +19,12 @@ function FilterForm(props) {
         const data = {
             "languages": languages,
             "currency": currency,
-            "population": {
-                "min": populationRange[0],
-                "max": populationRange[1]
-            }
+            "population_min" : populationRange[0],
+            "population_max" : populationRange[1]
+        //    "population": {
+         //       "min": populationRange[0],
+        //        "max": populationRange[1]
+            //}
         };
         axios.post("http://localhost:8080/filter-countries", data)
             .then(res => props.filterCountries(res.data));
