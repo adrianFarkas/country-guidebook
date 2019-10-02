@@ -172,6 +172,36 @@ public class AllRepositoryTest {
 
         assertThat(financeRepository.findAll()).hasSize(0);
     }
+
+    @Test
+    public void findAllByGeographicPopulationBetween() {
+
+        Geographic geographic1 = Geographic.builder()
+                .population(1000000)
+                .build();
+
+        Geographic geographic2 = Geographic.builder()
+                .population(2000000)
+                .build();
+
+        Country country1 = Country.builder()
+                .name("Country1")
+                .geographic(geographic1)
+                .build();
+
+        Country country2 = Country.builder()
+                .name("Country2")
+                .geographic(geographic2)
+                .build();
+
+        countryRepository.save(country1);
+        countryRepository.save(country2);
+
+        List<Country> allByGeographicPopulationBetween = countryRepository.findAllByGeographicPopulationBetween(500000L, 1500000L);
+
+        assertThat(allByGeographicPopulationBetween).hasSize(1);
+
+    }
 }
 /*
 @DataJpaTest
