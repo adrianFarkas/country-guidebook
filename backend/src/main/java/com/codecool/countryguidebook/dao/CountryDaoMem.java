@@ -1,4 +1,4 @@
-package com.codecool.countryguidebook.dao;
+/*package com.codecool.countryguidebook.dao;
 
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.FilterCriteria;
@@ -65,7 +65,7 @@ public class CountryDaoMem implements CountryDao {
             filteredCountries = findByCurrency(filteredCountries, filterCriteria.getCurrency());
         }
 
-        return filteredCountries; //filteredCountries.stream().map(Country::getAlpha3Code).collect(Collectors.toList());
+        return filteredCountries;
     }
 
     @Override
@@ -91,3 +91,4 @@ public class CountryDaoMem implements CountryDao {
     }
 
 }
+*/
