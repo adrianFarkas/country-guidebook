@@ -2,14 +2,15 @@ package com.codecool.countryguidebook;
 
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
+import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
 import com.codecool.countryguidebook.model.countrybuilder.*;
 import com.codecool.countryguidebook.repository.CountryRepository;
 import com.codecool.countryguidebook.repository.FinanceRepository;
 import com.codecool.countryguidebook.repository.GeographicRepository;
+import com.codecool.countryguidebook.repository.UnitsRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,8 +20,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
+import java.util.Arrays;
 import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -32,6 +34,9 @@ public class AllRepositoryTest {
 
     @Autowired
     private CountryRepository countryRepository;
+
+    @Autowired
+    private UnitsRepository unitsRepository;
 
     @Autowired
     private GeographicRepository geographicRepository;
@@ -128,52 +133,6 @@ public class AllRepositoryTest {
     }
 
     @Test
-    public void geographicIsPersistedAndDeletedWithCountry() {
-
-
-        Geographic geographic = Geographic.builder()
-                .alpha3Code(CountryCode.HUN)
-                .build();
-
-        Country country = Country.builder()
-                .name("Hungary")
-                .geographic(geographic)
-                .build();
-
-        countryRepository.save(country);
-        assertThat(geographicRepository.findAll())
-                .hasSize(1)
-                .anyMatch(geographic1 -> geographic1.getAlpha3Code().equals(CountryCode.HUN));
-
-        countryRepository.deleteAll();
-
-        assertThat(geographicRepository.findAll()).hasSize(0);
-    }
-
-    @Test
-    public void financeIsPersistedAndDeletedWithCountry() {
-
-
-        Finance finance = Finance.builder()
-                .minimumWageEUR(1000)
-                .build();
-
-        Country country = Country.builder()
-                .name("Hungary")
-                .finance(finance)
-                .build();
-
-        countryRepository.save(country);
-        assertThat(financeRepository.findAll())
-                .hasSize(1)
-                .anyMatch(finance1 -> finance1.getMinimumWageEUR()==1000);
-
-        countryRepository.deleteAll();
-
-        assertThat(financeRepository.findAll()).hasSize(0);
-    }
-
-    @Test
     public void findAllCountry() {
 
         Country country1 = Country.builder()
@@ -196,59 +155,53 @@ public class AllRepositoryTest {
     @Test
     public void findAllCountryByGeographicPopulationBetween() {
 
-        Geographic geographic1 = Geographic.builder()
-                .population(1000000)
-
-                .build();
-
-        Geographic geographic2 = Geographic.builder()
-                .population(2000000)
-                .build();
-
         Country country1 = Country.builder()
                 .name("Country1")
-                .geographic(geographic1)
                 .build();
 
         Country country2 = Country.builder()
                 .name("Country2")
-                .geographic(geographic2)
                 .build();
 
+        Geographic geographic1 = Geographic.builder()
+                .population(1000000)
+                .country(country1)
+                .build();
+
+        Geographic geographic2 = Geographic.builder()
+                .population(2000000)
+                .country(country2)
+                .build();
+
+        country1.setGeographic(geographic1);
+        country2.setGeographic(geographic2);
 
         countryRepository.save(country1);
         countryRepository.save(country2);
 
         List<Country> allByGeographicPopulationBetween = countryRepository.countries(500000L, 1500000L);
-
         assertThat(allByGeographicPopulationBetween).hasSize(1);
 
     }
-}
-/*
-@DataJpaTest
-@ActiveProfiles("test")
-@RunWith(MockitoJUnitRunner.class)
-public class AllRepositoryTest {
-
-    @Mock
-    private CountryRepository countryRepository;
 
     @Test
-    public void addCountryToRepository() {
-        Country country = Country.builder()
-                .name("Hungary")
+    public void findCountryByCurrency() {
+
+        Country country1 = Country.builder()
+                .name("Country1")
                 .build();
 
-        Mockito.when(countryRepository.save(Mockito.any(Country.class))).thenReturn(country);
+        Units units1 = Units.builder()
+                .currency(Currency.EUR)
+                .build();
 
-        countryRepository.save(country);
+        country1.setUnits(units1);
 
-        verify(countryRepository, times(1)).save(Mockito.any(Country.class));
+        countryRepository.save(country1);
 
-        List<Country> countries = countryRepository.findAll();
+
+//        List<Currency> currencies = Arrays.asList(Currency.EUR);
+        List<Country> countries = countryRepository.countries(Currency.EUR);
         assertThat(countries).hasSize(1);
     }
 }
-
- */
