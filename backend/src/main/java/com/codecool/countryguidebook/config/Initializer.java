@@ -41,14 +41,20 @@ public class Initializer {
         return sb.toString();
     }
 
-    public static void createEUCountriesFromJson() throws IOException, JSONException {
+    public List<Country> createEUCountriesFromJson() throws IOException, JSONException {
+        List<Country> countries = new ArrayList<>();
         for (CountryCode countryCode : CountryCode.values()) {
             JSONObject countryJson = readJsonFromUrl(apiUrl + countryCode);
             Country country = Country.builder().build();
 
             Units units = buildUnits(countryJson, country);
             Geographic geographic = buildGeographic(countryJson, country);
+
+            country.setUnits(units);
+            country.setGeographic(geographic);
+            countries.add(country);
         }
+        return countries;
     }
 
     private static Units buildUnits(JSONObject countryJson, Country country) throws JSONException {
