@@ -4,12 +4,11 @@ import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.FilterCriteria;
 import com.codecool.countryguidebook.model.Language;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Map;
 
-public class CountryDaoMemJPA implements CountryDao{
+public class CountryDaoMemJPA implements CountryDao {
     @Override
     public void add(Country country) {
 

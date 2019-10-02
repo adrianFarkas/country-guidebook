@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
-    List<Country> findAllByGeographicPopulationBetween(Long from, Long to);
+    List<Country> findAllCountryByGeographicPopulationBetween(Long from, Long to);
 }

@@ -9,7 +9,6 @@ import com.codecool.countryguidebook.repository.FinanceRepository;
 import com.codecool.countryguidebook.repository.GeographicRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,8 +18,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -166,7 +165,7 @@ public class AllRepositoryTest {
         countryRepository.save(country);
         assertThat(financeRepository.findAll())
                 .hasSize(1)
-                .anyMatch(finance1 -> finance1.getMinimumWageEUR()==1000);
+                .anyMatch(finance1 -> finance1.getMinimumWageEUR() == 1000);
 
         countryRepository.deleteAll();
 
@@ -174,7 +173,27 @@ public class AllRepositoryTest {
     }
 
     @Test
-    public void findAllByGeographicPopulationBetween() {
+    public void findAllCountry() {
+
+        Country country1 = Country.builder()
+                .name("Country1")
+                .build();
+
+        Country country2 = Country.builder()
+                .name("Country2")
+                .build();
+
+        countryRepository.save(country1);
+        countryRepository.save(country2);
+
+        List<Country> allCountries = countryRepository.findAll();
+
+        assertThat(allCountries).hasSize(2);
+
+    }
+
+    @Test
+    public void findAllCountryByGeographicPopulationBetween() {
 
         Geographic geographic1 = Geographic.builder()
                 .population(1000000)
@@ -197,9 +216,9 @@ public class AllRepositoryTest {
         countryRepository.save(country1);
         countryRepository.save(country2);
 
-        List<Country> allByGeographicPopulationBetween = countryRepository.findAllByGeographicPopulationBetween(500000L, 1500000L);
+        List<Country> allCountries = countryRepository.findAllCountryByGeographicPopulationBetween(500000L, 1500000L);
 
-        assertThat(allByGeographicPopulationBetween).hasSize(1);
+        assertThat(allCountries).hasSize(1);
 
     }
 }

@@ -19,16 +19,13 @@ import javax.persistence.*;
 @Entity
 public class Country {
 
+    @OneToOne(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    public Geographic geographic;
+    @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
+    public Units units;
     @Id
     @GeneratedValue
     private Long id;
-
-    @OneToOne(mappedBy = "country", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    public Geographic geographic;
-
-    @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
-    public Units units;
-
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Finance finance;
 
