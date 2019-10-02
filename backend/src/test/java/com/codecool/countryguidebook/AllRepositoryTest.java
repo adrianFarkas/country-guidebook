@@ -219,7 +219,7 @@ public class AllRepositoryTest {
         countryRepository.save(country1);
         countryRepository.save(country2);
 
-        List<Country> allByGeographicPopulationBetween = countryRepository.findAllByGeographicPopulationBetween(500000L, 1500000L);
+        List<Country> allByGeographicPopulationBetween = countryRepository.countries(500000L, 1500000L);
 
         assertThat(allByGeographicPopulationBetween).hasSize(1);
 
