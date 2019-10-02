@@ -1,6 +1,5 @@
 import React from 'react';
 import FilterDropdown from "./FilterDropdown";
-import "../../css/filter.css"
 import {Button} from "react-bootstrap";
 import FilterSlider from "./FilterSlider";
 import {connect} from "react-redux";

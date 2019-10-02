@@ -5,7 +5,7 @@ import MainContent from "../components/MainContent";
 import FilterForm from "../components/filter/FilterForm";
 import { connect } from 'react-redux';
 import { fetchData } from "../actions/index";
-import "../css/main.css"
+import "../css/app.css"
 import axios from "axios"
 
 

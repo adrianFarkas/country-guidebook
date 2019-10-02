@@ -1,5 +1,4 @@
 import React from 'react';
-import "../css/eu-map.css";
 import {
     ComposableMap,
     ZoomableGroup,

@@ -88,3 +88,45 @@
 }
 
 
+.wrapper {
+    width: 100%;
+    margin-top: 20px;
+    max-height: 800px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: #e3efff;
+}
+
+.geo {
+    fill: #d5d8da;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+.geo:hover {
+    fill: #a9b1b4;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+.geo:active {
+    fill: #FF5722;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+@media (max-width: 1500px) {
+    .wrapper {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+}
