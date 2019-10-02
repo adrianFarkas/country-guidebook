@@ -214,8 +214,7 @@ public class AllRepositoryTest {
                 .geographic(geographic2)
                 .build();
 
-        geographic1.setCountry(country1);
-        geographic2.setCountry(country2);
+
         countryRepository.save(country1);
         countryRepository.save(country2);
 
