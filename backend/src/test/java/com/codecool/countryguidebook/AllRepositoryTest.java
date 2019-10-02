@@ -177,11 +177,11 @@ public class AllRepositoryTest {
     public void findAllByGeographicPopulationBetween() {
 
         Geographic geographic1 = Geographic.builder()
-                .population(1000000)
+                .population(1000000L)
                 .build();
 
         Geographic geographic2 = Geographic.builder()
-                .population(2000000)
+                .population(2000000L)
                 .build();
 
         Country country1 = Country.builder()
@@ -194,12 +194,18 @@ public class AllRepositoryTest {
                 .geographic(geographic2)
                 .build();
 
+        geographic1.setCountry(country1);
+        geographic2.setCountry(country2);
         countryRepository.save(country1);
         countryRepository.save(country2);
 
-        List<Country> allByGeographicPopulationBetween = countryRepository.findAllByGeographicPopulationBetween(500000L, 1500000L);
+       List<Country> allByGeographicPopulationBetween = countryRepository.countries(10000L, 15000000L);
+      // List<Country> allByGeographicPopulationBetween = countryRepository.findAllByLIsBetween(10000L, 1500000L);
+       // List<Country> count = countryRepository.findCountriesByNameContaining("Count");
 
-        assertThat(allByGeographicPopulationBetween).hasSize(1);
+
+        assertThat(allByGeographicPopulationBetween).hasSize(2);
+   //     assertThat(count).hasSize(2);
 
     }
 }
