@@ -30,17 +30,8 @@ public class CountryController {
 
     @PostMapping("/filter-countries")
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
-        List<Language> languages = filterCriteria.getLanguages();
-        if (languages.isEmpty()) {
-            filterCriteria.setLanguages(Arrays.asList(Language.values()));
-        }
-        List<Currency> currencies = filterCriteria.getCurrency();
-        if (currencies.isEmpty()) {
-            filterCriteria.setCurrency(Arrays.asList(Currency.values()));
-        }
-
+        filterCriteria.checkEmpty();
         return countryRepository.filter(filterCriteria);
-        //return countryRepository.filter(min,max,languages,currencies);
     }
 /*
     @GetMapping("/country/{countryCode}")
