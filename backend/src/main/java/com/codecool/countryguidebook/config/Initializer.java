@@ -96,6 +96,7 @@ public class Initializer {
 
     private Health buildHealth(Country country) {
         Health health = Health.builder()
+                .country(country)
                 .description(descriptionForHealth())
                 .stateHospital("https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg/1920px-Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg")
                 .thermalSpa("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/H%C3%A9v%C3%ADz_1.jpg/1920px-H%C3%A9v%C3%ADz_1.jpg")
