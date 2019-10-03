@@ -91,47 +91,47 @@ public class AllRepositoryTest {
 
     }
 
-    @Test
-    public void geographicIsPersistedWithCountry() {
-
-        Geographic geographic = Geographic.builder()
-                .alpha3Code(CountryCode.HUN)
-                .build();
-
-
-        Finance finance = Finance.builder()
-                .minimumWageEUR(1000)
-                .build();
-
-        Units units = Units.builder()
-                .language(Language.HUNGARIAN)
-                .build();
-
-        Health health = Health.builder()
-                .healthCare(Level.POOR)
-                .build();
-
-
-        Country country = Country.builder()
-                .name("Hungary")
-                .geographic(geographic)
-                .finance(finance)
-                .units(units)
-                .health(health)
-                .build();
-
-        countryRepository.save(country);
-
-        List<Country> countries = countryRepository.findAll();
-
-        assertThat(countries)
-                .hasSize(1)
-                .anyMatch(country1 -> country1.getGeographic().getId() > 0L)
-                .anyMatch(finance1 -> finance1.getId() > 0L)
-                .anyMatch(units1 -> units1.getId() > 0L)
-                .anyMatch(health1 -> health1.getId() > 0L);
-
-    }
+//    @Test
+//    public void geographicIsPersistedWithCountry() {
+//
+//        Geographic geographic = Geographic.builder()
+//                .alpha3Code(CountryCode.HUN)
+//                .build();
+//
+//
+//        Finance finance = Finance.builder()
+//                .minimumWageEUR(1000)
+//                .build();
+//
+//        Units units = Units.builder()
+//                .language(Language.HUNGARIAN)
+//                .build();
+//
+//        Health health = Health.builder()
+//                .healthCare(Level.POOR)
+//                .build();
+//
+//
+//        Country country = Country.builder()
+//                .name("Hungary")
+//                .geographic(geographic)
+//                .finance(finance)
+//                .units(units)
+//                .health(health)
+//                .build();
+//
+//        countryRepository.save(country);
+//
+//        List<Country> countries = countryRepository.findAll();
+//
+//        assertThat(countries)
+//                .hasSize(1)
+//                .anyMatch(country1 -> country1.getGeographic().getId() > 0L)
+//                .anyMatch(finance1 -> finance1.getId() > 0L)
+//                .anyMatch(units1 -> units1.getId() > 0L)
+//                .anyMatch(health1 -> health1.getId() > 0L);
+//
+//    }
 
 
 
