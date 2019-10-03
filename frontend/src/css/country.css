@@ -30,13 +30,17 @@
 
 .link-card {
     border: 2px solid #c9c9c9;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 30px;
-    width: 300px;
+    width: 250px;
     margin: 50px auto;
     text-align: center;
     background-color: #e8f3ff;
     box-shadow: 6px 6px 17px -10px rgba(0, 11, 109, 0.75);
+}
+
+.link-card:hover {
+    background-color: #768cb4;
 }
 
 .cards {
