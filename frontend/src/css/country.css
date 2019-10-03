@@ -49,13 +49,14 @@
 }
 
 .guides {
-    margin-top: 400px;
+    margin-top: 100px;
 }
 
 .detail-card {
     text-align: justify;
     overflow: hidden;
-    background-color: #a8f3ff;
+    background-color: #f9fdff;
+    min-height: 700px;
     padding: 50px;
     margin: 50px;
     border-radius: 20px;
