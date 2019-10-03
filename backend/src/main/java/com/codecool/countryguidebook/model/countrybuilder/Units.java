@@ -33,6 +33,9 @@ public class Units {
     @ElementCollection
     private List<Language> languages;
 
+    @Column(columnDefinition = "text")
+    private String description;
+
     @OneToOne
     @JsonIgnore
     private Country country;
