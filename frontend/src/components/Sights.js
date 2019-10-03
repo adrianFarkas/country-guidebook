@@ -58,7 +58,9 @@ function Sights(props) {
     };
 
     return (
-        <div className="guide" id="Sights">
+        <div className="detail-card" id="Sights">
+            <h1>Sightseeing</h1>
+            <hr/>
             <div className="sights">
 
                 <div className="page">

@@ -3,7 +3,7 @@ import React from 'react';
 function Finance(props) {
 
     return (
-        <div className="detail-card">
+        <div className="detail-card" id="Finance">
 
             <h1>Finance</h1>
             <hr/>

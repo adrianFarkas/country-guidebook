@@ -2,7 +2,7 @@ import React from 'react';
 
 function Education(props) {
     return (
-        <div className="detail-card">
+        <div className="detail-card" id="Education">
 
             <h1>Education</h1>
             <hr/>

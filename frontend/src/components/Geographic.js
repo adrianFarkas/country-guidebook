@@ -2,7 +2,7 @@ import React from 'react';
 
 function Geographic(props) {
     return (
-        <div className="detail-card">
+        <div className="detail-card" id="Geographic">
 
             <h1>Geographic</h1>
             <hr/>

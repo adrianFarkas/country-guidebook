@@ -2,7 +2,7 @@ import React from 'react';
 
 function Health(props) {
     return (
-        <div className="detail-card">
+        <div className="detail-card" id="Health Care">
 
             <h1>Health</h1>
             <hr/>
