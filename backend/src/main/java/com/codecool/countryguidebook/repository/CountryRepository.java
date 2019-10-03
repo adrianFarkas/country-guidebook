@@ -20,17 +20,6 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
             "AND curr IN (:#{#param.currency})")
     List<Country> filter(@Param("param") FilterCriteria filterCriteria);
 
-/*
-      @Query("select distinct c from Country c " +
-            "join c.units.languages l " +
-            "join c.units.currencies curr " +
-            "where c.geographic.population>= :popfrom and c.geographic.population<= :popto" +
-            " AND l IN (:languages)" +
-            "AND curr IN (:currencies)")
-    List<Country> filter(@Param("popfrom") Long popfrom, @Param("popto") Long popto, @Param("languages") List<Language> languages, @Param("currencies") List<Currency> currencies);
-*/
-
-
     @Query("select distinct c from Country c where c.geographic.population>=:from and c.geographic.population<=:to")
     List<Country> countries(@Param("from") Long from, @Param("to") Long to);
 
