@@ -4,7 +4,7 @@ function Education(props) {
     return (
         <div className="detail-card">
 
-            <h1>Finance</h1>
+            <h1>Education</h1>
             <hr/>
             <div className="detail-card-left-div">
 
