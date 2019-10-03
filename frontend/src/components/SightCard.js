@@ -1,15 +1,14 @@
 import React from 'react';
 
 function SightCard(props) {
-    const {index, picture, city, address, title} = props.property;
+    const {index, name, city, imageName} = props.property;
     return (
         <div id={`card-${index}`} className="card">
-            <img src={picture} alt={city} />
-            <div className="card-title">{title}</div>
+            <img src={"/static/img/sights/"+imageName} alt={city} />
+            <div className="card-title">{name}</div>
             <div className="details">
                 <p className="location">
-                    {city}<br />
-                    {address}
+                    {city}
                 </p>
             </div>
         </div>
