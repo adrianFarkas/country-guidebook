@@ -39,7 +39,7 @@ public class Country {
 
     @Setter
     @ElementCollection
-    @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.PERSIST)
     private List<Sight> sights;
 
     @Column(nullable = false, unique = true)

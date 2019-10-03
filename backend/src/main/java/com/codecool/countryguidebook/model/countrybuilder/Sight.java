@@ -25,7 +25,7 @@ public class Sight {
 
     private String imageName;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
     private Country country;
 }
