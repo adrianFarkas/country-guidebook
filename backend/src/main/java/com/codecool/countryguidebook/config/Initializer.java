@@ -4,10 +4,7 @@ import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
-import com.codecool.countryguidebook.model.countrybuilder.Finance;
-import com.codecool.countryguidebook.model.countrybuilder.Geographic;
-import com.codecool.countryguidebook.model.countrybuilder.Health;
-import com.codecool.countryguidebook.model.countrybuilder.Units;
+import com.codecool.countryguidebook.model.countrybuilder.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
@@ -20,6 +17,7 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -55,8 +53,10 @@ public class Initializer {
             Units units = buildUnits(countryJson, country);
             Geographic geographic = buildGeographic(countryJson, country);
             Finance finance = buildFinance(country);
+            List<Sight> sights = createSights(country);
             country.setFinance(finance);
             Health health = buildHealth(country);
+            country.setSights(sights);
             country.setHealth(health);
             country.setUnits(units);
             country.setGeographic(geographic);
@@ -64,6 +64,23 @@ public class Initializer {
             countries.add(country);
         }
         return countries;
+    }
+
+    private List<Sight> createSights(Country country) {
+        String[] images = new String[] {"buda-castle.jpg", "buda-hills.jpg", "aggtelek.jpg", "szechenyi-bath.jpg", "eger-castle.jpg", "danube.jpg"};
+        String[] city = new String[] {"Budapest", "Budapest", "Aggtelek", "Budapest", "Eger", "Budapest"};
+        String[] name = new String[] {"Buda Castle", "Buda Hills", "Aggtelek National Park and Caves", "Széchenyi Bath", "Eger Castle", "The Danube"};
+        List<Sight> sights = new LinkedList<>();
+        for (int i = 0; i < 6; i++) {
+            Sight sight = Sight.builder()
+                    .country(country)
+                    .name(name[i])
+                    .city(city[i])
+                    .imageName(images[i])
+                    .build();
+            sights.add(sight);
+        }
+        return sights;
     }
 
     private Finance buildFinance(Country country) {
