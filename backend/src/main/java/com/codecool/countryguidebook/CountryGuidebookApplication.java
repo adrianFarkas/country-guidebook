@@ -26,9 +26,9 @@ public class CountryGuidebookApplication {
     }
 
     @PostConstruct
-        public void init() throws IOException, JSONException {
+    public void init() throws IOException, JSONException {
         List<Country> countries = initializer.createEUCountriesFromJson();
-       countryRepository.saveAll(countries);
+        countryRepository.saveAll(countries);
     }
 
 
