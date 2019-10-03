@@ -30,8 +30,8 @@ public class CountryController {
     }
 
     @GetMapping("/country/{countryCode}")
-    public Country getCountry(@PathVariable CountryCode countryCode){
-        return countryRepository.findCountryByGeographic_Alpha3Code(countryCode);
+    public Country getCountry(@PathVariable String countryCode){
+        return countryRepository.findCountryByGeographic_Alpha3Code(CountryCode.valueOf(countryCode.toUpperCase()));
     }
 
     @GetMapping("/all")
