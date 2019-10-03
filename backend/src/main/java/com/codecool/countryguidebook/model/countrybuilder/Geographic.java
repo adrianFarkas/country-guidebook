@@ -31,6 +31,11 @@ public class Geographic {
     private long population;
     private int area;
 
+    @Column(columnDefinition = "text")
+    private String description;
+
+    private String mapLink;
+
     @Singular
     @ElementCollection
     private List<String> timeZones;

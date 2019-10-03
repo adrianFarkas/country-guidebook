@@ -23,6 +23,9 @@ public class Health {
     @Enumerated(EnumType.STRING)
     private Level healthCare;
 
+    @Column(columnDefinition = "text")
+    private String description;
+
     @OneToOne
     @JsonIgnore
     private Country country;
