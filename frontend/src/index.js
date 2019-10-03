@@ -13,9 +13,9 @@ const routing = (
 
     <Router>
         <Provider store={store}>
-        <Route exact path="/" component={App}/>
-        <Route path="/country/:countryCode" component={Country}/>
+            <Route exact path="/" component={App}/>
         </Provider>
+        <Route path="/country/:countryCode" component={Country}/>
     </Router>
 );
 

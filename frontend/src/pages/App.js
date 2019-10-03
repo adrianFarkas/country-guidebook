@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import Header from "../components/Header";
+import NavigationBar from "../components/NavigationBar";
 import EuMap from "../components/EuMap";
 import MainContent from "../components/MainContent";
 import FilterForm from "../components/filter/FilterForm";
@@ -19,7 +19,7 @@ function App(props) {
 
     return (
             <div className="App">
-                <Header text="Country Guide"/>
+                <NavigationBar text="Country Guide"/>
                 <MainContent>
                     <FilterForm />
                     <EuMap />

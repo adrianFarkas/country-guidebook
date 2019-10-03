@@ -21,11 +21,14 @@ public class Finance {
     @GeneratedValue
     private long id;
 
-    private int stateDebtMillionEuro;
+    private String stateDebtMillionEuro;
     private String mainLabor;
     private int averageWorkingTimePerYearInHour;
-    private int averageSalaryEUR;
-    private int minimumWageEUR;
+    private String averageSalaryEUR;
+    private String minimumWageEUR;
+
+    @Column(columnDefinition = "text")
+    private String description;
 
     @OneToOne
     @JsonIgnore
