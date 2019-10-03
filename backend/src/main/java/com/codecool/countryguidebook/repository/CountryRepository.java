@@ -1,9 +1,6 @@
 package com.codecool.countryguidebook.repository;
 
-import com.codecool.countryguidebook.model.Country;
-import com.codecool.countryguidebook.model.Currency;
-import com.codecool.countryguidebook.model.FilterCriteria;
-import com.codecool.countryguidebook.model.Language;
+import com.codecool.countryguidebook.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,6 +26,7 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
     @Query("select distinct c from Country c join c.units.currencies curr where curr = (:currency)")
     List<Country> countries(@Param("currency") List<Currency> currency);
 
+    Country findCountryByGeographic_Alpha3Code(CountryCode countryCode);
 
 /*
 @Query("select distinct c from Country c " +
