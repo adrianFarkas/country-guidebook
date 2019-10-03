@@ -8,7 +8,7 @@ function Education(props) {
             <h1>Education</h1>
             <hr/>
             <div className="detail-card-left-div">
-                {description}
+                <div dangerouslySetInnerHTML={{ __html: description }}></div>
             </div>
             <div className="detail-card-right-div">
                 <h4>Public spending on education</h4>

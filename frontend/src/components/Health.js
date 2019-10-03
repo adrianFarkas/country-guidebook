@@ -8,7 +8,7 @@ function Health(props) {
             <h1>Health</h1>
             <hr/>
             <div className="detail-card-left-div">
-                {description}
+                <div dangerouslySetInnerHTML={{ __html: description }}></div>
             </div>
             <div className="detail-card-right-div">
                 <h4>State Hospital</h4>

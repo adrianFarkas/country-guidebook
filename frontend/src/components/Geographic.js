@@ -8,7 +8,8 @@ function Geographic(props) {
             <h1>Geographic</h1>
             <hr/>
             <div className="detail-card-left-div">
-                {description}
+                <div dangerouslySetInnerHTML={{ __html: description }}></div>
+
             </div>
             <div className="detail-card-right-div">
                 <h4>Geography of {props.country}</h4>

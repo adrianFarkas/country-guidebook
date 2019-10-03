@@ -9,7 +9,7 @@ function Finance(props) {
             <h1>Finance</h1>
             <hr/>
             <div className="detail-card-left-div">
-                {description}
+                <div dangerouslySetInnerHTML={{ __html: description }}></div>
             </div>
             <div className="detail-card-right-div">
                 <h4>State debt in million Euro</h4>

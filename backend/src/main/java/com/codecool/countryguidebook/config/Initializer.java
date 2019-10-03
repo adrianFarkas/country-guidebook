@@ -101,6 +101,7 @@ public class Initializer {
                 .stateHospital("https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg/1920px-Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg")
                 .thermalSpa("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/H%C3%A9v%C3%ADz_1.jpg/1920px-H%C3%A9v%C3%ADz_1.jpg")
                 .hospitalMap("https://www.jewishgen.org/yizkor/Brichah/images/bri138.jpg")
+                .country(country)
                 .build();
         return health;
     }
@@ -109,14 +110,14 @@ public class Initializer {
         return "Állami Szívkórház (\"State Heart Hospital\") in Balatonfüred, resort town by Lake Balaton Hungary has a\n" +
                 "                tax-funded universal healthcare system, organized by the state-owned National Health Insurance Fund\n" +
                 "                (Hungarian: Országos Egészségbiztosítási Pénztár (OEP)). According to the OECD 100% of the total\n" +
-                "                population is covered by universal health insurance,[1] which is absolutely free for children (all\n" +
+                "                population is covered by universal health insurance, which is absolutely free for children (all\n" +
                 "                people under 16), mothers or fathers with baby, students, pensioners (everyone over 62), people with low\n" +
-                "                income, handicapped people (including physical and mental disorders),[2] priests and other church\n" +
-                "                employees.[3] Health in Hungary can be described with a rapidly increasing life expectancy (7.48 years\n" +
-                "                for men and 4.92 years for women between 1993 and 2013)[4] and a very low infant mortality rate (4.6 per\n" +
-                "                1,000 live births in 2014).[4] According to the OECD Hungary spent 7.8% of its GDP on health care in\n" +
+                "                income, handicapped people (including physical and mental disorders), priests and other church\n" +
+                "                employees. Health in Hungary can be described with a rapidly increasing life expectancy (7.48 years\n" +
+                "                for men and 4.92 years for women between 1993 and 2013) and a very low infant mortality rate (4.6 per\n" +
+                "                1,000 live births in 2014). According to the OECD Hungary spent 7.8% of its GDP on health care in\n" +
                 "                2012. Total health expenditure was 1,688.7 US$ per capita in 2011, 1,098.3 US$ governmental-fund (65%)\n" +
-                "                and 590.4 US$ private-fund (35%).[5] Doctors' pay is the lowest from among the OECD countries. General\n" +
+                "                and 590.4 US$ private-fund (35%). Doctors' pay is the lowest from among the OECD countries. General\n" +
                 "                practitioners are paid 1.4 times the average wage and hospital specialists 1.6 times.\n" +
                 "                <br/><br/>\n" +
                 "                The first hospitals go back to the 13th-century mining towns of Hungary. The first mining health\n" +
@@ -128,19 +129,19 @@ public class Initializer {
                 "                1938, at that time the Hungarian social health insurance system was the most progressive and charitable\n" +
                 "                in East-Central Europe. After the World War II the Communist government fully nationalized social\n" +
                 "                insurance. Since then the Hungarian healthcare system has been state-owned, overall and available for\n" +
-                "                all of the people.[7] The free-market shift initiated after the end of communist rule 30 years ago put a\n" +
+                "                all of the people. The free-market shift initiated after the end of communist rule 30 years ago put a\n" +
                 "                strain on the largely centralised, wholly tax-funded public health system, which required far-reaching\n" +
-                "                reforms.[8] These resulted in the creation of the National Healthcare Fund (Hungarian: Országos\n" +
-                "                Egészségbiztosítási Pénztár), in 1993.[9] The OEP, predominantly based on a social insurance system,[8]\n" +
-                "                is the public organization currently controlling the management of health care in Hungary.[9] 83% of the\n" +
-                "                financing for health care comes from taxes and other public revenues.[10] Participation in the insurance\n" +
-                "                scheme is mandatory for everyone in the workforce, including the self-employed.[11] Most private\n" +
-                "                hospitals also operate under the OEP framework.[9] Because of past hiring policies, Hungarian hospitals\n" +
+                "                reforms. These resulted in the creation of the National Healthcare Fund (Hungarian: Országos\n" +
+                "                Egészségbiztosítási Pénztár), in 1993. The OEP, predominantly based on a social insurance system,\n" +
+                "                is the public organization currently controlling the management of health care in Hungary. 83% of the\n" +
+                "                financing for health care comes from taxes and other public revenues. Participation in the insurance\n" +
+                "                scheme is mandatory for everyone in the workforce, including the self-employed. Most private\n" +
+                "                hospitals also operate under the OEP framework. Because of past hiring policies, Hungarian hospitals\n" +
                 "                often have redundancies of doctors, and a lack of nurses, resulting in an unproductive misuse of human\n" +
-                "                resources.[8] So-called \"gratitude payments\", another communist legacy, require in practice a cash\n" +
-                "                payment to have access to better treatments.[8] According to the survey conducted by the Euro health\n" +
+                "                resources. So-called \"gratitude payments\", another communist legacy, require in practice a cash\n" +
+                "                payment to have access to better treatments. According to the survey conducted by the Euro health\n" +
                 "                consumer index in 2015 Hungary was among the European countries in which unofficial payments to doctors\n" +
-                "                were reported most commonly.[12] Medical treatment deemed \"medically necessary\" is provided free of\n" +
+                "                were reported most commonly. Medical treatment deemed \"medically necessary\" is provided free of\n" +
                 "                charge for European citizens in the country.";
     }
 
@@ -188,20 +189,20 @@ public class Initializer {
     }
 
     private String descriptionForFinance() {
-        return "<Hungary is an OECD high-income mixed economy with a very high human development index and a skilled labour force,\n" +
+        return "Hungary is an OECD high-income mixed economy with a very high human development index and a skilled labour force,\n" +
                 "                with the 13th lowest income inequality in the world; furthermore it is the 14th most complex economy according to the\n" +
                 "                Economic Complexity Index. The Hungarian economy is the 57th-largest economy in the world (out of 188 countries measured by IMF)\n" +
                 "                with $265.037 billion annual output, and ranks 49th in the world in terms of GDP per capita measured by purchasing power parity.\n" +
                 "                Hungary is an export-oriented market economy with a heavy emphasis on foreign trade; thus the country is the 35th largest export economy in the world.\n" +
                 "                The country had more than $100 billion of exports in 2015, with a high trade surplus of $9.003 billion, of which 79% went to the EU and 21% was extra-EU trade.\n" +
-                "                Hungary's productive capacity is more than 80% privately owned, with 39.1% overall taxation, which funds the country's welfare economy. On the expenditure side,\n" +
+                "                <br/><br/>Hungary's productive capacity is more than 80% privately owned, with 39.1% overall taxation, which funds the country's welfare economy. On the expenditure side,\n" +
                 "                household consumption is the main component of GDP and accounts for 50% of its total, followed by gross fixed capital formation with 22% and government\n" +
                 "                expenditure with 20%. In 2009 Hungary, due to strong economic difficulties, had to request the help of the IMF for about € 9 billion.\n" +
                 "                Hungary continues to be one of the leading nations in Central and Eastern Europe for attracting foreign direct investment:\n" +
                 "                the inward FDI in the country was $119.8 billion in 2015, while Hungary invests more than $50 billion abroad. As of 2015,\n" +
                 "                the key trading partners of Hungary were Germany, Austria, Romania, Slovakia, France, Italy, Poland and the Czech Republic.\n" +
                 "                Major industries include food processing, pharmaceuticals, motor vehicles, information technology, chemicals, metallurgy, machinery,\n" +
-                "                electrical goods, and tourism (in 2014 Hungary welcomed 12.1 million international tourists). Hungary is the largest electronics\n" +
+                "                electrical goods, and tourism (in 2014 Hungary welcomed 12.1 million international tourists). <br/><br/>Hungary is the largest electronics\n" +
                 "                producer in Central and Eastern Europe. Electronics manufacturing and research are among the main drivers of innovation and economic\n" +
                 "                growth in the country. In the past 20 years Hungary has also grown into a major center for mobile technology, information security, and\n" +
                 "                related hardware research.The employment rate in the economy was 68.7% in January 2017, the employment structure shows the\n" +
@@ -217,7 +218,7 @@ public class Initializer {
                 " It has 2,106 km of boundaries, shared with Austria to the west, Serbia, Croatia and Slovenia to the\n" +
                 " south and southwest,\n" +
                 " Romania to the southeast, Ukraine to the northeast, and Slovakia to the north.\n" +
-                " Hungary's modern borders were first established after World War I when, by the terms of the Treaty of\n" +
+                " <br/><br/>Hungary's modern borders were first established after World War I when, by the terms of the Treaty of\n" +
                 " Trianon in 1920, it lost more than\n" +
                 " 71% of what had formerly been the Kingdom of Hungary, 58.5% of its population, and 32% of the\n" +
                 " Hungarians. The country secured some\n" +
@@ -227,13 +228,13 @@ public class Initializer {
                 "                and Muraköz regions during the Invasion of Yugoslavia.\n" +
                 "                However, Hungary lost these territories again with its defeat in World War II. After World War II, the\n" +
                 "                Trianon boundaries were restored with a small revision that benefited Czechoslovakia.\n" +
-                "                Most of the country has an elevation of less than 200 m. Although Hungary has several moderately high\n" +
+                "                <br/><br/>Most of the country has an elevation of less than 200 m. Although Hungary has several moderately high\n" +
                 "                ranges of mountains,\n" +
                 "                those reaching heights of 300 m or more cover less than 2% of the country. The highest point in the\n" +
                 "                country is Kékes (1,014 m) in the\n" +
                 "                Mátra Mountains northeast of Budapest. The lowest spot is 77.6 m above sea level, located in the south\n" +
                 "                of Hungary, near Szeged.\n" +
-                "                The major rivers in the country are the Danube and Tisza. The Danube is navigable within Hungary for 418\n" +
+                "                <br /> <br />The major rivers in the country are the Danube and Tisza. The Danube is navigable within Hungary for 418\n" +
                 "                kilometers.\n" +
                 "                The Tisza River is navigable for 444 km in the country. Less important rivers include the Drava along\n" +
                 "                the Croatian border,\n" +
@@ -246,13 +247,13 @@ public class Initializer {
                 "                its frozen surface provides excellent opportunities for winter sports. Smaller bodies of water are Lake\n" +
                 "                Velence (26 square km) in Fejér\n" +
                 "                County and Lake Fertő (Neusiedler See—about 82 square km within Hungary), and the artificial Lake Tisza.\n" +
-                "                Hungary has three major geographic regions (which are subdivided to seven smaller ones): the Great\n" +
+                "                <br/><br/>Hungary has three major geographic regions (which are subdivided to seven smaller ones): the Great\n" +
                 "                Alföld,\n" +
                 "                lying east of the Danube River; the Transdanubia, a hilly region lying west of the Danube and extending\n" +
                 "                to the Austrian\n" +
                 "                foothills of the Alps; and the North Hungarian Mountains, which is a mountainous and hilly country\n" +
                 "                beyond the northern boundary of the Great Hungarian Plain.\n" +
-                "                The country's best natural resource is fertile land, although soil quality varies greatly. About 70% of\n" +
+                "                <br/><br/>The country's best natural resource is fertile land, although soil quality varies greatly. About 70% of\n" +
                 "                the country's total\n" +
                 "                territory is suitable for agriculture; of this portion, 72% is arable land. Hungary lacks extensive\n" +
                 "                domestic sources of\n" +
@@ -279,7 +280,7 @@ public class Initializer {
                 "                taught in these languages, which attracts thousands of exchange students every year. Hungary's higher\n" +
                 "                education and training has been ranked 44 out of 148 countries in the Global competitiveness Report\n" +
                 "                2014.\n" +
-                "                Today there are 67 higher education institutions in Hungary, ranging from small colleges to top research\n" +
+                "                <br /> <br />Today there are 67 higher education institutions in Hungary, ranging from small colleges to top research\n" +
                 "                universities. These universities and colleges are maintained either by the state, private organizations\n" +
                 "                or a church. In accordance with the objectives of the Bologna process the degree structure of tertiary\n" +
                 "                education is based on three cycles. Nearly all study fields lead first to a Bachelor’s degree (usually 3\n" +
@@ -298,7 +299,7 @@ public class Initializer {
                 "                studied full-time, part-time or through distance learning. A four-year doctoral programme is a\n" +
                 "                post-graduate course to follow any Master’s or equivalent qualification. Hungary has a long tradition of\n" +
                 "                higher education reflecting the existence of established knowledge\n" +
-                "                economy. The established universities in Hungary include some of the oldest in the world, the first was\n" +
+                "                economy. <br/><br/>The established universities in Hungary include some of the oldest in the world, the first was\n" +
                 "                the University of Pécs founded in 1367 which is still functioning, although in the year 1276, the\n" +
                 "                university of Veszprém was destroyed by the troops of Peter Csák, but it was never rebuilt. Sigismund\n" +
                 "                established Óbuda University in 1395. Another, Universitas Istropolitana, was established 1465 in\n" +
