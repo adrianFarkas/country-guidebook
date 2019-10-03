@@ -11,7 +11,7 @@ function Finance(props) {
 
 
 
-                Hungary is an OECD high-income mixed economy with a very high human development index and a skilled labour force,
+                <br />Hungary is an OECD high-income mixed economy with a very high human development index and a skilled labour force,
                 with the 13th lowest income inequality in the world; furthermore it is the 14th most complex economy according to the
                 Economic Complexity Index. The Hungarian economy is the 57th-largest economy in the world (out of 188 countries measured by IMF)
                 with $265.037 billion annual output, and ranks 49th in the world in terms of GDP per capita measured by purchasing power parity.

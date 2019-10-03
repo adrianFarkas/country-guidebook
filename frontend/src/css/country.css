@@ -78,6 +78,7 @@ h4 {
 
 .details-card-right-images {
     width: 300px;
+    box-shadow: 6px 6px 17px -10px rgba(0, 11, 109, 0.75);
 }
 
 .details-card-right-images:hover {
