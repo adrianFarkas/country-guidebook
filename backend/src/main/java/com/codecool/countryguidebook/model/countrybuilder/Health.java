@@ -25,6 +25,12 @@ public class Health {
 
     @Column(columnDefinition = "text")
     private String description;
+    private String stateHospital;
+    private String thermalSpa;
+    private String hospitalMap;
+
+
+
 
     @OneToOne
     @JsonIgnore

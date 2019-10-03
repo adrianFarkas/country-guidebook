@@ -44,6 +44,7 @@ public class Country {
 
     @Column(columnDefinition = "text")
     private String description;
+    private String logo;
 
     @Transient
     private String flag;
