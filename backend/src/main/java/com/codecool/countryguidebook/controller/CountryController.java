@@ -22,26 +22,16 @@ public class CountryController {
     @Autowired
     private CountryRepository countryRepository;
 
-    @Autowired
-    private CountryDaoMemJPA countryDaoMemJPA;
-
     @GetMapping("/countries-list")
     public List<Country> countryList() {
-        return countryDaoMemJPA.getCountries();
+        return countryRepository.findAll();
     }
 
 
     @PostMapping("/filter-countries")
     public List<Country> filteredCountries(@RequestBody FilterCriteria filterCriteria) {
-        List<Language> languages = filterCriteria.getLanguages();
-        if (languages.size()==0)
-            languages= Arrays.asList(Language.values());
-        List<Currency> currencies = filterCriteria.getCurrency();
-        if (currencies.size()==0)
-            currencies = Arrays.asList(Currency.values());
-        Long min = filterCriteria.getPopulation().get("min");
-        Long max = filterCriteria.getPopulation().get("max");
-        return countryRepository.filter(min,max,languages,currencies);
+        filterCriteria.checkEmpty();
+        return countryRepository.filter(filterCriteria);
     }
 /*
     @GetMapping("/country/{countryCode}")
@@ -52,7 +42,7 @@ public class CountryController {
     @GetMapping("/all")
     public HashMap<String, Object> mainData() {
         HashMap<String, Object> data = new HashMap<>();
-        data.put("countries", countryDaoMemJPA.getCountries());
+        data.put("countries", countryRepository.findAll());
         data.put("languages", Language.values());
         data.put("currencies", Currency.values());
         return data;
