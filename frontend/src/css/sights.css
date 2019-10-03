@@ -378,7 +378,6 @@ section {
 }
 
 .back-btn:hover {
-  /*margin-right: 1000px;*/
   opacity: 1;
 }
 
@@ -391,6 +390,7 @@ section {
 }
 
 .details {
+
 }
 
 .card-title {

@@ -4,10 +4,7 @@ import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryCode;
 import com.codecool.countryguidebook.model.Currency;
 import com.codecool.countryguidebook.model.Language;
-import com.codecool.countryguidebook.model.countrybuilder.Finance;
-import com.codecool.countryguidebook.model.countrybuilder.Geographic;
-import com.codecool.countryguidebook.model.countrybuilder.Health;
-import com.codecool.countryguidebook.model.countrybuilder.Units;
+import com.codecool.countryguidebook.model.countrybuilder.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
@@ -20,6 +17,7 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -55,8 +53,10 @@ public class Initializer {
             Units units = buildUnits(countryJson, country);
             Geographic geographic = buildGeographic(countryJson, country);
             Finance finance = buildFinance(country);
+            List<Sight> sights = createSights(country);
             country.setFinance(finance);
             Health health = buildHealth(country);
+            country.setSights(sights);
             country.setHealth(health);
             country.setUnits(units);
             country.setGeographic(geographic);
@@ -64,6 +64,23 @@ public class Initializer {
             countries.add(country);
         }
         return countries;
+    }
+
+    private List<Sight> createSights(Country country) {
+        String[] images = new String[] {"buda-castle.jpg", "buda-hills.jpg", "aggtelek.jpg", "szechenyi-bath.jpg", "eger-castle.jpg", "danube.jpg"};
+        String[] city = new String[] {"Budapest", "Budapest", "Aggtelek", "Budapest", "Eger", "Budapest"};
+        String[] name = new String[] {"Buda Castle", "Buda Hills", "Aggtelek National Park and Caves", "Széchenyi Bath", "Eger Castle", "The Danube"};
+        List<Sight> sights = new LinkedList<>();
+        for (int i = 0; i < 6; i++) {
+            Sight sight = Sight.builder()
+                    .country(country)
+                    .name(name[i])
+                    .city(city[i])
+                    .imageName(images[i])
+                    .build();
+            sights.add(sight);
+        }
+        return sights;
     }
 
     private Finance buildFinance(Country country) {
@@ -79,6 +96,7 @@ public class Initializer {
 
     private Health buildHealth(Country country) {
         Health health = Health.builder()
+                .country(country)
                 .description(descriptionForHealth())
                 .stateHospital("https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg/1920px-Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg")
                 .thermalSpa("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/H%C3%A9v%C3%ADz_1.jpg/1920px-H%C3%A9v%C3%ADz_1.jpg")
@@ -170,7 +188,7 @@ public class Initializer {
     }
 
     private String descriptionForFinance() {
-        return "<br />Hungary is an OECD high-income mixed economy with a very high human development index and a skilled labour force,\n" +
+        return "<Hungary is an OECD high-income mixed economy with a very high human development index and a skilled labour force,\n" +
                 "                with the 13th lowest income inequality in the world; furthermore it is the 14th most complex economy according to the\n" +
                 "                Economic Complexity Index. The Hungarian economy is the 57th-largest economy in the world (out of 188 countries measured by IMF)\n" +
                 "                with $265.037 billion annual output, and ranks 49th in the world in terms of GDP per capita measured by purchasing power parity.\n" +
@@ -179,7 +197,6 @@ public class Initializer {
                 "                Hungary's productive capacity is more than 80% privately owned, with 39.1% overall taxation, which funds the country's welfare economy. On the expenditure side,\n" +
                 "                household consumption is the main component of GDP and accounts for 50% of its total, followed by gross fixed capital formation with 22% and government\n" +
                 "                expenditure with 20%. In 2009 Hungary, due to strong economic difficulties, had to request the help of the IMF for about € 9 billion.\n" +
-                "<br/><br/>\n" +
                 "                Hungary continues to be one of the leading nations in Central and Eastern Europe for attracting foreign direct investment:\n" +
                 "                the inward FDI in the country was $119.8 billion in 2015, while Hungary invests more than $50 billion abroad. As of 2015,\n" +
                 "                the key trading partners of Hungary were Germany, Austria, Romania, Slovakia, France, Italy, Poland and the Czech Republic.\n" +
@@ -195,12 +212,11 @@ public class Initializer {
     }
 
     private String descriptionForGeographic() {
-        return " <br/>Hungary is a landlocked country in East-Central Europe with a land area of 93,030 square km.\n" +
+        return " Hungary is a landlocked country in East-Central Europe with a land area of 93,030 square km.\n" +
                 " It measures about 250 km from north to south and 524 km from east to west.\n" +
                 " It has 2,106 km of boundaries, shared with Austria to the west, Serbia, Croatia and Slovenia to the\n" +
                 " south and southwest,\n" +
                 " Romania to the southeast, Ukraine to the northeast, and Slovakia to the north.\n" +
-                " <br/><br/>\n" +
                 " Hungary's modern borders were first established after World War I when, by the terms of the Treaty of\n" +
                 " Trianon in 1920, it lost more than\n" +
                 " 71% of what had formerly been the Kingdom of Hungary, 58.5% of its population, and 32% of the\n" +
@@ -211,14 +227,12 @@ public class Initializer {
                 "                and Muraköz regions during the Invasion of Yugoslavia.\n" +
                 "                However, Hungary lost these territories again with its defeat in World War II. After World War II, the\n" +
                 "                Trianon boundaries were restored with a small revision that benefited Czechoslovakia.\n" +
-                "                <br/><br/>\n" +
                 "                Most of the country has an elevation of less than 200 m. Although Hungary has several moderately high\n" +
                 "                ranges of mountains,\n" +
                 "                those reaching heights of 300 m or more cover less than 2% of the country. The highest point in the\n" +
                 "                country is Kékes (1,014 m) in the\n" +
                 "                Mátra Mountains northeast of Budapest. The lowest spot is 77.6 m above sea level, located in the south\n" +
                 "                of Hungary, near Szeged.\n" +
-                "                <br/><br/>\n" +
                 "                The major rivers in the country are the Danube and Tisza. The Danube is navigable within Hungary for 418\n" +
                 "                kilometers.\n" +
                 "                The Tisza River is navigable for 444 km in the country. Less important rivers include the Drava along\n" +
@@ -232,14 +246,12 @@ public class Initializer {
                 "                its frozen surface provides excellent opportunities for winter sports. Smaller bodies of water are Lake\n" +
                 "                Velence (26 square km) in Fejér\n" +
                 "                County and Lake Fertő (Neusiedler See—about 82 square km within Hungary), and the artificial Lake Tisza.\n" +
-                "                <br/><br/>\n" +
                 "                Hungary has three major geographic regions (which are subdivided to seven smaller ones): the Great\n" +
                 "                Alföld,\n" +
                 "                lying east of the Danube River; the Transdanubia, a hilly region lying west of the Danube and extending\n" +
                 "                to the Austrian\n" +
                 "                foothills of the Alps; and the North Hungarian Mountains, which is a mountainous and hilly country\n" +
                 "                beyond the northern boundary of the Great Hungarian Plain.\n" +
-                "\n" +
                 "                The country's best natural resource is fertile land, although soil quality varies greatly. About 70% of\n" +
                 "                the country's total\n" +
                 "                territory is suitable for agriculture; of this portion, 72% is arable land. Hungary lacks extensive\n" +
@@ -267,7 +279,6 @@ public class Initializer {
                 "                taught in these languages, which attracts thousands of exchange students every year. Hungary's higher\n" +
                 "                education and training has been ranked 44 out of 148 countries in the Global competitiveness Report\n" +
                 "                2014.\n" +
-                "                <br/><br/>\n" +
                 "                Today there are 67 higher education institutions in Hungary, ranging from small colleges to top research\n" +
                 "                universities. These universities and colleges are maintained either by the state, private organizations\n" +
                 "                or a church. In accordance with the objectives of the Bologna process the degree structure of tertiary\n" +
