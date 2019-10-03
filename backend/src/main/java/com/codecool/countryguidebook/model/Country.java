@@ -1,13 +1,11 @@
 package com.codecool.countryguidebook.model;
 
-import com.codecool.countryguidebook.model.countrybuilder.Finance;
-import com.codecool.countryguidebook.model.countrybuilder.Geographic;
-import com.codecool.countryguidebook.model.countrybuilder.Health;
-import com.codecool.countryguidebook.model.countrybuilder.Units;
+import com.codecool.countryguidebook.model.countrybuilder.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Component
 @Getter
@@ -38,6 +36,11 @@ public class Country {
     @Setter
     @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
     private Health health;
+
+    @Setter
+    @ElementCollection
+    @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
+    private List<Sight> sights;
 
     @Column(nullable = false, unique = true)
     private String name;
