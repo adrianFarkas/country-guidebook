@@ -60,6 +60,7 @@ public class Initializer {
             country.setHealth(health);
             country.setUnits(units);
             country.setGeographic(geographic);
+            country.setLogo("lanchid.jpg");
             countries.add(country);
         }
         return countries;
