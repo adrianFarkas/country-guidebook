@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Slider, Typography, TextField} from "@material-ui/core";
-import {connect} from "react-redux";
-import { changeSlider } from '../../actions/index';
+import {RootContext} from "../../contexts/RootContext";
 
 function FilterSlider(props) {
-    const  { min, max, values } = props;
+    const  { state, dispatch } = useContext(RootContext);
+    const  { min, max, values } = state.slider;
 
     const handleChange = (e, newValue) => {
-        props.changeSlider({min, max, values: newValue});
+        const data = {min, max, values: newValue};
+            dispatch({type: "CHANGE_SLIDER", data});
     };
 
     return (
@@ -44,8 +45,4 @@ function FilterSlider(props) {
     );
 }
 
-const mapStateToProps = (state) => {
-    return state.slider;
-};
-
-export default connect(mapStateToProps, {changeSlider})(FilterSlider);
+export default FilterSlider;

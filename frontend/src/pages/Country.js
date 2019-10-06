@@ -22,12 +22,15 @@ function Country(props) {
     }, []);
 
     return (
-        <div>
+        !isLoading ?
+            <div>
             <NavigationBar/>
-            <Header />
+            <Header country={country.name} />
             <InfoLinks />
-            {!isLoading ? <Guides country={country} /> : <div>Loading...</div>}
+            <Guides country={country} />
         </div>
+            :
+            <div>Loading...</div>
     );
 }
 

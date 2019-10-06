@@ -1,31 +1,19 @@
-const initialState =  {
-    countries: [],
-    languages: [],
-    currencies: [],
-    slider: {
-        min: 0,
-        max: 0,
-        values: [0, 0]
-    }
-};
-
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state, action) => {
     switch (action.type) {
-        case "FETCH_DATA":
-            const data = action.payload;
+        case "STORE_DATA":
             return {
-                ...data,
-                slider: getSliderData(data["countries"])
+                ...action.data,
+                slider: getSliderData(action.data["countries"])
             };
         case "CHANGE_SLIDER":
             return {
               ...state,
-              slider: action.payload
+              slider: action.data
             };
-        case "COUNTRY_FILTER":
+        case "FILTER_COUNTRIES":
             return {
                 ...state,
-                countries: action.payload
+                countries: action.data
             };
         default:
             return state;

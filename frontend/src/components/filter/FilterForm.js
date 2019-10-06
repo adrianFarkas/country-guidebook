@@ -1,28 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import FilterDropdown from "./FilterDropdown";
 import {Button} from "react-bootstrap";
 import FilterSlider from "./FilterSlider";
-import {connect} from "react-redux";
-import axios from "axios"
-import {filterCountries} from '../../actions/index'
+import {RootContext} from "../../contexts/RootContext";
 
 function FilterForm(props) {
-    const {languages, currencies} = props;
+    const {state, filterCountries} = useContext(RootContext);
+    const {languages, currencies} = state;
 
     const submitHandle = (event) => {
         event.preventDefault();
         const form = event.target;
         const languages = !form.languages.value ? [] : form.languages.value.split(","),
             currency = !form.currency.value ? [] : form.currency.value.split(","),
-            populationRange = form.slider.value.split(",");
-        const data = {
-            "languages": languages,
-            "currency": currency,
-            "population_min" : populationRange[0],
-            "population_max" : populationRange[1]
-        };
-        axios.post("http://localhost:8080/filter-countries", data)
-            .then(res => props.filterCountries(res.data));
+            population = form.slider.value.split(",");
+        filterCountries(languages, currency, population);
+
     };
 
     return (
@@ -38,9 +31,4 @@ function FilterForm(props) {
     );
 }
 
-
-const mapStateToProps = (state) => {
-    return state;
-};
-
-export default connect(mapStateToProps,{filterCountries})(FilterForm);
+export default FilterForm;
