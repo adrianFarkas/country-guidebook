@@ -16,7 +16,7 @@ function Finance(props) {
                     width="1000px"
                     height="1000px"
                     id="Finance"
-                    className="myClassname"
+                    className="detail-card"
                     display="initial"
                     position="relative"/>
                 {/*<div dangerouslySetInnerHTML={{ __html: description }}></div>*/}
