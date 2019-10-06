@@ -1,4 +1,5 @@
 import React from 'react';
+import Iframe from "react-iframe";
 
 function Health(props) {
     const {description, stateHospital, thermalSpa, hospitalMap} = props.health;
@@ -8,7 +9,7 @@ function Health(props) {
             <h1>Health</h1>
             <hr/>
             <div className="detail-card-left-div">
-                <div dangerouslySetInnerHTML={{ __html: description }}></div>
+                <div dangerouslySetInnerHTML={{__html: description}}></div>
             </div>
             <div className="detail-card-right-div">
                 <h4>State Hospital</h4>
