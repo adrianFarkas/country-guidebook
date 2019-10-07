@@ -4,7 +4,6 @@ import Education from "./Education";
 import Geographic from "./Geographic";
 import Health from "./Health";
 import Sights from "./Sights";
-import Iframe from 'react-iframe';
 
 function Guides(props) {
 

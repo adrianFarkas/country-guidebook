@@ -53,6 +53,9 @@
 }
 
 .detail-card {
+    min-width: 89%;
+    max-width: 90%;
+    align-content: center;
     text-align: justify;
     overflow: hidden;
     background-color: #ffffff;

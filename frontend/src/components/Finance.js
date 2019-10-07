@@ -6,8 +6,8 @@ function Finance() {
         <div align={"center"}>
             <Iframe
                 url="https://en.wikipedia.org/w/index.php?title=Economy_of_Hungary&printable=yes&fbclid=IwAR3sV-WlGUrv9zIz0qYObhIA6aWjlkrAnK86o-YSJBezDIR1-dYjbL_gSCA"
-                width="1000px"
-                height="1000px"
+                width="auto"
+                height="auto"
                 id="Finance"
                 className="detail-card"
                 display="initial"
