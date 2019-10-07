@@ -5,7 +5,7 @@ function Education() {
     return (
         <div align={"center"}>
             <Iframe
-                url="https://en.wikipedia.org/w/index.php?title=Education_in_Hungary&printable=yes&fbclid=IwAR3sV-WlGUrv9zIz0qYObhIA6aWjlkrAnK86o-YSJBezDIR1-dYjbL_gSCA"
+                url="https://en.wikipedia.org/w/index.php?title=Education_in_Hungary&printable=yes"
                 width="auto"
                 height="auto"
                 id="Education"

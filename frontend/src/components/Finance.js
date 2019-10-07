@@ -5,7 +5,7 @@ function Finance() {
     return (
         <div align={"center"}>
             <Iframe
-                url="https://en.wikipedia.org/w/index.php?title=Economy_of_Hungary&printable=yes&fbclid=IwAR3sV-WlGUrv9zIz0qYObhIA6aWjlkrAnK86o-YSJBezDIR1-dYjbL_gSCA"
+                url="https://en.wikipedia.org/w/index.php?title=Economy_of_Hungary&printable=yes"
                 width="auto"
                 height="auto"
                 id="Finance"
