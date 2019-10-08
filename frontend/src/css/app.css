@@ -1,0 +1,132 @@
+.selection, .range-slider {
+    border: 0;
+    padding: 30px;
+}
+
+.selection:focus {
+    outline: none;
+}
+
+.options {
+    border: 0;
+    border-bottom: 1px solid #b5b5b5;
+    width: 400px;
+    padding: 5px;
+    display: block;
+    margin-top: -10px;
+    margin-left: -12px;
+}
+
+.options:focus {
+    outline: none;
+}
+
+.label {
+    color: #737373;
+    font-size: 15px;
+}
+
+.selectors {
+    margin: 10px auto;
+}
+
+.filters {
+    max-width: 500px;
+    min-width: 500px;
+    height: 800px;
+    background-color: #f5f5f5;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 20px auto 0;
+    padding: 20px;
+}
+
+.range-slider {
+    width: 440px;
+}
+
+.submitBtn {
+    margin: 20px auto;
+}
+
+.population-number {
+    width: 150px;
+    font-weight: bold;
+}
+
+.filter-title {
+    margin: 10px 10px;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 3px 2px 3px    #525252;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+@media (max-width: 1500px) {
+    .filters {
+        height: unset;
+    }
+}
+
+@media (max-width: 550px) {
+    .filters {
+        max-height: 500px;
+        max-width: 90%;
+        min-width: 0;
+    }
+    .options {
+        max-width: 90% !important;
+    }
+    .selectors {
+        margin: 0 auto;
+    }
+    .selection, .range-slider {
+        max-width: 90%;
+        padding: 10px;
+        margin: 0 30px;
+    }
+}
+
+
+.wrapper {
+    width: 100%;
+    margin-top: 20px;
+    max-height: 800px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: #e3efff;
+}
+
+.geo {
+    fill: #d5d8da;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+.geo:hover {
+    fill: #a9b1b4;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+.geo:active {
+    fill: #FF5722;
+    stroke: #607D8B;
+    stroke-width: 0.75;
+    outline: none;
+}
+
+@media (max-width: 1500px) {
+    .wrapper {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+}
