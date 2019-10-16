@@ -20,16 +20,16 @@ public class Health {
     @GeneratedValue
     private long id;
 
-    @Enumerated(EnumType.STRING)
-    private Level healthCare;
+    private Integer skill;
+
+    private Integer speed;
+
+    private Integer equipment;
+
+    private Integer satisfaction;
 
     @Column(columnDefinition = "text")
     private String description;
-    private String stateHospital;
-    private String thermalSpa;
-    private String hospitalMap;
-
-
 
 
     @OneToOne

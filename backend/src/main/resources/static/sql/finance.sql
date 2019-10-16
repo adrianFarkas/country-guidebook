@@ -1,0 +1,10 @@
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (8,'455.737',51.445,'336.300',76,NULL,1);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (19,'571.767',46.370,'527.847',75,NULL,12);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (41,'60.806',14.917,'45.359',48,NULL,34);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (107,'2.778.999',41.460,'2.734.367',72,NULL,100);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (118,'4.000.390',48.264,'2.436.606',80,NULL,111);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (140,'155.703',15.932,'109.669',46,NULL,133);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (173,'2.073.902',34.359,'2.742.231',52,NULL,155);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (195,'69.488',113.192,'14.865',81,NULL,188);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (283,'1.425.870',30.380,'1.385.442',58,NULL,276);
+INSERT INTO finance(id,annual_gdp,gdp_capita,debt,corruption_index,description,country_id) VALUES (305,'2.828.640',42.442,'2.425.992',80,NULL,298);
