@@ -4,9 +4,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignInAlt, faUser} from "@fortawesome/free-solid-svg-icons";
 import LoginForm from "./Authentication/LoginForm";
 import RegisterForm from "./Authentication/RegistrationForm";
-import  { Redirect } from 'react-router-dom';
-
 import Modal from "@material-ui/core/Modal";
+
 
 
 function NavigationBar() {
@@ -63,7 +62,9 @@ function NavigationBar() {
                 open={openRegister}
                 onClose={handleCloseRegister}
             >
+
                 <RegisterForm/>
+
             </Modal>
             <Navbar.Brand href="/">Home</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>

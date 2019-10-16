@@ -3,6 +3,7 @@ package com.codecool.countryguidebook.controller;
 import com.codecool.countryguidebook.dao.CountryGuideUserDao;
 import com.codecool.countryguidebook.model.CountryGuideUser;
 import com.codecool.countryguidebook.security.JwtTokenServices;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +14,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -36,21 +39,24 @@ public class AuthController {
     }
 
     @PostMapping("/auth/signup")
-    public ResponseEntity signup(@RequestBody CountryGuideUser countryGuideUser) {
+    public ResponseEntity signup(@RequestBody CountryGuideUser countryGuideUser, HttpServletResponse response) {
         countryGuideUser.setRoles(Collections.singletonList("ROLE_USER"));
         countryGuideUserDao.saveUserToRepository(countryGuideUser);
 
         String token = jwtTokenServices.createToken(countryGuideUser.getUserName(), Collections.singletonList("ROLE_USER"));
 
-        Map<Object, Object> model = new HashMap<>();
-        model.put("token", token);
+     //   Map<Object, Object> model = new HashMap<>();
+       // model.put("token", token);
+        Cookie cookie = new Cookie("token", token);
 
-        return ResponseEntity.ok(model);
+        response.addCookie(cookie);
+
+        return ResponseEntity.ok("");
 
     }
 
     @PostMapping("/auth/login")
-    public ResponseEntity signin(@RequestBody CountryGuideUser userData) {
+    public ResponseEntity signin(@RequestBody CountryGuideUser userData, HttpServletResponse response) {
         try {
             String username = userData.getUserName();
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, userData.getPassword()));
@@ -60,12 +66,15 @@ public class AuthController {
                     .collect(Collectors.toList());
 
             String token = jwtTokenServices.createToken(username, roles);
-            Map<Object, Object> model = new HashMap<>();
+//            Map<Object, Object> model = new HashMap<>();
        //     model.put("username", username);
          //   model.put("roles", roles);
-            model.put("token", token);
+   //         model.put("token", token);
+            Cookie cookie = new Cookie("token", token);
 
-            return ResponseEntity.ok(model);
+            response.addCookie(cookie);
+
+            return ResponseEntity.ok("");
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
         }

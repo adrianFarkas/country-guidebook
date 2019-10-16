@@ -1,12 +1,13 @@
 import React from 'react';
 import './style.css';
 import axios from "axios";
-import  { Redirect } from 'react-router-dom';
+import Cookie from 'js-cookie';
+
 
 
 class LoginForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             fields: {},
             errors: {}
@@ -47,9 +48,9 @@ class LoginForm extends React.Component {
             axios.post("http://127.0.0.1:8080/auth/login", send)
                 .then(res => {
                     let data = res.data;
-                    console.log(data);
-                    localStorage.setItem("token", data.token);
-                    console.log("Bearer " + localStorage.getItem("token"));
+
+                    let token = Cookie.get("token");
+                    localStorage.setItem("token", token);
                     window.location.pathname="/";
 
 

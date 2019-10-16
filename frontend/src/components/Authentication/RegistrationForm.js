@@ -1,15 +1,15 @@
 import React from 'react';
 import './style.css';
 import axios from "axios";
-
+import Cookie from 'js-cookie';
 
 class RegisterForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             fields: {},
             errors: {}
-        }
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
@@ -45,11 +45,9 @@ class RegisterForm extends React.Component {
 
             axios.post("http://127.0.0.1:8080/auth/signup", send)
                 .then(res => {
-                    let data = res.data;
-                    console.log(data);
-                    localStorage.setItem("token", data.token);
-                    console.log("Bearer " + localStorage.getItem("token"));
-                    window.location.pathname="/";
+                     let token = Cookie.get("token");
+                     localStorage.setItem("token", token);
+                     window.location.pathname="/";
                 })
                 .catch(error => {
                     console.log(error)
