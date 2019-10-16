@@ -88,7 +88,7 @@ h4 {
     transform: scale(2);
 }
 .guide {
-    padding-bottom: 550px;
+    padding-bottom: 100px;
 }
 
 .guide {
@@ -106,5 +106,14 @@ h4 {
     width: 100px;
     height: 3px;
     background-color: black;
-    margin: 10px auto;
+    margin: 10px auto 60px;
+}
+
+.statistic-card:nth-child(odd) {
+    margin: 0 220px -10px;
+}
+
+.statistic-card:nth-child(even) {
+    margin: 0 600px -10px;
+
 }
