@@ -1,7 +1,6 @@
 import React from 'react';
 import LinkCard from "./LinkCard";
 import {
-    faAtlas,
     faBinoculars,
     faGlobe,
     faHandHoldingUsd,
