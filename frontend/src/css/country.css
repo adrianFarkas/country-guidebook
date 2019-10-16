@@ -1,28 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
-
-.header {
-    width: 100%;
-    height: 400px;
-    box-shadow: -2px 10px 17px -5px rgba(0,0,0,0.75);
-}
-
-.header * {
-    position: absolute;
-}
-
-.header img {
-    width: 100%;
-    height: 400px;
-    filter: brightness(40%)
-}
-
-.header h1 {
-    font-size: 80px;
-    font-family: 'Kaushan Script', cursive;
-    margin: 130px 42%;
-    color: #e8e8e8;
-}
-
 .info-links {
     width: 80%;
     margin: auto;
