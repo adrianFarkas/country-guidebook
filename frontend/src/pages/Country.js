@@ -26,7 +26,7 @@ function Country(props) {
             <div>
             <Header
                 title={country.name}
-                img="austria.jpg"
+                img={country.logo}
                 brightness={0.4}
             />
             <InfoLinks />
