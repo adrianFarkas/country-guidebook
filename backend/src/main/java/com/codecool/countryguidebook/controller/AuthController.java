@@ -11,10 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,6 +20,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 public class AuthController {
 
     @Autowired
@@ -38,10 +36,17 @@ public class AuthController {
     }
 
     @PostMapping("/auth/signup")
-    public CountryGuideUser filteredCountries(@RequestBody CountryGuideUser countryGuideUser) {
+    public ResponseEntity signup(@RequestBody CountryGuideUser countryGuideUser) {
         countryGuideUser.setRoles(Collections.singletonList("ROLE_USER"));
         countryGuideUserDao.saveUserToRepository(countryGuideUser);
-        return countryGuideUser;
+
+        String token = jwtTokenServices.createToken(countryGuideUser.getUserName(), Collections.singletonList("ROLE_USER"));
+
+        Map<Object, Object> model = new HashMap<>();
+        model.put("token", token);
+
+        return ResponseEntity.ok(model);
+
     }
 
     @PostMapping("/auth/login")
@@ -56,8 +61,8 @@ public class AuthController {
 
             String token = jwtTokenServices.createToken(username, roles);
             Map<Object, Object> model = new HashMap<>();
-            model.put("username", username);
-            model.put("roles", roles);
+       //     model.put("username", username);
+         //   model.put("roles", roles);
             model.put("token", token);
 
             return ResponseEntity.ok(model);
@@ -72,4 +77,5 @@ public class AuthController {
         model.put("logout", "logout");
         return ResponseEntity.ok(model);
     }
+
 }
