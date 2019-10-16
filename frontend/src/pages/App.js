@@ -4,12 +4,19 @@ import EuMap from "../components/EuMap";
 import MainContent from "../components/MainContent";
 import FilterForm from "../components/filter/FilterForm";
 import "../css/app.css"
+import "../css/main.css"
+import Header from "../components/Header";
 
 function App() {
 
     return (
             <div className="App">
-                <NavigationBar text="Country Guide"/>
+                <Header
+                    title="Country Guide"
+                    text="The place where your journey begins!"
+                    img="header.jpg"
+                    brightness={0.4}
+                />
                 <MainContent>
                     <FilterForm />
                     <EuMap />

@@ -24,9 +24,13 @@ function Country(props) {
     return (
         !isLoading ?
             <div>
-            <NavigationBar/>
-            <Header country={country.name} />
+            <Header
+                title={country.name}
+                img="austria.jpg"
+                brightness={0.4}
+            />
             <InfoLinks />
+                {console.log(country)}
             <Guides country={country} />
         </div>
             :
