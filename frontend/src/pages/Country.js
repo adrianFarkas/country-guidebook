@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import '../css/main.css'
 import '../css/country.css'
-import NavigationBar from "../components/NavigationBar";
 import Header from "../components/Header";
 import InfoLinks from "../components/InfoLinks";
 import Guides from "../components/Guides";
 import axios from "axios";
+import {CircularProgress} from "@material-ui/core";
 
 function Country(props) {
     const countryCode = props.match.params.countryCode;
@@ -13,7 +13,7 @@ function Country(props) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/country/"+countryCode)
+        axios.get("http://localhost:8080/country/" + countryCode)
             .then(res => {
                 const country = res.data;
                 setCountry(country);
@@ -24,17 +24,18 @@ function Country(props) {
     return (
         !isLoading ?
             <div>
-            <Header
-                title={country.name}
-                img={country.logo}
-                brightness={0.4}
-            />
-            <InfoLinks />
-                {console.log(country)}
-            <Guides country={country} />
-        </div>
+                <Header
+                    title={country.name}
+                    img={country.logo}
+                    brightness={0.4}
+                />
+                <InfoLinks/>
+                <Guides country={country}/>
+            </div>
             :
-            <div>Loading...</div>
+            <div style={{width: "0", margin: "25% auto"}}>
+                <CircularProgress style={{margin: "0 auto"}}/>
+            </div>
     );
 }
 
