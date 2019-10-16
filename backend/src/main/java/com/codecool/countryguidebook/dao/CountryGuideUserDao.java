@@ -1,8 +1,7 @@
 package com.codecool.countryguidebook.dao;
 
-import com.codecool.countryguidebook.model.CountryGuideUsers;
+import com.codecool.countryguidebook.model.CountryGuideUser;
 import com.codecool.countryguidebook.repository.CountryGuideUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -10,16 +9,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class CountryGuideUserDao {
 
-    @Autowired
-    private CountryGuideUserRepository countryGuideUserRepository;
+    private final CountryGuideUserRepository countryGuideUserRepository;
 
-    public void saveUserToRepository(CountryGuideUsers countryGuideUsers){
-        countryGuideUsers.setPassword(encodePassword(countryGuideUsers.getPassword()));
-        countryGuideUserRepository.save(countryGuideUsers);
-
+    public CountryGuideUserDao(CountryGuideUserRepository countryGuideUserRepository) {
+        this.countryGuideUserRepository = countryGuideUserRepository;
     }
 
-    private String encodePassword(String password){
+    public void saveUserToRepository(CountryGuideUser countryGuideUser) {
+        String password = countryGuideUser.getPassword();
+        String encodedPassword = encodePassword(password);
+        countryGuideUser.setPassword(encodedPassword);
+        countryGuideUserRepository.save(countryGuideUser);
+    }
+
+    private String encodePassword(String password) {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
         return passwordEncoder.encode(password);

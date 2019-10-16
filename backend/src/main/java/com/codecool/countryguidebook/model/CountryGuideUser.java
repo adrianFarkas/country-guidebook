@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class CountryGuideUsers {
+public class CountryGuideUser {
 
     @Id
     @GeneratedValue
