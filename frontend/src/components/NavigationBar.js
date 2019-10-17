@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSignInAlt, faUser} from "@fortawesome/free-solid-svg-icons";
-import LoginForm from "./Authentication/LoginForm";
-import RegisterForm from "./Authentication/RegistrationForm";
+import {faSignInAlt, faSignOutAlt, faUser} from "@fortawesome/free-solid-svg-icons";
+//import LoginForm from "./Authentication/torolheto/Login/LoginForm";
+//import RegisterForm from "./Authentication/torolheto/Login/RegistrationForm";
+import AuthFrom from "./Authentication/AuthForm"
 import Modal from "@material-ui/core/Modal";
 
 
@@ -54,7 +55,7 @@ function NavigationBar() {
                 open={openLogin}
                 onClose={handleCloseLogin}
             >
-            <LoginForm/>
+            <AuthFrom login={true}/>
             </Modal>
             <Modal
                 aria-labelledby="simple-modal-title"
@@ -63,7 +64,7 @@ function NavigationBar() {
                 onClose={handleCloseRegister}
             >
 
-                <RegisterForm/>
+                <AuthFrom login={false}/>
 
             </Modal>
             <Navbar.Brand href="/">Home</Navbar.Brand>
@@ -84,7 +85,7 @@ function NavigationBar() {
                         :
                         <div style={styles}>
                             <Nav.Link onClick={handleLogout} style={{color: "#ffffff"}}><FontAwesomeIcon
-                                icon={faUser}/> Logout</Nav.Link>
+                                icon={faSignOutAlt}/> Logout</Nav.Link>
                         </div>
                     }
                 </Nav>

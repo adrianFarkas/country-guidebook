@@ -27,4 +27,30 @@ public class CountryGuideUserDao {
 
         return passwordEncoder.encode(password);
     }
+
+    public boolean checkUsernameExists(String username){
+        return countryGuideUserRepository.findByUserName(username).isPresent();
+    }
+
+    public boolean checkEmailExists(String email){
+        return countryGuideUserRepository.findByEmail(email).isPresent();
+    }
+
+    public String checkUsernameAndPasswordPersent(String username, String email){
+        boolean userNameExists = countryGuideUserRepository.findByUserName(username).isPresent();
+        boolean emailExists = countryGuideUserRepository.findByEmail(email).isPresent();
+
+        if (userNameExists && emailExists)
+            return "Username and email address already taken";
+
+        if (userNameExists)
+            return "Username already taken";
+
+        if (emailExists)
+            return "Email address already taken";
+
+        return "";
+
+
+    }
 }

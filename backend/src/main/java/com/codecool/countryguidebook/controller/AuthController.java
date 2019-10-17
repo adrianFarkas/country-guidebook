@@ -5,6 +5,7 @@ import com.codecool.countryguidebook.model.CountryGuideUser;
 import com.codecool.countryguidebook.security.JwtTokenServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,7 +24,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin
+@RequestMapping("/auth")
+@CrossOrigin(origins = "http://127.0.0.1:3000")
 public class AuthController {
 
     @Autowired
@@ -38,15 +40,18 @@ public class AuthController {
         this.jwtTokenServices = jwtTokenServices;
     }
 
-    @PostMapping("/auth/signup")
+    @PostMapping("/register")
     public ResponseEntity signup(@RequestBody CountryGuideUser countryGuideUser, HttpServletResponse response) {
         countryGuideUser.setRoles(Collections.singletonList("ROLE_USER"));
+
+        String errorMessage = countryGuideUserDao.checkUsernameAndPasswordPersent(countryGuideUser.getUserName(), countryGuideUser.getEmail());
+        if (errorMessage.length()>0) {
+            return new ResponseEntity<>(errorMessage, HttpStatus.CREATED);
+        }
+
+
         countryGuideUserDao.saveUserToRepository(countryGuideUser);
-
-        String token = jwtTokenServices.createToken(countryGuideUser.getUserName(), Collections.singletonList("ROLE_USER"));
-
-     //   Map<Object, Object> model = new HashMap<>();
-       // model.put("token", token);
+        String token = createToken(countryGuideUser, Collections.singletonList("ROLE_USER"));
         Cookie cookie = new Cookie("token", token);
 
         response.addCookie(cookie);
@@ -55,36 +60,29 @@ public class AuthController {
 
     }
 
-    @PostMapping("/auth/login")
+    @PostMapping("/login")
     public ResponseEntity signin(@RequestBody CountryGuideUser userData, HttpServletResponse response) {
         try {
-            String username = userData.getUserName();
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, userData.getPassword()));
-            List<String> roles = authentication.getAuthorities()
-                    .stream()
-                    .map(GrantedAuthority::getAuthority)
-                    .collect(Collectors.toList());
-
-            String token = jwtTokenServices.createToken(username, roles);
-//            Map<Object, Object> model = new HashMap<>();
-       //     model.put("username", username);
-         //   model.put("roles", roles);
-   //         model.put("token", token);
-            Cookie cookie = new Cookie("token", token);
-
+            Cookie cookie = new Cookie("token", createToken(userData,null));
+            cookie.setHttpOnly(true);
             response.addCookie(cookie);
-
             return ResponseEntity.ok("");
+
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username or password");
         }
     }
 
-    @GetMapping("/auth/logout")
-    public ResponseEntity logout(){
-        Map<Object, Object> model = new HashMap<>();
-        model.put("logout", "logout");
-        return ResponseEntity.ok(model);
-    }
+    private String createToken(CountryGuideUser userData, List<String> roles){
+        String username = userData.getUserName();
+        if (roles==null) {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, userData.getPassword()));
+            roles = authentication.getAuthorities()
+                    .stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .collect(Collectors.toList());
+        }
 
+        return jwtTokenServices.createToken(username, roles);
+    }
 }

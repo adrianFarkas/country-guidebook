@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface CountryGuideUserRepository extends JpaRepository<CountryGuideUser, Long> {
 
     Optional<CountryGuideUser> findByUserName(String username);
+    Optional<CountryGuideUser> findByEmail(String email);
 }
