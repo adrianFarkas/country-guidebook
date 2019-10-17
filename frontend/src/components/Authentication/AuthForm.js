@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/auth.css';
 import axios from "axios";
-import {faUser, faEnvelope, faUserSecret, faKey} from "@fortawesome/free-solid-svg-icons";
+import {faUser, faEnvelope, faKey} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Typography} from "@material-ui/core";
 
@@ -16,7 +16,7 @@ class AuthForm extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
+        this.submitForm = this.submitForm.bind(this);
 
     };
 
@@ -29,7 +29,7 @@ class AuthForm extends React.Component {
 
     }
 
-    submituserRegistrationForm(e) {
+    submitForm(e) {
         e.preventDefault();
         const {login} = this.props;
         if (this.validateForm()) {
@@ -51,14 +51,12 @@ class AuthForm extends React.Component {
                 "Content-Type": "application/json"
             };
 
-
-
             axios.post("http://127.0.0.1:8080/auth/" + url, send)
                 .then(res => {
 
                     let HttpStatus = res.status;
                     if (HttpStatus === 201) {
-                            this.showError(res.data);
+                        this.showError(res.data);
                     } else {
 
                         let token = res.data.token;// Cookie.get("token");
@@ -72,14 +70,11 @@ class AuthForm extends React.Component {
                         this.showError("Wrong username or password!");
                     }
                     console.log(error)
-
                 });
-
-
         }
     }
 
-    showError(errorMessage){
+    showError(errorMessage) {
         let errors = {};
         errors["wrongCreditentials"] = errorMessage;
         this.setState({
@@ -98,29 +93,28 @@ class AuthForm extends React.Component {
             errors["userName"] = "*Please enter your username.";
         }
 
-        if (typeof fields["userName"] !== "undefined") {
-            if (!fields["userName"].match(/^[a-zA-Z ]*$/)) {
-                formIsValid = false;
-                errors["userName"] = "*Please enter alphabet characters only.";
-            }
-        }
+        /*     if (typeof fields["userName"] !== "undefined") {
+                 if (!fields["userName"].match(/^[a-zA-Z ]*$/)) {
+                     formIsValid = false;
+                     errors["userName"] = "*Please enter alphabet characters only.";
+                 }
+             }*/
+
         if (!this.props.login) {
             if (!fields["email"]) {
                 formIsValid = false;
-                errors["email"] = "*Please enter your email-ID.";
+                errors["email"] = "*Please enter your email.";
             }
 
-                  if (typeof fields["email"] !== "undefined") {
-                      //regular expression for email validation
-                      let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-                      if (!pattern.test(fields["email"])) {
-                          formIsValid = false;
-                          errors["email"] = "*Please enter valid email-ID.";
-                      }
-                  }
-
+            if (typeof fields["email"] !== "undefined") {
+                //regular expression for email validation
+                let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+                if (!pattern.test(fields["email"])) {
+                    formIsValid = false;
+                    errors["email"] = "*Please enter valid email.";
+                }
+            }
         }
-
 
         if (!fields["password"]) {
             formIsValid = false;
@@ -138,42 +132,47 @@ class AuthForm extends React.Component {
             errors: errors
         });
         return formIsValid;
-
-
     }
-
 
     render() {
 
         return (
 
             <div id="container">
+                <img className="top-icon" src="/static/img/world_in_circle.png" alt="from.icon"/>
                 <div id="content-auth">
                     <div className="form-header">
-                    <Typography variant="h3" align="Center">{this.props.login ? "Login" : "Registration"}</Typography>
+                        <Typography variant="h3"
+                                    align="center">{this.props.login ? "Login" : "Registration"}</Typography>
                     </div>
                     <hr/>
                     <div className="form-container">
-                        <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm}>
-                            <label className="form_label"><FontAwesomeIcon icon={faUser}/>    Name</label>
+                        <form method="post" name="authForm" onSubmit={this.submitForm}>
+                            <label className="form_label"><FontAwesomeIcon icon={faUser}/> Username:</label>
                             <input className="form_input" type="text" name="userName" value={this.state.fields.userName}
                                    onChange={this.handleChange}/>
-                            <div className="errorMsg">{this.state.errors.username}</div>
+                            <div className="errorMsg">{this.state.errors.userName}</div>
                             {!this.props.login ?
                                 <React.Fragment>
-                                    <label className="form_label"><FontAwesomeIcon icon={faEnvelope}/>    Email:</label>
-                                    <input className="form_input" type="text" name="email" value={this.state.fields.email}
+
+
+                                    <label className="form_label"><FontAwesomeIcon icon={faEnvelope}/> Email
+                                        address:</label>
+                                    <input className="form_input" type="text" name="email"
+                                           value={this.state.fields.email}
                                            onChange={this.handleChange}/>
                                     <div className="errorMsg">{this.state.errors.email}</div>
                                 </React.Fragment>
                                 : ""}
-                            <label className="form_label"><FontAwesomeIcon icon={faKey}/>   Password</label>
-                            <input  className="form_input" type="password" name="password" value={this.state.fields.password}
-                                    onChange={this.handleChange}/>
+                            <label className="form_label"><FontAwesomeIcon icon={faKey}/> Password:</label>
+                            <input className="form_input" type="password" name="password"
+                                   value={this.state.fields.password}
+                                   onChange={this.handleChange}/>
                             <div className="errorMsg">{this.state.errors.password}</div>
                             <div className="errorMsg">{this.state.errors.wrongCreditentials}</div>
                             <div className="form-footer">
-                                <input type="submit" className="form_button" value={this.props.login ? "Login" : "Register"}/>
+                                <input type="submit" className="form_button"
+                                       value={this.props.login ? "Login" : "Register"}/>
                             </div>
                         </form>
                     </div>
