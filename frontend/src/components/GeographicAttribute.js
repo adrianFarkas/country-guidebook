@@ -29,7 +29,7 @@ function GeographicAttribute(props) {
     return (
         <div style={cardStyle}>
             <div style={iconStyle}>
-                <FontAwesomeIcon icon={icon} size={"3x"}/><br/>
+                <FontAwesomeIcon icon={icon} size={"4x"}/><br/>
             </div>
             <Typography variant="h6">{text}</Typography>
         </div>
