@@ -54,18 +54,14 @@ class AuthForm extends React.Component {
             axios.post("http://127.0.0.1:8080/auth/" + url, send)
                 .then(res => {
                     console.log(res.status);
-                    if (!login) {
-                        let status = res.status;
-
-                        if (status === 201) {
+                    let HttpStatus = res.status;
+                    if (HttpStatus === 201) {
                             this.showError(res.data);
-                        }
-
+                    } else {
+                      let token = Cookie.get("token");
+                        localStorage.setItem("token", token);
+                        window.location.reload();
                     }
-                    let token = Cookie.get("token");
-                    localStorage.setItem("token", token);
-                    //window.location.pathname = "/";
-                    window.location.reload();
                 })
                 .catch(error => {
                     if (login) {
