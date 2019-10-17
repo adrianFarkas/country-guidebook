@@ -2,18 +2,18 @@ import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Typography} from "@material-ui/core";
 
-function GeographicAttribute(props) {
+function EducationAttribute(props) {
     const {text, icon} = props;
 
     const cardStyle = {
         width: "230px",
         height: "230px",
         display: "inline-grid",
-        border: "1px #f3f3f3 solid",
+        border: "2% #f3f3f3 solid",
         boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.3)",
         transition: "all 0.3s linear",
         cursor: "pointer",
-        backgroundColor: "#45a2b4",
+        backgroundColor: "#1db420",
         padding: "2px",
         align: "center",
         margin: "2%",
@@ -28,7 +28,8 @@ function GeographicAttribute(props) {
 
     const textStyle = {
         fontFamily: "Verdana",
-        fontSize: "1.15rem"
+        fontWeight: "bold",
+        fontSize: "1.5rem"
     };
 
     return (
@@ -41,4 +42,4 @@ function GeographicAttribute(props) {
     );
 }
 
-export default GeographicAttribute;
+export default EducationAttribute;
