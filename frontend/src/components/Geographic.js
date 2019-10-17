@@ -37,7 +37,7 @@ function Geographic(props) {
             </div>
             <div className={"card"} align={"center"} style={{width: "20%", display: "inline-grid"}}>
                 <FontAwesomeIcon icon={faPhone} size={"3x"}/><br/>
-                <Typography variant="body1">+{callingCodes}</Typography>
+                <Typography variant="body1">(+{callingCodes})</Typography>
             </div>
         </Guide>
     );
