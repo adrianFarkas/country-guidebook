@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://127.0.0.1:3000")
+@CrossOrigin(origins = {"http://127.0.0.1:3000","http://localhost:3000"} )
 public class AuthController {
 
     @Autowired
@@ -48,8 +46,6 @@ public class AuthController {
         if (errorMessage.length()>0) {
             return new ResponseEntity<>(errorMessage, HttpStatus.CREATED);
         }
-
-
         countryGuideUserDao.saveUserToRepository(countryGuideUser);
         String token = createToken(countryGuideUser, Collections.singletonList("ROLE_USER"));
         Cookie cookie = new Cookie("token", token);
@@ -82,7 +78,6 @@ public class AuthController {
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
         }
-
         return jwtTokenServices.createToken(username, roles);
     }
 }
