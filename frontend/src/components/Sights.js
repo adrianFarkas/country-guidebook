@@ -7,7 +7,7 @@ import Guide from "./Guide";
 
 function Sights(props) {
     const properties = props.sights;
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(2);
 
     const nextProperty = () => {
         const newIndex = index + 1;
