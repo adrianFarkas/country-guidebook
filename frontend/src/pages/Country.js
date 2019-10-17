@@ -6,10 +6,11 @@ import InfoLinks from "../components/InfoLinks";
 import Guides from "../components/Guides";
 import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
+import ComingSoon from "../components/ComingSoon";
 
 function Country(props) {
     const countryCode = props.match.params.countryCode;
-    const [country, setCountry] = useState(null);
+    const [country, setCountry] = useState({health: null});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -21,6 +22,14 @@ function Country(props) {
             })
     }, []);
 
+    const mainContent = country.health == null ?
+        <ComingSoon />
+        :
+        <div>
+            <InfoLinks/>
+            <Guides country={country}/>
+        </div>;
+
     return (
         !isLoading ?
             <div>
@@ -29,8 +38,7 @@ function Country(props) {
                     img={country.logo}
                     brightness={0.4}
                 />
-                <InfoLinks/>
-                <Guides country={country}/>
+                {mainContent}
             </div>
             :
             <div style={{width: "0", margin: "25% auto"}}>
