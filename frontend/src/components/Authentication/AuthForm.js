@@ -149,21 +149,21 @@ class AuthForm extends React.Component {
                     <div className="header_auth">{this.props.login ? "Login" : "Registration"}</div>
                     <div className="form-container">
                         <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm}>
-                            <label>Name</label>
-                            <input type="text" name="userName" value={this.state.fields.userName}
+                            <label className="form_label">Name</label>
+                            <input className="form_input" type="text" name="userName" value={this.state.fields.userName}
                                    onChange={this.handleChange}/>
                             <div className="errorMsg">{this.state.errors.username}</div>
                             {!this.props.login ?
                                 <React.Fragment>
-                                    <label>Email ID:</label>
-                                    <input type="text" name="email" value={this.state.fields.email}
+                                    <label className="form_label">Email ID:</label>
+                                    <input className="form_input" type="text" name="email" value={this.state.fields.email}
                                            onChange={this.handleChange}/>
                                     <div className="errorMsg">{this.state.errors.email}</div>
                                 </React.Fragment>
                                 : ""}
-                            <label>Password</label>
-                            <input type="password" name="password" value={this.state.fields.password}
-                                   onChange={this.handleChange}/>
+                            <label className="form_label">Password</label>
+                            <input  className="form_input" type="password" name="password" value={this.state.fields.password}
+                                    onChange={this.handleChange}/>
                             <div className="errorMsg">{this.state.errors.password}</div>
                             <div className="errorMsg">{this.state.errors.wrongCreditentials}</div>
                             <input type="submit" className="button" value={this.props.login ? "Login" : "Register"}/>

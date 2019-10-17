@@ -11,13 +11,13 @@
     margin: 100px auto;
 }
 
-form label, form input {
+.form_label, .form_input {
     display: block;
 //margin-bottom: 10px;
     width: 90%
 }
 
-form input {
+.form_input {
     padding: 10px;
     border: solid 1px #BDC7D8;
 
