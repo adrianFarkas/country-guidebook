@@ -1,14 +1,10 @@
 package com.codecool.countryguidebook;
 
-import com.codecool.countryguidebook.model.Country;
-import com.codecool.countryguidebook.model.CountryCode;
-import com.codecool.countryguidebook.model.Currency;
-import com.codecool.countryguidebook.model.Language;
+import com.codecool.countryguidebook.dao.CountryGuideUserDao;
+import com.codecool.countryguidebook.model.*;
 import com.codecool.countryguidebook.model.countrybuilder.*;
-import com.codecool.countryguidebook.repository.CountryRepository;
-import com.codecool.countryguidebook.repository.FinanceRepository;
-import com.codecool.countryguidebook.repository.GeographicRepository;
-import com.codecool.countryguidebook.repository.UnitsRepository;
+import com.codecool.countryguidebook.repository.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,10 +17,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 import java.util.Arrays;
 import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 
 
 @DataJpaTest
@@ -37,16 +34,18 @@ public class AllRepositoryTest {
     private CountryRepository countryRepository;
 
     @Autowired
-    private UnitsRepository unitsRepository;
-
-    @Autowired
-    private GeographicRepository geographicRepository;
-
-    @Autowired
-    private FinanceRepository financeRepository;
-
-    @Autowired
     private TestEntityManager entityManager;
+
+    @Autowired
+    private CountryGuideUserRepository countryGuideUserRepository;
+
+
+    private CountryGuideUserDao dao;
+
+    @Before
+    public void init() {
+        dao = new CountryGuideUserDao(countryGuideUserRepository);
+    }
 
     @Test
     public void addCountryToRepository() {
@@ -134,7 +133,6 @@ public class AllRepositoryTest {
 //    }
 
 
-
     @Test
     public void findAllCountry() {
 
@@ -157,7 +155,6 @@ public class AllRepositoryTest {
 
     @Test
     public void findAllCountryByGeographicPopulationBetween() {
-
 
 
         Country country1 = Country.builder()
@@ -191,8 +188,7 @@ public class AllRepositoryTest {
     }
 
     @Test
-    public void getCountriesByLanguage()
-    {
+    public void getCountriesByLanguage() {
 
 
         Country country1 = Country.builder()
@@ -214,8 +210,8 @@ public class AllRepositoryTest {
                 .build();
 
 
-            country1.setUnits(units);
-            country2.setUnits(units2);
+        country1.setUnits(units);
+        country2.setUnits(units2);
 
         countryRepository.save(country1);
         countryRepository.save(country2);
@@ -248,4 +244,67 @@ public class AllRepositoryTest {
         List<Country> countries = countryRepository.countries(currencies);
         assertThat(countries).hasSize(1);
     }
+
+
+    @Test
+    public void daoAddUserToDatabase() {
+        CountryGuideUser countryGuideUser = CountryGuideUser.builder()
+                .userName("user")
+                .email("user@hu.hu")
+                .password("password")
+                .build();
+
+        CountryGuideUserDao dao = new CountryGuideUserDao(countryGuideUserRepository);
+        dao.saveUserToRepository(countryGuideUser);
+
+    }
+
+    @Test
+    public void daoAddUserToDb() {
+        CountryGuideUser countryGuideUser = CountryGuideUser.builder()
+                .userName("user")
+                .email("user@hu.hu")
+                .password("password")
+                .build();
+
+        dao.saveUserToRepository(countryGuideUser);
+
+        assertTrue(dao.checkUsernameExists(countryGuideUser.getUserName()));
+    }
+
+    @Test
+    public void daoDeleteUserFromDatabase() {
+        CountryGuideUser countryGuideUser = CountryGuideUser.builder()
+                .userName("user")
+                .email("user@hu.hu")
+                .password("password")
+                .build();
+
+        dao.saveUserToRepository(countryGuideUser);
+
+        assertTrue(dao.checkUsernameExists("user"));
+
+        dao.deleteUserFromDb("user");
+        assertFalse(dao.checkUsernameExists("user"));
+    }
+
+    @Test
+    public void checkPasswordIsEncodedInDatabase() {
+        String password = "password";
+        CountryGuideUser countryGuideUser = CountryGuideUser.builder()
+                .userName("user")
+                .email("user@hu.hu")
+                .password("password")
+                .build();
+
+        dao.saveUserToRepository(countryGuideUser);
+
+        CountryGuideUser userFromDb = dao.getUserFromDbByName("user");
+
+        assertNotEquals(userFromDb.getPassword(), password);
+        assertTrue(userFromDb.getPassword().startsWith("{bcrypt"));
+
+    }
+
+
 }
