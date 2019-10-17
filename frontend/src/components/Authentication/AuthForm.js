@@ -1,6 +1,9 @@
 import React from 'react';
 import '../../css/auth.css';
 import axios from "axios";
+import {faUser, faEnvelope, faUserSecret, faKey} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Typography} from "@material-ui/core";
 
 
 class AuthForm extends React.Component {
@@ -146,27 +149,32 @@ class AuthForm extends React.Component {
 
             <div id="container">
                 <div id="content-auth">
-                    <div className="header_auth">{this.props.login ? "Login" : "Registration"}</div>
+                    <div className="form-header">
+                    <Typography variant="h3" align="Center">{this.props.login ? "Login" : "Registration"}</Typography>
+                    </div>
+                    <hr/>
                     <div className="form-container">
                         <form method="post" name="userRegistrationForm" onSubmit={this.submituserRegistrationForm}>
-                            <label className="form_label">Name</label>
+                            <label className="form_label"><FontAwesomeIcon icon={faUser}/>    Name</label>
                             <input className="form_input" type="text" name="userName" value={this.state.fields.userName}
                                    onChange={this.handleChange}/>
                             <div className="errorMsg">{this.state.errors.username}</div>
                             {!this.props.login ?
                                 <React.Fragment>
-                                    <label className="form_label">Email ID:</label>
+                                    <label className="form_label"><FontAwesomeIcon icon={faEnvelope}/>    Email:</label>
                                     <input className="form_input" type="text" name="email" value={this.state.fields.email}
                                            onChange={this.handleChange}/>
                                     <div className="errorMsg">{this.state.errors.email}</div>
                                 </React.Fragment>
                                 : ""}
-                            <label className="form_label">Password</label>
+                            <label className="form_label"><FontAwesomeIcon icon={faKey}/>   Password</label>
                             <input  className="form_input" type="password" name="password" value={this.state.fields.password}
                                     onChange={this.handleChange}/>
                             <div className="errorMsg">{this.state.errors.password}</div>
                             <div className="errorMsg">{this.state.errors.wrongCreditentials}</div>
-                            <input type="submit" className="button" value={this.props.login ? "Login" : "Register"}/>
+                            <div className="form-footer">
+                                <input type="submit" className="form_button" value={this.props.login ? "Login" : "Register"}/>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -7,25 +7,26 @@
     line-height: 16px;
     color: #333333;
     font-size: 14px;
-    background: #ffffff;
+    background: #eeeeee;
     margin: 100px auto;
 }
 
 .form_label, .form_input {
     display: block;
-//margin-bottom: 10px;
-    width: 90%
+
 }
 
 .form_input {
     padding: 10px;
     border: solid 1px #BDC7D8;
+    width:100%;
+    margin-bottom: 20px;
 
 }
 
-.button {
+.form_button {
+    margin: 0 auto;
     background-color: #00BFFF;
-    border-color: #3ac162;
     font-weight: bold;
     padding: 12px 15px;
     color: #ffffff;
@@ -37,15 +38,14 @@
 }
 
 .sucessMsg {
+    font-weight: bold;
     color: #6B8E23;
     margin-bottom: 10px;
 }
 
-.header_auth {
-    text-align: center;
-    height: 30px;
-    padding: 0;
-    margin: 0;
+.form-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .content-auth{
     margin: 0 auto;
@@ -53,4 +53,8 @@
 
 .form-container{
     margin : auto;
+}
+
+.form-footer{
+text-align: center;
 }
