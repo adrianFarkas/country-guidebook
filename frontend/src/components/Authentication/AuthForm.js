@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../css/auth.css';
 import axios from "axios";
-import Cookie from 'js-cookie';
 
 
 class AuthForm extends React.Component {
