@@ -4,6 +4,7 @@ import com.codecool.countryguidebook.dao.CountryGuideUserDao;
 import com.codecool.countryguidebook.model.CountryGuideUser;
 import com.codecool.countryguidebook.security.JwtTokenServices;
 
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -48,25 +51,24 @@ public class AuthController {
         }
         countryGuideUserDao.saveUserToRepository(countryGuideUser);
         String token = createToken(countryGuideUser, Collections.singletonList("ROLE_USER"));
-        Cookie cookie = new Cookie("token", token);
+        Map<Object, Object> model = new HashMap<>();
+        model.put("username", countryGuideUser.getUserName());
+        model.put("token", token);
 
-        response.addCookie(cookie);
-
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(model);
 
     }
 
     @PostMapping("/login")
     public ResponseEntity signin(@RequestBody CountryGuideUser userData, HttpServletResponse response) {
-        try {
-            Cookie cookie = new Cookie("token", createToken(userData,null));
-            cookie.setHttpOnly(true);
-            response.addCookie(cookie);
-            return ResponseEntity.ok("");
 
-        } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username or password");
-        }
+
+            String token = createToken(userData,null);
+            Map<Object, Object> model = new HashMap<>();
+            model.put("username", userData.getUserName());
+                    model.put("token", token);
+
+            return ResponseEntity.ok(model);
     }
 
     private String createToken(CountryGuideUser userData, List<String> roles){
