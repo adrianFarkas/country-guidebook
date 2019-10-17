@@ -58,6 +58,14 @@ body {
     z-index: 1;
 }
 
+.register-btn {
+    background-color: #d5d5d5;
+}
+
+.register-btn:hover, .login-btn:hover {
+    opacity: 0.5;
+}
+
 @media (max-width: 1400px) {
     .cont {
         display: unset;

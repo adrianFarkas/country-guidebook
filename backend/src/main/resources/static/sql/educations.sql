@@ -1,0 +1,10 @@
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (310,102,9,11,22,1);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (311,100,12,12,29,12);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (312,90,8,10,3,34);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (313,98,11,11,146,100);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (314,102,13,10,158,111);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (315,99,10,11,8,133);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (316,102,10,10,102,155);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (317,99,10,8,2,188);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (318,100,11,11,61,276);
+INSERT INTO education(id,average_iq,compulsory_years,expenditure,spending,country_id) VALUES (319,97,12,12,136,298);

@@ -36,10 +36,6 @@ public class Units {
     @Column(columnDefinition = "text")
     private String description;
 
-    private String spending;
-    private String federal;
-    private String educationIndex;
-
     @OneToOne
     @JsonIgnore
     private Country country;
