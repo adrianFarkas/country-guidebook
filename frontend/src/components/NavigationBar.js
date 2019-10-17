@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignInAlt, faSignOutAlt, faUser} from "@fortawesome/free-solid-svg-icons";
-//import LoginForm from "./Authentication/torolheto/Login/LoginForm";
-//import RegisterForm from "./Authentication/torolheto/Login/RegistrationForm";
 import AuthFrom from "./Authentication/AuthForm"
 import Modal from "@material-ui/core/Modal";
 
@@ -18,7 +16,7 @@ function NavigationBar() {
         window.location.pathname="/";
 
     };
-    console.log(token);
+
     const styles = {
         padding: "0 10px",
         border: "2px solid #ffffff",
