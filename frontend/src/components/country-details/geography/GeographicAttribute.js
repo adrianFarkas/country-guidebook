@@ -1,6 +1,5 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Typography} from "@material-ui/core";
 
 function GeographicAttribute(props) {
     const {text, icon} = props;

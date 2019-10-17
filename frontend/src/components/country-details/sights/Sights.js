@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import SightCard from "./SightCard";
-import '../css/sights.css'
+import '../../../css/sights.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
-import Guide from "./Guide";
+import Guide from "../Guide";
 
 function Sights(props) {
     const properties = props.sights;

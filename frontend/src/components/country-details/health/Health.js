@@ -1,6 +1,6 @@
 import React from 'react';
-import Guide from "./Guide";
-import StatisticCard from "./StatisticCard";
+import Guide from "../Guide";
+import StatisticCard from "../../StatisticCard";
 import {faHourglassHalf, faStethoscope, faTachometerAlt, faUserMd} from "@fortawesome/free-solid-svg-icons";
 
 

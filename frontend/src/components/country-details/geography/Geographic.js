@@ -1,5 +1,5 @@
 import React from 'react';
-import Guide from "./Guide";
+import Guide from "../Guide";
 import {faChartArea, faClock, faMapMarked, faPhone, faStreetView} from "@fortawesome/free-solid-svg-icons";
 import GeographicAttribute from "./GeographicAttribute";
 import GeographicDescription from "./GeographicDescription";

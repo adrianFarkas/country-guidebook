@@ -1,6 +1,6 @@
 import React from 'react';
 import {faBalanceScaleLeft, faBookReader, faBrain, faMoneyBill} from "@fortawesome/free-solid-svg-icons";
-import Guide from "./Guide";
+import Guide from "../Guide";
 import EducationAttribute from "./EducationAttribute";
 
 function Education(props) {

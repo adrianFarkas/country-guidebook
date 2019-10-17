@@ -1,11 +1,10 @@
 import React from 'react';
-import NavigationBar from "../components/NavigationBar";
 import EuMap from "../components/EuMap";
 import MainContent from "../components/MainContent";
 import FilterForm from "../components/filter/FilterForm";
 import "../css/app.css"
 import "../css/main.css"
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 
 function App() {
 

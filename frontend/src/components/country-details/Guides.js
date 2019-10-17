@@ -1,8 +1,8 @@
 import React from 'react';
-import Geographic from "./Geographic";
-import Sights from "./Sights";
-import Education from "./Education";
-import Health from "./Health";
+import Geographic from "./geography/Geographic";
+import Sights from "./sights/Sights";
+import Education from "./education/Education";
+import Health from "./health/Health";
 import Finance from "./finance/Finance";
 
 function Guides(props) {

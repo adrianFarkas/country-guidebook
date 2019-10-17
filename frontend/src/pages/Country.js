@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import '../css/main.css'
 import '../css/country.css'
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import InfoLinks from "../components/InfoLinks";
-import Guides from "../components/Guides";
+import Guides from "../components/country-details/Guides";
 import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
 import ComingSoon from "../components/ComingSoon";
@@ -20,7 +20,7 @@ function Country(props) {
                 setCountry(country);
                 setIsLoading(false);
             })
-    }, []);
+    }, [countryCode]);
 
     const mainContent = country.health == null ?
         <ComingSoon />

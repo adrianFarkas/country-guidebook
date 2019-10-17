@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Nav, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSignInAlt, faSignOutAlt, faUser} from "@fortawesome/free-solid-svg-icons";
-import AuthFrom from "./Authentication/AuthForm"
+import AuthFrom from "../Authentication/AuthForm"
 import Modal from "@material-ui/core/Modal";
 
 
