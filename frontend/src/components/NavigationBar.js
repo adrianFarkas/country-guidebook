@@ -6,7 +6,7 @@ import {faSignInAlt, faUser} from "@fortawesome/free-solid-svg-icons";
 function NavigationBar() {
     const styles = {
         padding: "0 10px",
-        border: "2px solid #ffffff",
+        border: "2px solid #d5d5d5",
         borderRadius: "5px",
         margin: "auto 10px",
     };
@@ -16,12 +16,12 @@ function NavigationBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <div style={styles}>
-                        <Nav.Link href="#login" style={{color: "#ffffff"}}><FontAwesomeIcon
+                    <div className="login-btn" style={styles}>
+                        <Nav.Link href="#login" style={{color: "#d5d5d5"}}><FontAwesomeIcon
                             icon={faSignInAlt}/> Login</Nav.Link>
                     </div>
-                    <div style={styles}>
-                        <Nav.Link href="#register" style={{color: "#ffffff"}}><FontAwesomeIcon
+                    <div className="register-btn" style={styles}>
+                        <Nav.Link href="#register" style={{color: "#505050"}}><FontAwesomeIcon
                             icon={faUser}/> Register</Nav.Link>
                     </div>
                 </Nav>

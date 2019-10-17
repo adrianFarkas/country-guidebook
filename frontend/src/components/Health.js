@@ -1,33 +1,46 @@
 import React from 'react';
+import Guide from "./Guide";
+import StatisticCard from "./StatisticCard";
+import {faHourglassHalf, faStethoscope, faTachometerAlt, faUserMd} from "@fortawesome/free-solid-svg-icons";
+
 
 function Health(props) {
-    const {description, stateHospital, thermalSpa, hospitalMap} = props.health;
+    const {skill, speed, equipment, satisfaction} = props.health;
+
+    const cardStyle = {
+        color: "#ffffff",
+        width: "300px"
+    };
+
     return (
-        <div className="detail-card" id="Health Care">
-
-            <h1>Health</h1>
-            <hr/>
-            <div className="detail-card-left-div">
-                <div dangerouslySetInnerHTML={{ __html: description }}></div>
+        <Guide title="Health Care" id="Health Care">
+            <div style={cardStyle}>
+                <StatisticCard
+                    value={skill}
+                    title={"Competency of Staff"}
+                    icon={faUserMd}
+                />
+                <StatisticCard
+                    value={speed}
+                    title={"Speed of Completing Reports"}
+                    icon={faTachometerAlt}
+                    flexDirection={"row-reverse"}
+                    textAlign={"right"}
+                />
+                <StatisticCard
+                    value={equipment}
+                    title={"Equipment for Modern Diagnosis and Treatment"}
+                    icon={faStethoscope}
+                />
+                <StatisticCard
+                    value={satisfaction}
+                    title={"Satisfaction with Responsiveness"}
+                    icon={faHourglassHalf}
+                    flexDirection={"row-reverse"}
+                    textAlign={"right"}
+                />
             </div>
-            <div className="detail-card-right-div">
-                <h4>State Hospital</h4>
-                <img
-                    src={stateHospital}
-                    className="details-card-right-images"/>
-
-                <h4>Thermal Spa in {props.country}</h4>
-                <img
-                    src={thermalSpa}
-                    className="details-card-right-images"/>
-                <h4>Main hospitals in {props.country}</h4>
-                <img
-                    src={hospitalMap}
-                    className="details-card-right-images"/>
-
-
-            </div>
-        </div>
+        </Guide>
     );
 }
 

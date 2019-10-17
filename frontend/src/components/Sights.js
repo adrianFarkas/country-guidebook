@@ -3,6 +3,7 @@ import SightCard from "./SightCard";
 import '../css/sights.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
+import Guide from "./Guide";
 
 function Sights(props) {
     const properties = props.sights;
@@ -19,12 +20,9 @@ function Sights(props) {
     };
 
     return (
-        <div className="detail-card" id="Sights">
-            <h1>Sightseeing</h1>
-            <hr/>
-            <div className="sights">
+            <Guide title="Sightseeing" id="Sights">
 
-                <div className="page">
+                <div className="sights">
 
                     <div className="buttons">
                         <button
@@ -56,8 +54,8 @@ function Sights(props) {
                     </div>
 
                 </div>
-            </div>
-        </div>
+
+            </Guide>
     );
 }
 

@@ -1,26 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 .info-links {
     width: 80%;
     margin: auto;
 }
 
-.link-card {
-    border: 2px solid #c9c9c9;
-    border-radius: 20px;
-    padding: 30px;
-    width: 250px;
-    margin: 50px auto;
+.link-wrapper {
+    margin: 0 auto;
     text-align: center;
-    background-color: #e8f3ff;
-    box-shadow: 6px 6px 17px -10px rgba(0, 11, 109, 0.75);
+
+}
+
+.link-card-cont {
+    text-align: center;
+    max-width: 110px;
+    margin: 0 auto;
+}
+
+.link-card {
+    border-radius: 50%;
+    padding: 20px;
+    margin: 0 auto;
 }
 
 .link-card:hover {
-    background-color: #768cb4;
+    background-color: #3d6ab4;
+    box-shadow: 6px 6px 17px -10px rgba(0, 11, 109, 0.75);
+}
+
+.link-card:hover > a .link-icon {
+    color: white;
+}
+
+.link-icon {
+    margin: 0 auto;
+    background-color: unset;
+    box-shadow: unset;
+}
+
+.link-title {
+    font-weight: bold;
+    font-size: 30px;
+    color: #3d6ab4;
+    margin: 0 auto;
 }
 
 .cards {
     display: flex;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .guides {
@@ -59,4 +86,56 @@ h4 {
 
 .details-card-right-images:hover {
     transform: scale(2);
+}
+.guide {
+    padding-bottom: 100px;
+}
+
+.guide {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.guide-title {
+    font-size: 40px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.guide-title-underline {
+    width: 100px;
+    height: 3px;
+    background-color: black;
+    margin: 10px auto 60px;
+}
+
+.statistic-card:nth-child(odd) {
+    margin: 0 370px -10px;
+}
+
+.statistic-card:nth-child(even) {
+    margin: 0 760px -10px;
+}
+
+.coming-soon {
+    text-align: center;
+    font-size: 100px;
+    color: #8c8c8c;
+    animation: rotating 4s linear infinite;
+    --direction: -1;
+}
+
+.coming-soon-cont {
+    animation: rotating 4s ease-in-out infinite;
+    --direction: 1;
+}
+
+@keyframes rotating {
+    50% {
+        transform: rotate(calc(180deg * var(--direction)));
+    }
+
+    100% {
+        transform: rotate(calc(360deg * var(--direction)));
+    }
 }
