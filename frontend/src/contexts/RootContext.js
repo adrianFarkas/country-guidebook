@@ -27,7 +27,7 @@ export default function RootContextProvider(props) {
     useEffect(() => {
         localStorage.setItem("state", JSON.stringify(state));
         const data = JSON.parse(localStorage.getItem("state"));
-        if(data.countries.length === 0) fetchData();
+        if(data.languages.length === 0) fetchData();
     }, [state]);
 
     const fetchData = () => {
@@ -53,7 +53,7 @@ export default function RootContextProvider(props) {
         axios.post("http://localhost:8080/filter-countries", data)
             .then(res => {
                 const data = res.data;
-                dispatch({type: "FILTER_COUNTRIES", data})
+                dispatch({type: "FILTER_COUNTRIES", data});
             });
 
     };
