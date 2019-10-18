@@ -5,14 +5,14 @@ function GeographicAttribute(props) {
     const {text, icon} = props;
 
     const cardStyle = {
-        width: "230px",
-        height: "230px",
+        width: "15rem",
+        height: "15rem",
         display: "inline-grid",
-        boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.3)",
+        boxShadow: "0.25rem 0.25rem 0.75rem rgba(0, 0, 0, 0.3)",
         transition: "all 0.3s linear",
         cursor: "pointer",
         backgroundColor: "#45a2b4",
-        padding: "2px",
+        padding: "0.25rem",
         align: "center",
         margin: "2%",
         borderRadius: "50%",
