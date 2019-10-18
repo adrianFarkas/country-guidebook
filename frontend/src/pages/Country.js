@@ -7,6 +7,7 @@ import Guides from "../components/country-details/Guides";
 import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
 import ComingSoon from "../components/ComingSoon";
+import CountryRating from "../components/rating/CountryRating";
 
 function Country(props) {
     const countryCode = props.match.params.countryCode;
@@ -26,6 +27,7 @@ function Country(props) {
         <ComingSoon />
         :
         <div>
+            <CountryRating />
             <InfoLinks/>
             <Guides country={country}/>
         </div>;
