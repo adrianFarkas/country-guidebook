@@ -6,14 +6,13 @@ import AuthFrom from "../Authentication/AuthForm"
 import Modal from "@material-ui/core/Modal";
 
 
-
 function NavigationBar() {
 
     const token = localStorage.getItem("token");
 
-    const handleLogout= () => {
-       localStorage.removeItem("token");
-        window.location.pathname="/";
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        window.location.reload();
 
     };
 
@@ -25,23 +24,14 @@ function NavigationBar() {
     };
 
     const [openLogin, setOpenLogin] = useState(false);
-
-    const handleOpenLogin = () => {
-        setOpenLogin(true);
-    };
-
-    const handleCloseLogin = () => {
-        setOpenLogin(false);
-    };
-
     const [openRegister, setOpenRegister] = useState(false);
 
-    const handleOpenRegister = () => {
-        setOpenRegister(true);
+    const handleModalOpen = (formType) => {
+        formType === "login" ? setOpenLogin(true) : setOpenRegister(true);
     };
 
-    const handleCloseRegister = () => {
-        setOpenRegister(false);
+    const handleModalClose = (formType) => {
+        formType === "login" ? setOpenLogin(false) : setOpenRegister(false);
     };
 
 
@@ -51,32 +41,34 @@ function NavigationBar() {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={openLogin}
-                onClose={handleCloseLogin}
+                onClose={() => handleModalClose("login")}
+                tabIndex={-1}
             >
-            <AuthFrom login={true}/>
+                <AuthFrom login={true}/>
             </Modal>
             <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={openRegister}
-                onClose={handleCloseRegister}
+                onClose={() => handleModalClose("register")}
+                tabIndex={-1}
             >
-
                 <AuthFrom login={false}/>
-
             </Modal>
             <Navbar.Brand href="/">Home</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    {token===null ?
+                    {token === null ?
                         <React.Fragment>
                             <div className="login-btn" style={styles}>
-                                <Nav.Link onClick={handleOpenLogin} style={{color: "#d5d5d5"}}><FontAwesomeIcon
+                                <Nav.Link onClick={() => handleModalOpen("login")}
+                                          style={{color: "#d5d5d5"}}><FontAwesomeIcon
                                     icon={faSignInAlt}/> Login</Nav.Link>
                             </div>
                             <div className="register-btn" style={styles}>
-                                <Nav.Link onClick={handleOpenRegister} style={{color: "#505050"}}><FontAwesomeIcon
+                                <Nav.Link onClick={() => handleModalOpen("register")}
+                                          style={{color: "#505050"}}><FontAwesomeIcon
                                     icon={faUser}/> Register</Nav.Link>
                             </div>
                         </React.Fragment>
