@@ -46,6 +46,10 @@ public class Country {
     @OneToMany(mappedBy = "country", cascade = CascadeType.PERSIST)
     private List<Sight> sights;
 
+    @ElementCollection
+    @OneToMany(mappedBy = "country")
+    private List<Rate> rates;
+
     @Column(nullable = false, unique = true)
     private String name;
 
