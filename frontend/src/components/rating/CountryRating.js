@@ -14,6 +14,7 @@ function CountryRating(props) {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        if(token === null) return;
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get(`http://localhost:8080/country/${countryCode}/rate`)
             .then(res => {
@@ -50,8 +51,8 @@ function CountryRating(props) {
     };
 
     const handleClick = () => {
-        setValue(hover);
-        submitRating({rate: hover});
+        submitRating({rate: hover})
+            .then(res => res.status === 403 ? setValue(0) : setValue(hover))
     };
 
     return (

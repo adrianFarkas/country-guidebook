@@ -1,7 +1,9 @@
 import React, {createContext, useReducer} from 'react';
 import detailsReducer from "../reducers/detailsReducer";
 import axios from "axios";
-
+import {NotificationContainer} from "react-light-notifications";
+import "react-light-notifications/lib/main.css";
+import {loginAlert} from "../alerts";
 
 export const DetailsContext = createContext();
 
@@ -26,17 +28,22 @@ export default function DetailsContextProvider(props) {
         const countryCode = country.details["geographic"]["alpha3Code"];
         const token = localStorage.getItem("token");
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        axios.post(`http://localhost:8080/country/${countryCode}/rate`, rate)
+        return axios.post(`http://localhost:8080/country/${countryCode}/rate`, rate)
             .then(res => {
                 const data = res.data;
-                dispatch({type: "SET_RATES", data})
+                dispatch({type: "SET_RATES", data});
+                return res;
             })
-            .catch(err => console.log(err.response.status));
+            .catch(err => {
+                if (err.response.status === 403) loginAlert();
+                return err.response;
+            });
     };
 
     return (
         <DetailsContext.Provider value={{country, dispatch, setCountryDetails, submitRating}}>
             {props.children}
+            <NotificationContainer/>
         </DetailsContext.Provider>
     );
 }
