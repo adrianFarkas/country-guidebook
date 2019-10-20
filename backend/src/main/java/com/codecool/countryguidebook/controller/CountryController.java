@@ -51,7 +51,7 @@ public class CountryController {
     }
 
     @PostMapping("/country/{countryCode}/rate")
-    public String rateCountry(@RequestBody Rate rate, @PathVariable String countryCode) {
+    public List<Rate> rateCountry(@RequestBody Rate rate, @PathVariable String countryCode) {
         return rateDao.handleRate(rate, CountryCode.valueOf(countryCode.toUpperCase()));
     }
 

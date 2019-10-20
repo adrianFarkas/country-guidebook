@@ -12,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -28,14 +30,18 @@ public class CountryRateDao {
     @Autowired
     private CountryGuideUserRepository userRepository;
 
-    public String handleRate(Rate rate, CountryCode countryCode) {
+    @Autowired
+    private EntityManager entityManager;
+
+    public List<Rate> handleRate(Rate rate, CountryCode countryCode) {
         Rate actRate = getExistingRate(countryCode);
         if (actRate != null) {
             updateRate(actRate, rate.getRate());
         } else {
             saveRate(rate,countryCode);
         }
-        return SUCCESS;
+        entityManager.clear();
+        return rateRepository.findAllByCountry_Geographic_Alpha3Code(countryCode);
     }
 
     private void updateRate(Rate rate, Integer newValue) {
