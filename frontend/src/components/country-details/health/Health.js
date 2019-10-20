@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Guide from "../Guide";
 import StatisticCard from "../../StatisticCard";
 import {faHourglassHalf, faStethoscope, faTachometerAlt, faUserMd} from "@fortawesome/free-solid-svg-icons";
+import {DetailsContext} from "../../../contexts/DetailsContext";
 
 
 function Health(props) {
-    const {skill, speed, equipment, satisfaction} = props.health;
+    const {country} = useContext(DetailsContext);
+    const {skill, speed, equipment, satisfaction} = country.details.health;
 
     const cardStyle = {
         color: "#ffffff",

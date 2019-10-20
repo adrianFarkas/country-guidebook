@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {faBalanceScaleLeft, faBookReader, faBrain, faMoneyBill} from "@fortawesome/free-solid-svg-icons";
 import Guide from "../Guide";
 import EducationAttribute from "./EducationAttribute";
+import {DetailsContext} from "../../../contexts/DetailsContext";
 
 function Education(props) {
-    const {averageIq, compulsoryYears, expenditure, spending} = props.education;
+    const {country} = useContext(DetailsContext);
+    const {averageIq, compulsoryYears, expenditure, spending} = country.details.education;
+
     return (
         <Guide title="Education" id="Education">
             <EducationAttribute icon={faBrain} value={averageIq} text={"Average IQ"}/>

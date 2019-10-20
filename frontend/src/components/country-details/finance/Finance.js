@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Guide from "../Guide";
 import CorruptionIndex from "./CorruptionIndex";
 import FinanceAttributes from "./FinanceAttributes";
+import {DetailsContext} from "../../../contexts/DetailsContext";
 
 function Finance(props) {
-    const {annualGdp, corruptionIndex, debt, gdpCapita} = props.finance;
+    const {country} = useContext(DetailsContext);
+    const {annualGdp, corruptionIndex, debt, gdpCapita} = country.details.finance;
 
     const style = {
         width: "50%",

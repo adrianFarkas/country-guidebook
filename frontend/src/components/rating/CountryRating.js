@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Rate from "./Rate";
+import {DetailsContext} from "../../contexts/DetailsContext";
 
 function CountryRating(props) {
+    const {country, submitRating} = useContext(DetailsContext);
+
     const [hover, setHover] = useState(0);
     const [value, setValue] = useState(0);
 
-    const {rates, sendRate} = props;
+    const {rates} = country;
 
     const rateBoxStyle = {
         width: "280px",
@@ -36,7 +39,7 @@ function CountryRating(props) {
 
     const handleClick = () => {
         setValue(hover);
-        sendRate({rate: hover});
+        submitRating({rate: hover});
     };
 
     return (
