@@ -55,4 +55,9 @@ public class CountryController {
         return rateDao.handleRate(rate, CountryCode.valueOf(countryCode.toUpperCase()));
     }
 
+    @GetMapping("/country/{countryCode}/rate")
+    public Rate getRate(@PathVariable String countryCode) {
+        return rateDao.getExistingRate(CountryCode.valueOf(countryCode.toUpperCase()));
+    }
+
 }
