@@ -20,7 +20,7 @@ function Rate(props) {
         fontWeight: "bold"
     };
 
-    const titleBox = disabled ? <Box ml={1}>{title}</Box> : <Box ml={1}>{labels[hover !== 0 ? hover : value]}</Box>;
+    const titleBox = disabled ? <Box ml={1}>{title}</Box> : <Box ml={1}>{labels[hover]}</Box>;
 
 
     return (

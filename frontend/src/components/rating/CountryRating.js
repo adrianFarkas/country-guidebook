@@ -1,6 +1,7 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Rate from "./Rate";
 import {DetailsContext} from "../../contexts/DetailsContext";
+import axios from "axios";
 
 function CountryRating(props) {
     const {country, submitRating} = useContext(DetailsContext);
@@ -8,7 +9,18 @@ function CountryRating(props) {
     const [hover, setHover] = useState(0);
     const [value, setValue] = useState(0);
 
-    const {rates} = country;
+    const {rates, details} = country;
+    const countryCode = details["geographic"]["alpha3Code"];
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.get(`http://localhost:8080/country/${countryCode}/rate`)
+            .then(res => {
+                const data = res.data;
+                setValue(data.rate);
+            });
+    }, [countryCode]);
 
     const rateBoxStyle = {
         width: "280px",
