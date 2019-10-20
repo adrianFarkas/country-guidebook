@@ -30,7 +30,7 @@ function Rate(props) {
                 value={value}
                 precision={1}
                 onChangeActive={handleChange}
-                onClick={handleClick}
+                onMouseUp={handleClick}
                 disabled={disabled ? disabled : false}
             />
             {titleBox}
