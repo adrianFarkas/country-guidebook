@@ -8,3 +8,12 @@ export const loginAlert = () => {
         timeOut: 3000,
     });
 };
+
+export const successRate = () => {
+    NotificationManager.success({
+        title: 'Thank you!',
+        message: 'Your rate has been sent successfully!',
+        showCloseButton: false,
+        timeOut: 3000,
+    });
+};

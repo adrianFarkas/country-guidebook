@@ -3,7 +3,7 @@ import detailsReducer from "../reducers/detailsReducer";
 import axios from "axios";
 import {NotificationContainer} from "react-light-notifications";
 import "react-light-notifications/lib/main.css";
-import {loginAlert} from "../alerts";
+import {loginAlert, successRate} from "../alerts";
 
 export const DetailsContext = createContext();
 
@@ -32,6 +32,7 @@ export default function DetailsContextProvider(props) {
             .then(res => {
                 const data = res.data;
                 dispatch({type: "SET_RATES", data});
+                successRate();
                 return res;
             })
             .catch(err => {
