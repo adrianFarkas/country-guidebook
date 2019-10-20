@@ -12,6 +12,7 @@ import CountryRating from "../components/rating/CountryRating";
 function Country(props) {
     const countryCode = props.match.params.countryCode;
     const [country, setCountry] = useState({health: null});
+    const [rates, setRates] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -19,15 +20,24 @@ function Country(props) {
             .then(res => {
                 const country = res.data;
                 setCountry(country);
+                setRates(country.rates);
                 setIsLoading(false);
             })
     }, [countryCode]);
 
+    const sendRate = (rate) => {
+        const token = localStorage.getItem("token");
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.post(`http://localhost:8080/country/${countryCode}/rate`, rate)
+            .then(res => setRates(res.data))
+            .catch(err => console.log(err.response.status));
+    };
+
     const mainContent = country.health == null ?
-        <ComingSoon />
+        <ComingSoon/>
         :
         <div>
-            <CountryRating />
+            <CountryRating rates={rates} sendRate={sendRate}/>
             <InfoLinks/>
             <Guides country={country}/>
         </div>;
