@@ -3,10 +3,7 @@ package com.codecool.countryguidebook.model.countrybuilder;
 import com.codecool.countryguidebook.model.Country;
 import com.codecool.countryguidebook.model.CountryGuideUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +25,11 @@ public class Rate {
 
     @ManyToOne
     @JsonIgnore
+    @ToString.Exclude
     private Country country;
 
     @ManyToOne
     @JsonIgnore
+    @ToString.Exclude
     private CountryGuideUser countryGuideUser;
 }
