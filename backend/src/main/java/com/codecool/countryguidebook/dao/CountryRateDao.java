@@ -48,7 +48,7 @@ public class CountryRateDao {
         rateRepository.updateRateById(rate.getId(), newValue);
     }
 
-    private Rate getExistingRate(CountryCode countryCode) {
+    public Rate getExistingRate(CountryCode countryCode) {
         Optional<Rate> rate = rateRepository.findByCountry_Geographic_Alpha3CodeAndCountryGuideUser_Id(countryCode, getAuthenticatedUser().getId());
         return rate.orElse(null);
 
