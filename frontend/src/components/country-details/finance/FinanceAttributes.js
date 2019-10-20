@@ -7,7 +7,7 @@ function FinanceAttributes(props) {
 
     const cardStyle = {
         display: "flex",
-        width: "700px",
+        maxWidth: "700px",
         margin:" 60px auto 0",
         height: "100px",
         textAlign: "center"

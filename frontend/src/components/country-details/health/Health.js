@@ -9,7 +9,8 @@ function Health(props) {
 
     const cardStyle = {
         color: "#ffffff",
-        width: "300px"
+        width: "700px",
+        margin: "0 auto"
     };
 
     return (

@@ -111,11 +111,12 @@ h4 {
 }
 
 .statistic-card:nth-child(odd) {
-    margin: 0 370px -10px;
+    margin: auto -2% -10px;
 }
 
 .statistic-card:nth-child(even) {
-    margin: 0 760px -10px;
+    margin: auto 52% -10px;
+
 }
 
 .coming-soon {
