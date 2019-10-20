@@ -86,9 +86,6 @@ public class Initializer {
     private Finance buildFinance(Country country) {
         Finance finance = Finance.builder()
                 .description(descriptionForFinance())
-                .stateDebtMillionEuro("https://d3fy651gv2fhd3.cloudfront.net/charts/hungary-government-debt-to-gdp.png?s=hundebt2gdp&v=201904231545V20190821&lang=all")
-                .averageSalaryEUR("https://d3fy651gv2fhd3.cloudfront.net/charts/hungary-wages.png?s=hungarywag&v=201910020957V20190821")
-                .minimumWageEUR("https://d3fy651gv2fhd3.cloudfront.net/charts/hungary-minimum-wages.png?s=hungaryminwag&v=201904021542V20190821")
                 .country(country)
                 .build();
         return finance;
@@ -97,10 +94,6 @@ public class Initializer {
     private Health buildHealth(Country country) {
         Health health = Health.builder()
                 .country(country)
-                .description(descriptionForHealth())
-                .stateHospital("https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg/1920px-Balatonf%C3%BCred%2C_Sz%C3%ADvk%C3%B3rh%C3%A1z.jpg")
-                .thermalSpa("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/H%C3%A9v%C3%ADz_1.jpg/1920px-H%C3%A9v%C3%ADz_1.jpg")
-                .hospitalMap("https://www.jewishgen.org/yizkor/Brichah/images/bri138.jpg")
                 .country(country)
                 .build();
         return health;
@@ -162,11 +155,11 @@ public class Initializer {
             units.language(Language.valueOf(name.toUpperCase().split("\\s+")[0]));
         }
 
-        units.country(country)
-                .description(descriptionForEducation())
-                .spending("https://d3fy651gv2fhd3.cloudfront.net/charts/hungary-public-spending-on-education-total-percent-of-government-expenditure-wb-data.png?s=hun.se.xpd.totl.gb.zs%3aworldbank&lbl=0&v=201910310000V20190821")
-                .federal("https://slideplayer.com/slide/12739656/77/images/4/Hungarian+educational+system.jpg")
-                .educationIndex("http://budapestbeacon.com/wp-content/uploads/2014/09/WEF2014.png");
+        units.country(country);
+//                .description(descriptionForEducation())
+//                .spending("https://d3fy651gv2fhd3.cloudfront.net/charts/hungary-public-spending-on-education-total-percent-of-government-expenditure-wb-data.png?s=hun.se.xpd.totl.gb.zs%3aworldbank&lbl=0&v=201910310000V20190821")
+//                .federal("https://slideplayer.com/slide/12739656/77/images/4/Hungarian+educational+system.jpg")
+//                .educationIndex("http://budapestbeacon.com/wp-content/uploads/2014/09/WEF2014.png");
         return units.build();
     }
 
@@ -180,9 +173,9 @@ public class Initializer {
                 .population(countryJson.getInt("population"))
                 .callingCodes(gson.fromJson(String.valueOf(countryJson.getJSONArray("callingCodes")), stringListType))
                 .timeZones(gson.fromJson(String.valueOf(countryJson.getJSONArray("timezones")), stringListType))
-                .country(country)
-                .description(descriptionForGeographic())
-                .mapLink("https://upload.wikimedia.org/wikipedia/commons/c/c7/Hungary-CIA_WFB_Map.png");
+                .country(country);
+//                .description(descriptionForGeographic())
+//                .mapLink("https://upload.wikimedia.org/wikipedia/commons/c/c7/Hungary-CIA_WFB_Map.png");
 
 
         return geographicBuilder.build();

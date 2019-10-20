@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     ComposableMap,
     ZoomableGroup,
     Geographies,
     Geography
 } from "react-simple-maps"
-import {connect} from "react-redux";
+import {RootContext} from "../contexts/RootContext";
 
 function EuMap(props) {
+    const {state} = useContext(RootContext);
+    const countryCodes = state.countries.map(country => country["geographic"]["alpha3Code"]);
 
     return (
             <div className="wrapper">
@@ -24,7 +26,7 @@ function EuMap(props) {
                         <Geographies geography="/static/world-50m.json" disableOptimization>
                             {(geographies, projection) =>
                                 geographies.map((geography, i) =>
-                                    props.countryCodes.indexOf(geography.id) !== -1 && (
+                                    countryCodes.indexOf(geography.id) !== -1 && (
                                         <Geography
                                             key={i}
                                             geography={geography}
@@ -46,12 +48,4 @@ function handleClick(geo) {
     window.location.href = path;
 }
 
-const mapStateToProps = (state) => {
-    const countryCodes = state.countries.map(country => country["geographic"]["alpha3Code"]);
-    return {
-        countryCodes
-    }
-};
-
-
-export default connect(mapStateToProps)(EuMap);
+export default EuMap;

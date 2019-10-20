@@ -1,25 +1,21 @@
-import React, {useEffect} from 'react';
-import NavigationBar from "../components/NavigationBar";
+import React from 'react';
 import EuMap from "../components/EuMap";
 import MainContent from "../components/MainContent";
 import FilterForm from "../components/filter/FilterForm";
-import { connect } from 'react-redux';
-import { fetchData } from "../actions/index";
 import "../css/app.css"
-import axios from "axios"
+import "../css/main.css"
+import Header from "../components/header/Header";
 
-
-function App(props) {
-
-
-    useEffect(() => {
-        axios.get("http://localhost:8080/all")
-            .then(res => props.fetchData(res.data))
-    }, []);
+function App() {
 
     return (
             <div className="App">
-                <NavigationBar text="Country Guide"/>
+                <Header
+                    title="Country Guide"
+                    text="The place where your journey begins!"
+                    img="header.jpg"
+                    brightness={0.4}
+                />
                 <MainContent>
                     <FilterForm />
                     <EuMap />
@@ -29,4 +25,4 @@ function App(props) {
 }
 
 
-export default connect(null, {fetchData})(App);
+export default App;

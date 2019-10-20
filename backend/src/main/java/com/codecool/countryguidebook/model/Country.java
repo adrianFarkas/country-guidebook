@@ -38,6 +38,10 @@ public class Country {
     private Health health;
 
     @Setter
+    @OneToOne(mappedBy = "country", cascade = CascadeType.PERSIST)
+    private Education education;
+
+    @Setter
     @ElementCollection
     @OneToMany(mappedBy = "country", cascade = CascadeType.PERSIST)
     private List<Sight> sights;
