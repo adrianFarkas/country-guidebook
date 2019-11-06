@@ -30,18 +30,13 @@ export default function RootContextProvider(props) {
     }, []);
 
     const fetchData = () => {
-        console.log("fut");
         axios.get("http://localhost:8080/all")
             .then(res => {
                 const data = res.data;
                 dispatch({type: "STORE_DATA", data})
             });
     };
-    //
-    // const changeSlider = (newData) => {
-    //   setSlider(newData);
-    // };
-    //
+
     const filterCountries = (languages, currency, population) => {
         const data = {
                 languages,
@@ -56,9 +51,7 @@ export default function RootContextProvider(props) {
             });
 
     };
-
-    // const values = {countries, languages, currencies, slider, fetchData, changeSlider, filterCountries};
-
+    
     return (
         <RootContext.Provider value={{state, dispatch, fetchData, filterCountries}}>
             {props.children}
