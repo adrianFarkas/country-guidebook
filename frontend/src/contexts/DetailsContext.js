@@ -1,4 +1,4 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useReducer, useCallback} from 'react';
 import detailsReducer from "../reducers/detailsReducer";
 import axios from "axios";
 import {NotificationContainer} from "react-light-notifications";
@@ -16,13 +16,13 @@ export default function DetailsContextProvider(props) {
 
     const [country, dispatch] = useReducer(detailsReducer, initialSate);
 
-    const setCountryDetails = (countryCode) => {
+    const setCountryDetails = useCallback(countryCode => {
         axios.get("http://localhost:8080/country/" + countryCode)
             .then(res => {
                 const data = res.data;
                 dispatch({type: "STORE_DATA", data});
             })
-    };
+    }, []);
 
     const submitRating = (rate) => {
         const countryCode = country.details["geographic"]["alpha3Code"];

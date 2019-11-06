@@ -18,7 +18,7 @@ function Country(props) {
 
     useEffect(() => {
         setCountryDetails(countryCode);
-    }, [countryCode]);
+    }, [countryCode, setCountryDetails]);
 
 
     const mainContent = health == null ?
