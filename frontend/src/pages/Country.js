@@ -1,43 +1,41 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import '../css/main.css'
 import '../css/country.css'
 import Header from "../components/header/Header";
 import InfoLinks from "../components/InfoLinks";
 import Guides from "../components/country-details/Guides";
-import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
 import ComingSoon from "../components/ComingSoon";
 import CountryRating from "../components/rating/CountryRating";
+import {DetailsContext} from "../contexts/DetailsContext";
 
 function Country(props) {
     const countryCode = props.match.params.countryCode;
-    const [country, setCountry] = useState({health: null});
-    const [isLoading, setIsLoading] = useState(true);
+    const {country, setCountryDetails} = useContext(DetailsContext);
+
+    const {name, logo, health} = country.details;
+
 
     useEffect(() => {
-        axios.get("http://localhost:8080/country/" + countryCode)
-            .then(res => {
-                const country = res.data;
-                setCountry(country);
-                setIsLoading(false);
-            })
-    }, [countryCode]);
+        setCountryDetails(countryCode);
+    }, [countryCode, setCountryDetails]);
 
-    const mainContent = country.health == null ?
-        <ComingSoon />
+
+    const mainContent = health == null ?
+        <ComingSoon/>
         :
         <div>
             <CountryRating />
             <InfoLinks/>
-            <Guides country={country}/>
+            <Guides />
         </div>;
 
     return (
-        !isLoading ?
+        name ?
             <div>
                 <Header
-                    title={country.name}
-                    img={country.logo}
+                    title={name}
+                    img={logo}
                     brightness={0.4}
                 />
                 {mainContent}

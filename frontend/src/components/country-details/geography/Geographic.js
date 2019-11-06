@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Guide from "../Guide";
 import {faChartArea, faClock, faMapMarked, faPhone, faStreetView} from "@fortawesome/free-solid-svg-icons";
 import GeographicAttribute from "./GeographicAttribute";
 import GeographicDescription from "./GeographicDescription";
+import {DetailsContext} from "../../../contexts/DetailsContext";
 
 function Geographic(props) {
-    const {description, capital, population, area, timeZones, callingCodes} = props.geographic;
+    const {country} = useContext(DetailsContext);
+    const {description, capital, population, area, timeZones, callingCodes} = country.details.geographic;
+
     return (
         <Guide title="Geographic" id="Geographic">
             <div align={"center"}>

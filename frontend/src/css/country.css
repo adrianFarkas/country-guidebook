@@ -111,11 +111,12 @@ h4 {
 }
 
 .statistic-card:nth-child(odd) {
-    margin: 0 370px -10px;
+    margin: auto -2% -10px;
 }
 
 .statistic-card:nth-child(even) {
-    margin: 0 760px -10px;
+    margin: auto 52% -10px;
+
 }
 
 .coming-soon {
@@ -130,14 +131,4 @@ h4 {
 .coming-soon-cont {
     animation: rotating 4s ease-in-out infinite;
     --direction: 1;
-}
-
-@keyframes rotating {
-    50% {
-        transform: rotate(calc(180deg * var(--direction)));
-    }
-
-    100% {
-        transform: rotate(calc(360deg * var(--direction)));
-    }
 }

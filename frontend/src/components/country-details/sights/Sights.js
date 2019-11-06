@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import SightCard from "./SightCard";
 import '../../../css/sights.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 import Guide from "../Guide";
+import {DetailsContext} from "../../../contexts/DetailsContext";
 
 function Sights(props) {
-    const properties = props.sights;
+    const {country} = useContext(DetailsContext);
+    const properties = country.details.sights;
     const [index, setIndex] = useState(2);
 
     const nextProperty = () => {
