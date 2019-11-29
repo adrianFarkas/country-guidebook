@@ -6,11 +6,11 @@ This is a guidebook where the user can sort the countries of the EU by nultiple 
 
 **Technologies**
 
-      - React
-      - Java
-      - Spring framework
-      - Hibernate
-      - PostgreSQL
+   - React
+   - Java
+   - Spring framework
+   - Hibernate
+   - PostgreSQL
       
 
 Demo available on Heroku:
