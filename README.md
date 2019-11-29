@@ -13,5 +13,6 @@ This is a guidebook where the user can sort the countries of the EU by multiple 
    - PostgreSQL
       
 
-Demo available on Heroku:
+The project is also deployed at Heroku:
+
 [CountryGuide](https://country-guidebook.herokuapp.com/)
